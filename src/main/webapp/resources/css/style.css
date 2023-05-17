@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+header {
+    border-bottom: solid 1px #dddd;
+    height: 10vh;
+}
+
+nav {
+    height: 5vh;
+    border-bottom: solid 1px #dddd;
+}
+
+
+section {
+    height: 80vh;
+    background-color: snow;
+    border-bottom: solid 1px #dddd;
+}
+
+footer {
+    height: 5vh;
+    border-bottom: solid 1px #dddd;
+}
+

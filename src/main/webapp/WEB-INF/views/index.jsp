@@ -9,12 +9,16 @@
 <html>
 <head>
     <title>index</title>
+    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
+<%@include file="component/header.jsp"%>
+<%@include file="component/nav.jsp"%>
 <section>
     <div>
         <h2>안녕 나는 index</h2>
     </div>
 </section>
+<%@include file="component/footer.jsp"%>
 </body>
 </html>
