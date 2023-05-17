@@ -10,6 +10,7 @@ body {
 }
 
 header {
+    display: table;
     border-bottom: solid 1px #dddd;
     height: 10vh;
 }
@@ -22,7 +23,7 @@ nav {
 
 section {
     height: 80vh;
-    background-color: snow;
+    background-color: #E9ECEF;
     border-bottom: solid 1px #dddd;
 }
 
@@ -30,4 +31,61 @@ footer {
     height: 5vh;
     border-bottom: solid 1px #dddd;
 }
+#header-logo {
+    text-decoration: none;
+    color: #44b25c;
+    font-weight: 900;
+    margin-left: 15%;
+}
 
+#header-box{
+    display: table-cell;
+    padding: 30px;
+}
+#header-logo2 {
+    text-decoration: none;
+    color: black;
+}
+#header-search {
+    width: 216px;
+    height: 16px;
+    margin: 7px 0 0 10px;
+    border: 0 none;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #a9a9a9;
+}
+#header-search-div {
+    display: inline-block;
+    width: 260px;
+    height: 31px;
+    position: relative;
+    bottom: 4px;
+    border: 1px solid #00ab4c;
+    background-color: white;
+}
+#search-Query {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+}
+#search-icon {
+    background-image: url(https://ssl.pstatic.net/static/kin/section/sprite/sp_gnb_230406.svg);
+    background-size: 85px 67px;
+    background-position: 0 -52px;
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    margin: -8px 0 0 -8px;
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+}
