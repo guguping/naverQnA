@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>index</title>
-    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/component.css">
 </head>
 <body>
 <%@include file="component/header.jsp"%>

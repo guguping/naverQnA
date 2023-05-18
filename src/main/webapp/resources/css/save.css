@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#footer-logo {
+    background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_978240a6.png);
+    background-size: 244px 107px;
+    display: inline-block;
+    vertical-align: top;
+    background-position: -157px -51px;
+    background-repeat: no-repeat;
+    width: 70px;
+    height: 15px;
+    margin-top: 4px;
+}
+.footer_item {
+    text-decoration: none;
+    /*font-size: 12px;*/
+    line-height: 15px;
+    letter-spacing: -.5px;
+    color: #888;
+}
+.footer_link {
+    padding: 0;
+}
+.footer_link li {
+    display: inline-block;
+    width: auto;
+}
+footer div .footer_link li {
+    position: relative;
+    padding-left: 13px;
+}
+footer div .footer_link li+li::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 1px;
+    height: 11px;
+    background-color: #dadada;
+}
+.text {
+    font-size: 12px;
+}
