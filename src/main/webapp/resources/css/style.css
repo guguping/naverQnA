@@ -41,7 +41,7 @@ footer {
     display: table-cell;
     vertical-align: top;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 25px;
 }
 #header-logo2 {
     text-decoration: none;
@@ -101,12 +101,15 @@ footer {
 #header-login-txt {
     width: 45px;
     height: 20px;
+    margin-left: 4px;
     padding-left: 1px;
     line-height: 21px;
     color: #666;
     text-align: center;
 }
 #header-login-bdr {
+    position: absolute;
+    top: 36px;
     width: 46px;
     height: 20px;
     border: 1px solid #000;
