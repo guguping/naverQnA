@@ -38,7 +38,7 @@
                                 </div>
                                 <input type="password" id="pw_input" name="memberPassword" placeholder="비밀번호">
                             </div>
-                            <a href="#" id="Go-Save">
+                            <a href="/memberSave" id="Go-Save">
                                 회원가입
                             </a>
                             <div id="btn-form-inner">
