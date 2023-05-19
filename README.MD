@@ -29,3 +29,19 @@
     포인트를 통한 랭킹 기능
     랭킹에 따른 특별한 답글 CSS
     포인트를 활용 가능한 상점 기능
+
+
+## sql - member_table
+```sql
+drop table if exists member_table;
+create table member_table(
+id bigint auto_increment primary key,
+memberEmail varchar(20) not null unique,
+memberDomain varchar(30) not null unique,
+memberPassword varchar(20) not null,
+memberName varchar(10) not null,
+memberBirthday varchar(15) not null,
+memberGender varchar(1) not null,
+memberCreateDate datetime default now()
+);
+```

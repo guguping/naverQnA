@@ -3,5 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="naver">
+<mapper namespace="naverMember">
+    <insert id="saveMember" parameterType="member">
+        insert into member_table(memberEmail,memberDomain,memberPassword,memberName,memberBirthday,memberGender)
+            value (#{memberEmail},#{memberDomain},#{memberPassword},#{memberName},#{memberBirthday},#{memberGender})
+    </insert>
 </mapper>

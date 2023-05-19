@@ -10,7 +10,7 @@
             </a>
         </div>
         <div style="display:inline;">
-            <a href="/memberLogin" id="header-login-link">
+            <a href="/member/login" id="header-login-link">
                 <samp id="header-login-bdr"></samp>
                 <samp id="header-login-txt">로그인</samp>
             </a>

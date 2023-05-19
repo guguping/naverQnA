@@ -25,7 +25,7 @@
             <ul id="login-form-box-inner">
                 <li id="login-form-item">
                     <div id="login-form-inner">
-                        <form action="/memberLogin" method="post" id="login-form-main">
+                        <form action="/member/login" method="post" id="login-form-main">
                             <div id="id_line">
                                 <div id="id-icon-div">
                                     <samp id="id-icon"></samp>
@@ -38,7 +38,7 @@
                                 </div>
                                 <input type="password" id="pw_input" name="memberPassword" placeholder="비밀번호">
                             </div>
-                            <a href="/memberSave" id="Go-Save">
+                            <a href="/member/save" id="Go-Save">
                                 회원가입
                             </a>
                             <div id="btn-form-inner">

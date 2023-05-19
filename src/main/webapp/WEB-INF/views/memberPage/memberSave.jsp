@@ -22,7 +22,7 @@
     </div>
 </header>
 <section>
-    <form action="/memberSave" method="post">
+    <form action="/member/save" method="post">
         <div id="save-container">
             <div id="save-container-contents">
                 <div> <!-- 가입폼 전체 -->
@@ -32,7 +32,7 @@
                                 <label for="memberEmail">아이디</label>
                             </h3>
                             <span class="ps_box" style="background: #fff;outline: 0;">
-                                <input type="text" id="memberEmail" name="memberEmail" class="save-input">
+                                <input type="text" id="memberEmail" name="memberEmail" class="save-input" maxlength="20">
                                 <span id="Email-domain">@naver.com</span>
                             </span>
                         </div>
@@ -67,12 +67,12 @@
                             <div id="birthday-box">
                                 <div class="bir_yy">
 								<span class="ps_box" style="padding: 11px 14px;">
-									<input type="text" id="yy" placeholder="년(4자)" class="save-input" maxlength="4">
+									<input type="text" id="yy" name="memberBiryy" placeholder="년(4자)" class="save-input" maxlength="4">
 								</span>
                                 </div>
                                 <div class="bir_mm">
 								<span class="ps_box" style="padding: 11px 14px;">
-									<select id="mm" class="sel">
+									<select id="mm" name="memberBirmm" class="sel">
 										<option value="">월</option>
 										  	 			<option value="01">
                                                             1
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="bir_dd">
 								<span class="ps_box" style="padding: 11px 14px;">
-									<input type="text" id="dd" placeholder="일" class="save-input" maxlength="2">
+									<input type="text" id="dd" name="memberBirdd" placeholder="일" class="save-input" maxlength="2">
 									<label for="dd" class="lbl"></label>
 								</span>
                                 </div>
