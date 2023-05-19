@@ -12,4 +12,12 @@ public class MemberService {
     public void saveMember(MemberDTO memberDTO) {
         memberRepository.saveMember(memberDTO);
     }
+
+    public String emailcheck(String memberEmail) {
+        return memberRepository.emailcheck(memberEmail);
+    }
+
+    public MemberDTO loginMember(MemberDTO memberDTO) {
+        return memberRepository.loginMember(memberDTO);
+    }
 }

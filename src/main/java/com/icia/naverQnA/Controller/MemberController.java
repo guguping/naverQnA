@@ -3,11 +3,11 @@ package com.icia.naverQnA.Controller;
 import com.icia.naverQnA.DTO.MemberDTO;
 import com.icia.naverQnA.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,8 +21,20 @@ public class MemberController {
     }
 
     @PostMapping("/member/login")
-    public String loginMember() {
-        return "index";
+    public String loginMember(@ModelAttribute MemberDTO memberDTO , HttpSession session , Model model) {
+        System.out.println("memberDTO = " + memberDTO);
+        MemberDTO memberDB = memberService.loginMember(memberDTO);
+        System.out.println("memberDB = " + memberDB);
+        String loginFalse = "아이디 또는 비밀번호를 잘못 입력했습니다."+"<br>"+"입력하신 내용을 다시 확인해주세요.";
+        if(memberDB != null) {
+//            session.setAttribute("memberId",memberDB.getId());
+//            model.addAttribute("memberDTO",memberDB);
+            return "index";
+        } else {
+            model.addAttribute("loginFalse",loginFalse);
+            return "/memberPage/memberLogin";
+        }
+
     }
 
     @GetMapping("/member/save")
@@ -37,5 +49,14 @@ public class MemberController {
         System.out.println("memberDTO = " + memberDTO);
         memberService.saveMember(memberDTO);
         return "/memberPage/memberLogin";
+    }
+    @PostMapping("/member/emailcheck")
+    public ResponseEntity emailcheck(@RequestParam("memberEmail") String memberEmail){
+        String dbEmail = memberService.emailcheck(memberEmail);
+        if(dbEmail != null) {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity(HttpStatus.OK);
+        }
     }
 }

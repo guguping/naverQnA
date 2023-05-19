@@ -38,11 +38,12 @@
                                 </div>
                                 <input type="password" id="pw_input" name="memberPassword" placeholder="비밀번호">
                             </div>
+                            <span id="err-box">${loginFalse}</span>
                             <a href="/member/save" id="Go-Save">
                                 회원가입
                             </a>
                             <div id="btn-form-inner">
-                                <button type="submit" id="btn-login">
+                                <button type="button" id="btn-login" onclick="sub_check()">
                                     <samp id="btn-login-txt"
                                           style="font-size: 20px;font-weight: 700;line-height: 24px;color: white">로그인</samp>
                                 </button>
@@ -86,4 +87,20 @@
     </footer>
 </div>
 </body>
+<script>
+    const memberEmail = document.getElementById('id_input');
+    const memberPass = document.getElementById('pw_input');
+    const subResult = document.getElementById('err-box');
+    const loginForm = document.getElementById('login-form-main');
+    const sub_check = () => {
+        if(memberEmail.value.length == 0){
+            subResult.innerHTML = "아이디를 입력해 주세요."
+        } else if(memberPass.value.length == 0) {
+            subResult.innerHTML = "비밀번호를 입력해 주세요."
+        } else {
+            subResult.innerHTML = "${loginFalse}";
+            loginForm.submit();
+        }
+    }
+</script>
 </html>
