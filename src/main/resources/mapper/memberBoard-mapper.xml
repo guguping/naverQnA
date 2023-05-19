@@ -8,4 +8,10 @@
         insert into member_table(memberEmail,memberDomain,memberPassword,memberName,memberBirthday,memberGender)
             value (#{memberEmail},#{memberDomain},#{memberPassword},#{memberName},#{memberBirthday},#{memberGender})
     </insert>
+    <select id="emailCheck" parameterType="String" resultType="String">
+        select memberEmail from member_table where memberEmail = #{memberEmail}
+    </select>
+    <select id="loginMember" parameterType="member" resultType="member">
+        select * from member_table where memberEmail = #{memberEmail} and memberPassword = #{memberPassword}
+    </select>
 </mapper>
