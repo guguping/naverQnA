@@ -12,6 +12,6 @@
         select memberEmail from member_table where memberEmail = #{memberEmail}
     </select>
     <select id="loginMember" parameterType="member" resultType="member">
-        select * from member_table where memberEmail = #{memberEmail} and memberPassword = #{memberPassword}
+        select * from member_table where (memberEmail = #{memberEmail} and memberPassword = #{memberPassword}) or (memberDomain = #{memberEmail} and memberPassword = #{memberPassword})
     </select>
 </mapper>

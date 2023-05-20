@@ -31,22 +31,25 @@ footer {
     height: 5vh;
     border-bottom: solid 1px #dddd;
 }
+
 #header-logo {
     text-decoration: none;
     color: #44b25c;
     font-weight: 900;
 }
 
-.header-box{
+.header-box {
     display: table-cell;
     vertical-align: top;
     text-align: center;
     padding-top: 25px;
 }
+
 #header-logo2 {
     text-decoration: none;
     color: black;
 }
+
 #header-search {
     width: 216px;
     height: 16px;
@@ -57,6 +60,7 @@ footer {
     line-height: 20px;
     color: #a9a9a9;
 }
+
 #header-search-div {
     display: inline-block;
     width: 260px;
@@ -66,6 +70,7 @@ footer {
     border: 1px solid #00ab4c;
     background-color: white;
 }
+
 #search-Query {
     position: absolute;
     top: 0;
@@ -74,6 +79,7 @@ footer {
     height: 30px;
     text-decoration: none;
 }
+
 #search-icon {
     background-image: url(https://ssl.pstatic.net/static/kin/section/sprite/sp_gnb_230406.svg);
     background-size: 85px 67px;
@@ -98,6 +104,7 @@ footer {
     height: 20px;
     font-size: 12px;
 }
+
 .header-login-txt {
     width: 45px;
     height: 20px;
@@ -107,6 +114,7 @@ footer {
     color: #666;
     text-align: center;
 }
+
 .header-login-bdr {
     position: absolute;
     top: 36px;
@@ -115,6 +123,7 @@ footer {
     border: 1px solid #000;
     opacity: 0.12;
 }
+
 #header-myPage-box {
     display: inline;
     background-image: url(https://ssl.pstatic.net/static/common/gnb/2014/ico_arrow_bl1.gif);
@@ -123,6 +132,7 @@ footer {
     background-position: 100% 50%;
     zoom: 1;
 }
+
 #header-myPage-img {
     position: absolute;
     top: -5px;
@@ -131,6 +141,7 @@ footer {
     aspect-ratio: auto 26 / 26;
     height: 26px;
 }
+
 .filter_mask {
     background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v15.png?v=2006);
     position: absolute;
@@ -141,6 +152,7 @@ footer {
     height: 28px;
     background-position: -260px -60px;
 }
+
 #header-myPage-name {
     margin-right: -1px;
     padding-left: 50px;
@@ -149,6 +161,7 @@ footer {
     font-size: 12px;
     color: #444;
 }
+
 .blind {
     display: block;
     overflow: hidden;
@@ -162,6 +175,7 @@ footer {
     font-size: 0;
     line-height: 0;
 }
+
 .gnb_common_area::before {
     content: '';
     position: absolute;
@@ -171,7 +185,116 @@ footer {
     height: 15px;
     background-color: #eee;
 }
+
 #header-myPage-name:hover {
     text-decoration: underline;
 }
-
+.header-layout-pointer {
+    position: absolute;
+    left: 10%;
+    top: 0px;
+    width: 10px;
+    height: 8px;
+    margin-left: 15px;
+    background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v15.png?v=2006);
+    background-position: -175px -10px;
+}
+.header-layout-box {
+    position: absolute;
+    left: 0;
+    display: none;
+    background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v15.png?v=2006);
+    top: 26px;
+    right: -8px;
+    padding: 9px 5px 4px 4px;
+    width: 325px;
+    height: 170px;
+    background-position: -2px -1310px;
+}
+.header-layout-content {;
+    height: 150px;
+    padding: 15px 0 10px 15px;
+}
+.layout-img-area {
+    float: left;
+    position: relative;
+    display: block;
+    width: 80px;
+    margin: 1px 0 0 1px;
+}
+.layout-img-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v15.png?v=2006);
+    background-position: -70px -60px;
+}
+.layout-img-change {
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    display: block;
+    width: 28px;
+    height: 28px;
+    background: url(https://ssl.pstatic.net/static/common/gnb/one/ico_gnb_change.png);
+    background-size: 28px 28px
+}
+.layout-txt-area {
+    text-align: left;
+    float: left;
+    width: 210px;
+}
+.layout-user-name {
+    color: #666;
+    font-size: 14px;
+    vertical-align: top;
+}
+.layout-user-nick {
+    position: relative;
+    vertical-align: top;
+    font-weight: bold;
+    color: #222;
+    text-decoration: none;
+}
+.layout-logout {
+    position: relative;
+    color: #444;
+    text-decoration: none;
+    margin: -1px 0 0 8px;
+    height: 20px;
+    font-size: 12px;
+}
+.layout-logout-bg {
+    font-size: 12px;
+    background-color: #fff;
+    opacity: 0.05;
+}
+.layout-logout-bdr {
+    position: absolute;
+    left: -1px;
+    width: 56px;
+    height: 20px;
+    border: 1px solid #000;
+    opacity: 0.12;
+}
+.layout-logout-txt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 21px;
+    width: 53px;
+    color: #666;
+    text-align: center;
+}
+.layout-user-account {
+    margin-left: 10px;
+}
+.layout-user-domain {
+    color: #666;
+    font-size: 12px;
+    text-decoration: none;
+    margin-left: 10px;
+}
