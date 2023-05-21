@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>memberSave</title>
@@ -16,7 +17,7 @@
 <header>
     <div style="padding: 60px 0 20px;">
         <h1>
-            <a href="http://www.naver.com" id="save-logo-link">
+            <a href="/" id="save-logo-link">
                 <span class="blind">NAVER</span>
             </a>
         </h1>

@@ -119,7 +119,7 @@ footer {
     border-bottom: solid 1px #dddd;
 }
 
-#header-logo {
+.header-logo {
     text-decoration: none;
     color: #44b25c;
     font-weight: 900;

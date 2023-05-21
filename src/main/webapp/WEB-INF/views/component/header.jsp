@@ -3,7 +3,14 @@
 <header>
     <div class="header-box">
         <div style="width: 500px;margin-left: 15px;">
-            <span><a href="/" id="header-logo">NAVER</a></span>
+            <c:choose>
+                <c:when test="${sessionScope.memberId != null}">
+                    <span><a href="/login/index" class="header-logo">NAVER</a></span>
+                </c:when>
+                <c:otherwise>
+                <span><a href="/" class="header-logo">NAVER</a></span>
+                </c:otherwise>
+            </c:choose>
             <h2 style="display: inline"><a href="#" id="header-logo2">지식iN</a></h2>
             <div id="header-search-div">
                 <input type="text" id="header-search">

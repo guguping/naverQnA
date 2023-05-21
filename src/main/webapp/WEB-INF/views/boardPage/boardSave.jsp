@@ -61,7 +61,7 @@
                     <div class="board-save-btn-box">
                         <div class="board-save-btn">
                             <button type="button" class="save-btn">작성완료</button>
-                            <button type="button" class="save-btn">작성취소</button>
+                            <button type="button" class="save-btn" onclick="back()">작성취소</button>
                         </div>
                     </div>
                 </div>
@@ -71,9 +71,21 @@
 </section>
 <%@include file="../component/footer.jsp" %>
 </body>
+
 <script>
     CKEDITOR.replace('editor1', {
-        height: '350px',
+        height: '350px'
     });
+
+    CKEDITOR.instances['editor1'].on('contentDom', function() {
+        this.document.on('click', function(event){
+            CKEDITOR.instances.editor1.setData('<br>');
+        });
+    });
+
+    const back = () => {
+        location.href = "/login/index";
+    }
+
 </script>
 </html>
