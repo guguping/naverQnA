@@ -73,8 +73,8 @@
                                 <ul class="ranking-list">
                                     <li class="ranking-list-item">
                                         <span class="list-no">1</span>
-                                        <a class="list-title" target="_blank">테스트 입니다</a>
-                                        <a class="list-txt">테스트 입니다</a>
+                                        <a href="#" class="list-title" target="_blank">테스트 입니다</a>
+                                        <a href="#" class="list-txt">테스트 입니다</a>
                                         <span class="list-views">조회수 0</span>
                                         <span class="list-answer">답변수 0</span>
                                     </li>
@@ -82,8 +82,8 @@
                                 <ul class="ranking-list">
                                     <li class="ranking-list-item">
                                         <span class="list-no">1</span>
-                                        <a class="list-title" target="_blank">테스트 입니다</a>
-                                        <a class="list-txt">테스트 입니다</a>
+                                        <a href="#" class="list-title" target="_blank">테스트 입니다</a>
+                                        <a href="#" class="list-txt">테스트 입니다</a>
                                         <span class="list-views">조회수 0</span>
                                         <span class="list-answer">답변수 0</span>
                                     </li>

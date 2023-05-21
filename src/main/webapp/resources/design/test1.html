@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" href="../css/component.css">
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+</head>
+<body>
+<header>
+    <div class="header-box">
+        <div style="width: 500px;margin-left: 15px;">
+            <span><a href="/" id="header-logo">NAVER</a></span>
+            <h2 style="display: inline"><a href="#" id="header-logo2">지식iN</a></h2>
+            <div id="header-search-div">
+                <input type="text" id="header-search">
+                <a href="#" id="search-Query" onclick="fun1()">
+                    <span id="search-icon">지식iN 검색</span>
+                </a>
+            </div>
+            <div style="position: relative;display: inline;" class="gnb_common_area">
+                <div id="header-myPage-box">
+                    <a href="#" style="position: relative;text-decoration: none;color: black;" id="layout-controller">
+                        <img id="header-myPage-img" src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
+                             alt="내 프로필 이미지" style="display: inline-block;">
+                        <span class="filter_mask" style="display: inline-block;"></span>
+                        <span id="header-myPage-name" style="display: inline;">12345</span>
+                        <em class="blind">내정보 보기</em>
+                    </a>
+                </div>
+                <!-- 레이아웃 박스 -->
+                <div class="header-layout-box" id="layout-box">
+                    <span class="header-layout-pointer"></span>
+                    <div class="header-layout-content">
+                        <div class="layout-img-area">
+                            <span class="layout-img-mask"></span>
+                            <img src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
+                                 width="80" height="80" alt="프로필 이미지">
+                            <a href="#"
+                               class="layout-img-change">
+                                <span class="blind">프로필 사진 변경</span>
+                            </a>
+                        </div>
+                        <div class="layout-txt-area">
+                            <p class="layout-user-account">
+                            <span class="layout-user-name">
+                                <a class="layout-user-nick" href="#">12345</a>님
+                            </span>
+                                <a class="layout-logout" href="#">
+                                    <span class="layout-logout-bg"></span>
+                                    <span class="layout-logout-bdr"></span>
+                                    <span class="layout-logout-txt">로그아웃</span>
+                                </a>
+                            </p>
+                            <a href="#" class="layout-user-domain">qkfhandur@naver.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        <div style="display:inline;">-->
+        <!--            <a href="#" id="header-login-link">-->
+        <!--                <samp class="header-login-bdr"></samp>-->
+        <!--                <samp class="header-login-txt">로그인</samp>-->
+        <!--            </a>-->
+        <!--        </div>-->
+    </div>
+</header>
+<nav>
+    <div id="nav-inner">
+        <h3 class="blind"></h3>
+        <ul id="nav-list" style="display: flex;justify-content: center;">
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>홈</em></a></li>
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>Q&A</em></a></li>
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>답변하기</em></a></li>
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>명예의전당</em></a></li>
+            <li class="nav-menu"><span class="nav-list-bar">|</span><a href="#" class="nav-list-item"
+                                                                       style="width: auto;"><em>프로필</em></a></li>
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>룰렛</em></a></li>
+            <li class="nav-menu"><span class="nav-list-bar">|</span></li>
+            <li class="nav-menu" style="background-color: #00c73c;border: 1px solid #00bd39;margin-left: 15px;"><a
+                    href="#" class="nav-list-item-question"><span class="btn_inner"><i
+                    class="nav-list-item-question-icon"></i>질문하기</span></a></li>
+        </ul>
+    </div>
+</nav>
+<section style="background-color: #fff;margin: 0 auto;">
+    <div class="board-save-box">
+        <h3 class="blind">QnA영역</h3>
+        <div class="board-save-box-inner">
+            <form action="/board/save" method="post" class="save-form">
+                <div style="width: 743px;">
+                    <div style="width: 743px;padding: 15px 0 11px;font-size: 12px;visibility: hidden">패딩을위한공간</div>
+                    <div class="board-save-title-area">
+                        <div class="article">
+                            <h3>
+                                <label for="boardTitle">
+                                    <img src="https://ssl.pstatic.net/static/kin/09renewal/h_question.gif"
+                                         style="width: 64px;height:30px; " alt="질문">
+                                </label>
+                            </h3>
+                            <div class="save-input">
+                                <input id="boardTitle" name="boardTitle" class="save-input-title">
+                            </div>
+                        </div>
+                        <div class="article2">
+                            <span class="desc">
+                                (<span id="au_title_cnt" style="text-align: right;">0</span>/80자)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="board-save-contents-area">
+                        <textarea id="editor1" name="boardContents">
+                            궁금한 내용을 질문해 주세요.
+                            <br>
+                            <br>
+                            질문 시 이런 점을 주의해 주세요!
+                            <br>
+                            - 답변이 등록되면 질문 수정/삭제가 불가합니다.
+                            <br>
+                            - 질문 내용에 개인정보(실명, 전화번호, 메신저 및 네이버 아이디)가 포함되지 않게 해 주세요.
+                            <br>
+                            - 의료 질문 관련하여 의료인은 SNS 상담을 하지 않고, 신체 사진/동영상을 요구하지 않습니다.
+                            <br>
+                            악의적인 범죄로 이어질 수 있으니 유의해 주세요.
+                            <br>
+                            피해를 입으셨다면, 서비스에 신고, 112 또는 사이버경찰청(www.police.go.kr)으로 신고 부탁드립니다.
+                        </textarea>
+                    </div>
+                    <div class="board-save-btn-box">
+                        <div class="board-save-btn">
+                            <button type="button" class="save-btn">작성완료</button>
+                            <button type="button" class="save-btn">작성취소</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer>
+    <div>
+        <p style="text-align: center;padding-top: 5px"><a href="https://www.naver.com/"
+                                                          style="font-size: 20px;text-decoration: none; color: #44b25c;">Naver</a>Copyright
+            © NAVER Corp. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+<script>
+    window.onload = function () {
+        const layoutController = document.getElementById('layout-controller');
+        const layoutBox = document.getElementById('layout-box');
+        layoutController.addEventListener("click", function () {
+            if (layoutBox.style.display === "block") {
+                layoutBox.style.display = "none";
+            } else {
+                layoutBox.style.display = "block";
+            }
+        })
+    }
+    CKEDITOR.replace('editor1', {
+        height: '350px',
+    });
+</script>
+</html>
