@@ -16,11 +16,96 @@ header {
 }
 
 nav {
-    height: 5vh;
-    border-bottom: solid 1px #dddd;
+    position: relative;
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+#nav-inner {
+    position: relative;
+    width: 590px;
+    margin: 0 auto;
+}
+ul , li {
+    list-style: none;
+}
+.nav-menu {
+    float: left;
+    position: relative;
+    height: 50px;
+    width: auto;
 }
 
-
+.nav-list-item{
+    display: block;
+    float: left;
+    padding: 0 15px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #4c4c4c;
+    text-decoration: none;
+}
+.nav-list-item-on{
+    display: block;
+    float: left;
+    padding: 0 15px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #4c4c4c;
+    text-decoration: none;
+}
+.nav-list-item-on em {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 15px 0;
+    vertical-align: top;
+    font-style: normal;
+    position: relative;
+    border-bottom: 3px solid #4cc370;
+    color: #4cc370;
+    text-decoration: none;
+}
+.nav-list-item em {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 15px 0;
+    vertical-align: top;
+    font-style: normal;
+}
+.nav-list-item em:hover {
+    position: relative;
+    border-bottom: 3px solid #4cc370;
+    color: #4cc370;
+    text-decoration: none;
+    font-style: normal;
+}
+.nav-list-bar {
+    display: block;
+    overflow: hidden;
+    float: left;
+    width: 1px;
+    height: 15px;
+    margin: 17px 6px 0;
+    background-color: #c8cbcd;
+    vertical-align: top;
+}
+.nav-list-item-question {
+    padding: 0 18px;
+    line-height: 50px;
+    color: #fff;
+    font-size: 15px;
+    width: auto;
+    text-decoration: none;
+}
+.nav-list-item-question-icon {
+    background-image: url(https://ssl.pstatic.net/static/kin/section/sprite/sp_gnb_230406.svg);
+    background-size: 85px 67px;
+    background-position: -61px -39px;
+    width: 15px;
+    height: 13px;
+    display: inline-block;
+    margin-right: 6px;
+}
 section {
     height: 80vh;
     background-color: #E9ECEF;
@@ -210,6 +295,7 @@ footer {
     width: 325px;
     height: 170px;
     background-position: -2px -1310px;
+    z-index: 2;
 }
 .header-layout-content {;
     height: 150px;
