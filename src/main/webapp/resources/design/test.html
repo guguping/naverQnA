@@ -8,49 +8,51 @@
 <body>
 <header>
     <div class="header-box">
-        <span><a href="/" id="header-logo">NAVER</a></span>
-        <h2 style="display: inline"><a href="#" id="header-logo2">지식iN</a></h2>
-        <div id="header-search-div">
-            <input type="text" id="header-search">
-            <a href="#" id="search-Query" onclick="fun1()">
-                <span id="search-icon">지식iN 검색</span>
-            </a>
-        </div>
-        <div style="position: relative;display: inline;" class="gnb_common_area">
-            <div id="header-myPage-box">
-                <a href="#" style="position: relative;text-decoration: none;color: black;" id="layout-controller">
-                    <img id="header-myPage-img" src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
-                         alt="내 프로필 이미지" style="display: inline-block;">
-                    <span class="filter_mask" style="display: inline-block;"></span>
-                    <span id="header-myPage-name" style="display: inline;">qkf</span>
-                    <em class="blind">내정보 보기</em>
+        <div style="width: 500px;margin-left: 15px;">
+            <span><a href="/" id="header-logo">NAVER</a></span>
+            <h2 style="display: inline"><a href="#" id="header-logo2">지식iN</a></h2>
+            <div id="header-search-div">
+                <input type="text" id="header-search">
+                <a href="#" id="search-Query" onclick="fun1()">
+                    <span id="search-icon">지식iN 검색</span>
                 </a>
             </div>
-            <!-- 레이아웃 박스 -->
-            <div class="header-layout-box" id="layout-box">
-                <span class="header-layout-pointer"></span>
-                <div class="header-layout-content">
-                    <div class="layout-img-area">
-                        <span class="layout-img-mask"></span>
-                        <img src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
-                             width="80" height="80" alt="프로필 이미지">
-                        <a href="#"
-                           class="layout-img-change">
-                            <span class="blind">프로필 사진 변경</span>
-                        </a>
-                    </div>
-                    <div class="layout-txt-area">
-                        <p class="layout-user-account">
-                            <span class="layout-user-name">
-                                <a class="layout-user-nick" href="#">qkf</a>님
-                            </span>
-                            <a class="layout-logout" href="#">
-                                <span class="layout-logout-bg"></span>
-                                <span class="layout-logout-bdr"></span>
-                                <span class="layout-logout-txt">로그아웃</span>
+            <div style="position: relative;display: inline;" class="gnb_common_area">
+                <div id="header-myPage-box">
+                    <a href="#" style="position: relative;text-decoration: none;color: black;" id="layout-controller">
+                        <img id="header-myPage-img" src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
+                             alt="내 프로필 이미지" style="display: inline-block;">
+                        <span class="filter_mask" style="display: inline-block;"></span>
+                        <span id="header-myPage-name" style="display: inline;">12345</span>
+                        <em class="blind">내정보 보기</em>
+                    </a>
+                </div>
+                <!-- 레이아웃 박스 -->
+                <div class="header-layout-box" id="layout-box">
+                    <span class="header-layout-pointer"></span>
+                    <div class="header-layout-content">
+                        <div class="layout-img-area">
+                            <span class="layout-img-mask"></span>
+                            <img src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
+                                 width="80" height="80" alt="프로필 이미지">
+                            <a href="#"
+                               class="layout-img-change">
+                                <span class="blind">프로필 사진 변경</span>
                             </a>
-                        </p>
-                        <a href="#" class="layout-user-domain">qkfhandur@naver.com</a>
+                        </div>
+                        <div class="layout-txt-area">
+                            <p class="layout-user-account">
+                            <span class="layout-user-name">
+                                <a class="layout-user-nick" href="#">12345</a>님
+                            </span>
+                                <a class="layout-logout" href="#">
+                                    <span class="layout-logout-bg"></span>
+                                    <span class="layout-logout-bdr"></span>
+                                    <span class="layout-logout-txt">로그아웃</span>
+                                </a>
+                            </p>
+                            <a href="#" class="layout-user-domain">qkfhandur@naver.com</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,10 +87,10 @@
     <div id="section-inner">
         <div id="section-inner-contents">
             <h3 class="blind">홈 영역</h3>
-            <div id="section-inner-header" style="display: flex;justify-content: center;">
+            <div id="section-inner-header" style="width: 700px;margin: 0 auto;">
                 <div id="section-inner-header-wrap">
                     <h4 class="blind">베스트 질문/답변</h4>
-                    <div class="section-wrap-expert" style="margin-right: 10px;">
+                    <div class="section-wrap-expert" style="margin-left: 15px;margin-right: 10px;">
                         <a href="https://m.expert.naver.com/" target="_blank" class="expert-link">
                             <div class="expert-background">
                                 <div class="expert-background-img"></div>
@@ -125,6 +127,42 @@
                                 <p class="description">내가 좋아하는 소스는?!</p>
                             </div>
                         </a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-inner-section">
+                <div class="inner-section-main1">
+                    <div class="ranking-area">
+                        <div class="ranking-area-header">
+                            <h4 class="ranking-area-header-title">많이 본 Q&amp;A</h4>
+                            <div class="ranking-area-header-time">21일 06시 기준</div>
+                        </div>
+                        <div class="ranking-area-section">
+                            <div class="ranking-area-section-list" style="height: 308px;">
+                                <ul class="ranking-list">
+                                    <li class="ranking-list-item">
+                                        <span class="list-no">1</span>
+                                        <a class="list-title" target="_blank">테스트 입니다</a>
+                                        <a class="list-txt">테스트 입니다</a>
+                                        <span class="list-views">조회수 0</span>
+                                        <span class="list-answer">답변수 0</span>
+                                    </li>
+                                </ul>
+                                <ul class="ranking-list">
+                                    <li class="ranking-list-item">
+                                        <span class="list-no">1</span>
+                                        <a class="list-title" target="_blank">테스트 입니다</a>
+                                        <a class="list-txt">테스트 입니다</a>
+                                        <span class="list-views">조회수 0</span>
+                                        <span class="list-answer">답변수 0</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ranking-list-page">
+                                <a href="#" class="ranking-list-page-button-on">1</a>
+                                <a href="#" class="ranking-list-page-button-off">2</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

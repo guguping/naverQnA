@@ -18,10 +18,10 @@
     <div id="section-inner">
         <div id="section-inner-contents">
             <h3 class="blind">홈 영역</h3>
-            <div id="section-inner-header" style="display: flex;justify-content: center;width: 700px;">
+            <div id="section-inner-header" style="width: 700px;margin: 0 auto;">
                 <div id="section-inner-header-wrap">
                     <h4 class="blind">베스트 질문/답변</h4>
-                    <div class="section-wrap-expert" style="margin-right: 10px;">
+                    <div class="section-wrap-expert" style="margin-left: 15px;margin-right: 10px;">
                         <a href="https://m.expert.naver.com/" target="_blank" class="expert-link">
                             <div class="expert-background">
                                 <div class="expert-background-img"></div>
@@ -55,10 +55,45 @@
                                 <h2 class="subtitle2">
                                     <span class="blind">오늘의 질문</span>
                                 </h2>
-                                <%-- 작성자를 따로 지정해야함 --%>
                                 <p class="description">내가 좋아하는 소스는?!</p>
                             </div>
                         </a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-inner-section">
+                <div class="inner-section-main1">
+                    <div class="ranking-area">
+                        <div class="ranking-area-header">
+                            <h4 class="ranking-area-header-title">많이 본 Q&amp;A</h4>
+                            <div class="ranking-area-header-time">21일 06시 기준</div>
+                        </div>
+                        <div class="ranking-area-section">
+                            <div class="ranking-area-section-list" style="height: 308px;">
+                                <ul class="ranking-list">
+                                    <li class="ranking-list-item">
+                                        <span class="list-no">1</span>
+                                        <a class="list-title" target="_blank">테스트 입니다</a>
+                                        <a class="list-txt">테스트 입니다</a>
+                                        <span class="list-views">조회수 0</span>
+                                        <span class="list-answer">답변수 0</span>
+                                    </li>
+                                </ul>
+                                <ul class="ranking-list">
+                                    <li class="ranking-list-item">
+                                        <span class="list-no">1</span>
+                                        <a class="list-title" target="_blank">테스트 입니다</a>
+                                        <a class="list-txt">테스트 입니다</a>
+                                        <span class="list-views">조회수 0</span>
+                                        <span class="list-answer">답변수 0</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ranking-list-page">
+                                <a href="#" class="ranking-list-page-button-on">1</a>
+                                <a href="#" class="ranking-list-page-button-off">2</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
