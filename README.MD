@@ -31,7 +31,7 @@
     포인트를 활용 가능한 상점 기능
 
 
-## sql - member_table
+### sql - member_table
 ```sql
 drop table if exists member_table;
 create table member_table(
@@ -43,5 +43,21 @@ memberName varchar(10) not null,
 memberBirthday varchar(15) not null,
 memberGender varchar(1) not null,
 memberCreateDate datetime default now()
+);
+```
+
+### sql - board_table;
+```sql
+drop table if exists board_table;
+create table board_table(
+id bigint auto_increment primary key,
+boardTitle varchar(80) not null,
+boardWriter varchar(20) not null,
+boardContents varchar(500) not null,
+boardHits int default 0,
+boardCreatedDate datetime default now(),
+fileAttached int default 0,
+memberId bigint,
+constraint fk_member_board foreign key (memberId) references member_table(id) on delete cascade
 );
 ```

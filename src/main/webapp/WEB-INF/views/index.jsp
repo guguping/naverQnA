@@ -6,15 +6,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>index</title>
     <link rel="stylesheet" href="/resources/css/component.css">
 </head>
+<style>
+    p {
+        display: inline;
+    }
+</style>
 <body>
 <%@include file="component/header.jsp" %>
 <%@include file="component/nav.jsp" %>
-<section style="height: 80vh;">
+<section>
     <div id="section-inner">
         <div id="section-inner-contents">
             <h3 class="blind">홈 영역</h3>
@@ -70,23 +76,30 @@
                         </div>
                         <div class="ranking-area-section">
                             <div class="ranking-area-section-list" style="height: 308px;">
+
                                 <ul class="ranking-list">
-                                    <li class="ranking-list-item">
-                                        <span class="list-no">1</span>
-                                        <a href="#" class="list-title" target="_blank">테스트 입니다</a>
-                                        <a href="#" class="list-txt">테스트 입니다</a>
-                                        <span class="list-views">조회수 0</span>
-                                        <span class="list-answer">답변수 0</span>
-                                    </li>
+                                    <c:forEach items="${bestBoardDTOList}" var="bestBoardList">
+                                        <li class="ranking-list-item">
+                                            <span class="list-no">1</span>
+                                            <a href="#" class="list-title"
+                                               target="_blank">${bestBoardList.boardTitle}</a>
+                                            <a href="#" class="list-txt">테스트입니다</a>
+                                            <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
+                                            <span class="list-answer">답변수 0</span>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
                                 <ul class="ranking-list">
-                                    <li class="ranking-list-item">
-                                        <span class="list-no">1</span>
-                                        <a href="#" class="list-title" target="_blank">테스트 입니다</a>
-                                        <a href="#" class="list-txt">테스트 입니다</a>
-                                        <span class="list-views">조회수 0</span>
-                                        <span class="list-answer">답변수 0</span>
-                                    </li>
+                                    <c:forEach items="${bestBoardDTOList}" var="bestBoardList">
+                                        <li class="ranking-list-item">
+                                            <span class="list-no">4</span>
+                                            <a href="#" class="list-title"
+                                               target="_blank">${bestBoardList.boardTitle}</a>
+                                            <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                            <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
+                                            <span class="list-answer">답변수 0</span>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                             <div class="ranking-list-page">

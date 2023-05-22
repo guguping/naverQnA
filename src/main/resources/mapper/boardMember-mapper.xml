@@ -11,4 +11,10 @@
         insert into board_table(boardTitle,boardWriter,boardContents,fileAttached,memberId)
             value (#{boardTitle},#{boardWriter},#{boardContents},#{fileAttached},#{memberId})
     </insert>
+    <select id="bestBoardList" parameterType="java.util.HashMap" resultType="board">
+        select * from board_table order by boardHits desc limit #{start},#{limit}
+    </select>
+    <select id="bestBoardCount" resultType="Integer">
+        select count(id) from board_table
+    </select>
 </mapper>
