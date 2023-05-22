@@ -1,15 +1,17 @@
 * {
     margin: 0;
     padding: 0;
-    width: 100%;
     box-sizing: border-box;
 }
-
+html {
+    height: 100%;
+}
 body {
     overflow-y: scroll;
 }
 
 header {
+    width: 100%;
     display: table;
     border-bottom: solid 1px #dddd;
     height: 10vh;
@@ -116,9 +118,54 @@ section {
 
 footer {
     height: 5vh;
-    border-bottom: solid 1px #dddd;
+}
+#footer-logo {
+    background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_978240a6.png);
+    background-size: 244px 107px;
+    display: inline-block;
+    vertical-align: top;
+    background-position: -157px -51px;
+    background-repeat: no-repeat;
+    width: 70px;
+    height: 15px;
+    margin-top: 4px;
 }
 
+.footer_item {
+    text-decoration: none;
+    /*font-size: 12px;*/
+    line-height: 15px;
+    letter-spacing: -.5px;
+    color: #888;
+}
+
+.footer_link {
+    padding: 0;
+}
+
+.footer_link li {
+    display: inline-block;
+    width: auto;
+}
+
+footer div .footer_link li {
+    position: relative;
+    padding-left: 13px;
+}
+
+footer div .footer_link li + li::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 1px;
+    height: 11px;
+    background-color: #dadada;
+}
+
+.text {
+    font-size: 12px;
+}
 .header-logo {
     text-decoration: none;
     color: #44b25c;
@@ -600,7 +647,7 @@ footer {
 .ranking-area-header-time {
     position: absolute;
     top: 0;
-    right: -850px;
+    right: 2px;
     font-size: 12px;
     color: #8c8c8c;
 }

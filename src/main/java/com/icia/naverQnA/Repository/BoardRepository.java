@@ -1,5 +1,6 @@
 package com.icia.naverQnA.Repository;
 
+import com.icia.naverQnA.DTO.BoardDTO;
 import com.icia.naverQnA.DTO.MemberDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,5 +13,10 @@ public class BoardRepository {
 
     public MemberDTO findById(Object memberId) {
         return sql.selectOne("naverBoard.findById",memberId);
+    }
+
+    public BoardDTO saveBoard(BoardDTO boardDTO) {
+        sql.insert("naverBoard.saveBoard",boardDTO);
+        return boardDTO;
     }
 }

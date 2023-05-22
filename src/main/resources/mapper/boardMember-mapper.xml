@@ -7,4 +7,8 @@
     <select id="findById" parameterType="Long" resultType="member">
         select * from member_table where id = #{memberId}
     </select>
+    <insert id="saveBoard" parameterType="board" useGeneratedKeys="true" keyProperty="id">
+        insert into board_table(boardTitle,boardWriter,boardContents,fileAttached,memberId)
+            value (#{boardTitle},#{boardWriter},#{boardContents},#{fileAttached},#{memberId})
+    </insert>
 </mapper>

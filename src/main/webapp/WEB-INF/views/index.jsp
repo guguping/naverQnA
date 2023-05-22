@@ -14,7 +14,7 @@
 <body>
 <%@include file="component/header.jsp" %>
 <%@include file="component/nav.jsp" %>
-<section>
+<section style="height: 80vh;">
     <div id="section-inner">
         <div id="section-inner-contents">
             <h3 class="blind">홈 영역</h3>
