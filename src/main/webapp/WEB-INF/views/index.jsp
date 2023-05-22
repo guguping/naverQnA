@@ -76,35 +76,80 @@
                         </div>
                         <div class="ranking-area-section">
                             <div class="ranking-area-section-list" style="height: 308px;">
-
                                 <ul class="ranking-list">
-                                    <c:forEach items="${bestBoardDTOList}" var="bestBoardList">
-                                        <li class="ranking-list-item">
-                                            <span class="list-no">1</span>
-                                            <a href="#" class="list-title"
-                                               target="_blank">${bestBoardList.boardTitle}</a>
-                                            <a href="#" class="list-txt">테스트입니다</a>
-                                            <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
-                                            <span class="list-answer">답변수 0</span>
-                                        </li>
-                                    </c:forEach>
+                                    <c:choose>
+                                        <c:when test="${bestPaging.page eq 1}">
+                                            <c:forEach items="${bestBoardDTOList}" var="bestBoardList" end="2"
+                                                       varStatus="loop">
+                                                <li class="ranking-list-item">
+                                                    <span class="list-no">${loop.index + 1}</span>
+                                                    <a href="#" class="list-title"
+                                                       target="_blank">${bestBoardList.boardTitle}</a>
+                                                    <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                                    <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
+                                                    <span class="list-answer">답변수 0</span>
+                                                </li>
+                                            </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:forEach items="${bestBoardDTOList}" var="bestBoardList" varStatus="loop">
+                                                <c:if test="${loop.index >= 0 && loop.index <= 2}">
+                                                    <li class="ranking-list-item">
+                                                        <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
+                                                        <a href="#" class="list-title"
+                                                           target="_blank">${bestBoardList.boardTitle}</a>
+                                                        <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                                        <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
+                                                        <span class="list-answer">답변수 0</span>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </ul>
                                 <ul class="ranking-list">
-                                    <c:forEach items="${bestBoardDTOList}" var="bestBoardList">
-                                        <li class="ranking-list-item">
-                                            <span class="list-no">4</span>
-                                            <a href="#" class="list-title"
-                                               target="_blank">${bestBoardList.boardTitle}</a>
-                                            <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
-                                            <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
-                                            <span class="list-answer">답변수 0</span>
-                                        </li>
-                                    </c:forEach>
+                                    <c:choose>
+                                        <c:when test="${bestPaging.page eq 1}">
+                                            <c:forEach items="${bestBoardDTOList}" var="bestBoardList" begin="3"
+                                                       varStatus="loop">
+                                                <li class="ranking-list-item">
+                                                    <span class="list-no">${loop.index + 1}</span>
+                                                    <a href="#" class="list-title"
+                                                       target="_blank">${bestBoardList.boardTitle}</a>
+                                                    <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                                    <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
+                                                    <span class="list-answer">답변수 0</span>
+                                                </li>
+                                            </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:forEach items="${bestBoardDTOList}" var="bestBoardList" varStatus="loop">
+                                                <c:if test="${loop.index >= 3 && loop.index <= 3}">
+                                                    <li class="ranking-list-item">
+                                                        <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
+                                                        <a href="#" class="list-title"
+                                                           target="_blank">${bestBoardList.boardTitle}</a>
+                                                        <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                                        <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
+                                                        <span class="list-answer">답변수 0</span>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </ul>
                             </div>
                             <div class="ranking-list-page">
-                                <a href="#" class="ranking-list-page-button-on">1</a>
-                                <a href="#" class="ranking-list-page-button-off">2</a>
+                                <c:forEach begin="${bestPaging.startPage}" end="${bestPaging.endPage}" var="i" step="1">
+                                    <c:choose>
+                                        <c:when test="${i eq bestPaging.page}">
+                                            <a class="ranking-list-page-button-on">${i}</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="/?page=${i}" class="ranking-list-page-button-off">${i}</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>

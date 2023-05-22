@@ -1,6 +1,9 @@
 package com.icia.naverQnA.Controller;
 
+import com.icia.naverQnA.DTO.BoardDTO;
 import com.icia.naverQnA.DTO.MemberDTO;
+import com.icia.naverQnA.DTO.PageDTO;
+import com.icia.naverQnA.Service.BoardService;
 import com.icia.naverQnA.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,21 +13,34 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class MemberController {
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private BoardService boardService;
     @GetMapping("/member/login")
     public String memberLogin() {
         return "/memberPage/memberLogin";
     }
 
     @PostMapping("/member/login")
-    public String loginMember(@ModelAttribute MemberDTO memberDTO , HttpSession session , Model model) {
+    public String loginMember(@ModelAttribute MemberDTO memberDTO ,
+                              @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                              HttpSession session , Model model) {
+        List<BoardDTO> boardDTOList = null;
+        PageDTO pageDTO = null;
+        boardDTOList =boardService.bestBoardList(page);
+        pageDTO =boardService.bestPagingParam(page);
         MemberDTO memberDB = memberService.loginMember(memberDTO);
         String loginFalse = "아이디 또는 비밀번호를 잘못 입력했습니다."+"<br>"+"입력하신 내용을 다시 확인해주세요.";
+        String bestBoardCount = "6";
         if(memberDB != null) {
+            model.addAttribute("bestBoardDTOList",boardDTOList);
+            model.addAttribute("bestPaging",pageDTO);
+            model.addAttribute("bestBoardCount",bestBoardCount);
             session.setAttribute("memberId",memberDB.getId());
             model.addAttribute("memberDTO",memberDB);
             return "index";

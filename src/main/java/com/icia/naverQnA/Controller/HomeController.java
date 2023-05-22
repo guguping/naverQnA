@@ -27,16 +27,27 @@ public class HomeController {
                         Model model) {
         List<BoardDTO> boardDTOList = null;
         PageDTO pageDTO = null;
+        String bestBoardCount = "6";
         boardDTOList =boardService.bestBoardList(page);
         pageDTO =boardService.bestPagingParam(page);
         model.addAttribute("bestBoardDTOList",boardDTOList);
         model.addAttribute("bestPaging",pageDTO);
+        model.addAttribute("bestBoardCount",bestBoardCount);
         return "index";
     }
 
     @GetMapping("/login/index")
-    public String loginIndex(HttpSession session, Model model) {
+    public String loginIndex(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                             HttpSession session, Model model) {
         MemberDTO memberDTO = boardService.findById(session.getAttribute("memberId"));
+        List<BoardDTO> boardDTOList = null;
+        PageDTO pageDTO = null;
+        String bestBoardCount = "6";
+        boardDTOList =boardService.bestBoardList(page);
+        pageDTO =boardService.bestPagingParam(page);
+        model.addAttribute("bestBoardDTOList",boardDTOList);
+        model.addAttribute("bestPaging",pageDTO);
+        model.addAttribute("bestBoardCount",bestBoardCount);
         model.addAttribute("memberDTO", memberDTO);
         return "index";
     }

@@ -29,7 +29,7 @@ public class BoardService {
     }
 
     public List<BoardDTO> bestBoardList(int page) {
-        int pageLimit = 3;
+        int pageLimit = 6;
         int pageStart = (page-1) *pageLimit;
         Map<String , Integer> listParam = new HashMap<>();
         listParam.put("start",pageStart);
@@ -39,14 +39,14 @@ public class BoardService {
     }
 
     public PageDTO bestPagingParam(int page) {
-        int pageLimit = 3;
+        int pageLimit = 6;
         int blockLimit = 2;
         int boardCount =boardRepository.bestBoardCount();
         int maxPage = (int)(Math.ceil((double)boardCount / pageLimit));
         int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
         int endPage = startPage + blockLimit -1;
         if(endPage > maxPage) {
-            endPage =maxPage;
+            endPage = maxPage;
         }
         PageDTO pageDTO = new PageDTO();
         pageDTO.setPage(page);
