@@ -30,19 +30,14 @@ public class MemberController {
     public String loginMember(@ModelAttribute MemberDTO memberDTO ,
                               @RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
                               HttpSession session , Model model) {
-        List<BoardDTO> boardDTOList = null;
-        PageDTO pageDTO = null;
         PageDTO bestPageDTO = new PageDTO();
         bestPageDTO.setPage(bestPage);
-        boardDTOList =boardService.bestBoardList(bestPageDTO);
-        bestPageDTO.setPage(bestPage);
-        pageDTO =boardService.bestPagingParam(bestPageDTO);
         MemberDTO memberDB = memberService.loginMember(memberDTO);
         String loginFalse = "아이디 또는 비밀번호를 잘못 입력했습니다."+"<br>"+"입력하신 내용을 다시 확인해주세요.";
         String bestBoardCount = "6";
         if(memberDB != null) {
-            model.addAttribute("bestBoardDTOList",boardDTOList);
-            model.addAttribute("bestPaging",pageDTO);
+            model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
+            model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO));
             model.addAttribute("bestBoardCount",bestBoardCount);
             session.setAttribute("memberId",memberDB.getId());
             model.addAttribute("memberDTO",memberDB);

@@ -28,13 +28,9 @@ public class HomeController {
         MemberDTO memberDTO = boardService.findById(session.getAttribute("memberId"));
         PageDTO bestPageDTO = new PageDTO();
         bestPageDTO.setPage(bestPage);
-        List<BoardDTO> bestBoardDTOList = null;
-        PageDTO bestPaging = null;
         String bestBoardCount = "6";
-        bestBoardDTOList =boardService.bestBoardList(bestPageDTO);
-        bestPaging =boardService.bestPagingParam(bestPageDTO);
-        model.addAttribute("bestBoardDTOList",bestBoardDTOList);
-        model.addAttribute("bestPaging",bestPaging);
+        model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
+        model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO));
         model.addAttribute("bestBoardCount",bestBoardCount);
         model.addAttribute("memberDTO",memberDTO);
         return "index";
@@ -44,26 +40,19 @@ public class HomeController {
     public String loginIndex(@RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
                              @RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
                              HttpSession session, Model model) {
-        MemberDTO memberDTO = boardService.findById(session.getAttribute("memberId"));
         PageDTO bestPageDTO = new PageDTO();
         bestPageDTO.setPage(bestPage);
-        // best게시물 페이징
-        List<BoardDTO> bestBoardDTOList = null;
-        PageDTO bestPaging = null;
-        bestBoardDTOList =boardService.bestBoardList(bestPageDTO);
-        bestPaging =boardService.bestPagingParam(bestPageDTO);
-        System.out.println("bestPaging = " + bestPaging);
-        
+
         // qna게시물 페이징
 //        List<BoardDTO> qnaBoardDTOList = null;
 //        PageDTO qnaPaging = null;
 //        qnaBoardDTOList =boardService.qnaBoardList(qnaPage);
 //        qnaPaging =boardService.qnaPagingParam(qnaPage);
         String bestBoardCount = "6";
-        model.addAttribute("bestBoardDTOList",bestBoardDTOList);
-        model.addAttribute("bestPaging",bestPaging);
+        model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
+        model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO));
         model.addAttribute("bestBoardCount",bestBoardCount);
-        model.addAttribute("memberDTO", memberDTO);
+        model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "index";
     }
 }
