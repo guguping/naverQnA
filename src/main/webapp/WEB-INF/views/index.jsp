@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>index</title>
@@ -72,7 +73,7 @@
                     <div class="ranking-area">
                         <div class="ranking-area-header">
                             <h4 class="ranking-area-header-title">많이 본 Q&amp;A</h4>
-                            <div class="ranking-area-header-time">21일 06시 기준</div>
+                            <div class="ranking-area-header-time">${bestBoardTime}</div>
                         </div>
                         <div class="ranking-area-section">
                             <div class="ranking-area-section-list" style="height: 308px;">
@@ -194,6 +195,7 @@
                                             </div>
                                             <div class="main2-contents-block">
                                             </div>
+                                            <c:forEach items="${qnaBoardDTOList}" var="qnaBoardList">
                                             <div class="main2-contents-list-box">
                                                 <div class="main2-contents-list-inner">
                                                     <div class="main2-contents-list-item">
@@ -202,20 +204,21 @@
                                                                     500
                                                             </span>
                                                             <span class="main2-item-title">
-                                                                    이거 꼭 만들고 잔다 ㅅㅂ
+                                                                    ${qnaBoardList.boardTitle}
                                                             </span>
-                                                            <p class="main2-item-contents">사범대 진학 희망하는데 사회문화 변화가 교육이랑
-                                                                관련된 책 추천 좀 해주세요..
-                                                                어렵지 않은 책으로여!</p>
+                                                            <p class="main2-item-contents">
+                                                                    ${qnaBoardList.boardContents}
+                                                            </p>
                                                         </a>
                                                     </div>
                                                     <div class="main2-item-info">
                                                         <span class="item-info-answer">답변 0</span>
                                                         <span class="item-info-type">없음</span>
-                                                        <span class="item-info-time">방금</span>
+                                                        <span class="item-info-time"><fmt:formatDate value="${qnaBoardList.boardCreatedDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></span>
                                                     </div>
                                                 </div>
                                             </div>
+                                            </c:forEach>
                                             <div class="main2-contents-paging-box">
 
                                             </div>

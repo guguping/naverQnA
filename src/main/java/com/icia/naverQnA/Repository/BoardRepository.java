@@ -28,7 +28,11 @@ public class BoardRepository {
         return sql.selectList("naverBoard.bestBoardList",bestPageDTO);
     }
 
-    public int bestBoardCount() {
-        return sql.selectOne("naverBoard.bestBoardCount");
+    public int BoardCount() {
+        return sql.selectOne("naverBoard.BoardCount");
+    }
+
+    public List<BoardDTO> qnaBoardDTOList(PageDTO qnaPageDTO) {
+        return sql.selectList("naverBoard.qnaBoardList",qnaPageDTO);
     }
 }

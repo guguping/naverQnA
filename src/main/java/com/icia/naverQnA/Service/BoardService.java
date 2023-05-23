@@ -36,16 +36,26 @@ public class BoardService {
 
     public PageDTO bestPagingParam(PageDTO bestPageDTO) {
         bestPageDTO.setBlockLimit(2);
-        bestPageDTO.setBoardCount(boardRepository.bestBoardCount());
+        bestPageDTO.setBoardCount(boardRepository.BoardCount());
         if(bestPageDTO.getEndPage() > bestPageDTO.getMaxPage()) {
             bestPageDTO.setEndPage(bestPageDTO.getMaxPage());
         }
         return bestPageDTO;
     }
 
-//    public List<BoardDTO> qnaBoardList(int qnaPage) {
-//    }
-//
-//    public PageDTO qnaPagingParam(int qnaPage) {
-//    }
+    public Object qnaBoardList(PageDTO qnaPageDTO) {
+        qnaPageDTO.setPageLimit(10);
+        List<BoardDTO> qnaBoardDTOList = boardRepository.qnaBoardDTOList(qnaPageDTO);
+        return qnaBoardDTOList;
+    }
+
+    public Object qnaPagingParam(PageDTO qnaPageDTO) {
+        qnaPageDTO.setBlockLimit(10);
+        qnaPageDTO.setBoardCount(boardRepository.BoardCount());
+        if(qnaPageDTO.getEndPage() > qnaPageDTO.getMaxPage()) {
+            qnaPageDTO.setEndPage(qnaPageDTO.getMaxPage());
+        }
+        return qnaPageDTO;
+
+    }
 }

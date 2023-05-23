@@ -14,7 +14,10 @@
     <select id="bestBoardList" parameterType="page" resultType="board">
         select * from board_table order by boardHits desc limit #{pageStart},#{pageLimit}
     </select>
-    <select id="bestBoardCount" resultType="Integer">
+    <select id="qnaBoardList" parameterType="page" resultType="board">
+        select * from board_table order by boardCreatedDate desc limit #{pageStart},#{pageLimit}
+    </select>
+    <select id="BoardCount" resultType="Integer">
         select count(id) from board_table
     </select>
 </mapper>
