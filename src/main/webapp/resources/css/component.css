@@ -177,6 +177,7 @@ footer div .footer_link li + li::before {
     justify-content: center;
     vertical-align: top;
     padding-top: 25px;
+    text-align: center;
 }
 
 #header-logo2 {
@@ -193,6 +194,7 @@ footer div .footer_link li + li::before {
     font-weight: bold;
     line-height: 20px;
     color: #a9a9a9;
+    outline: 0;
 }
 
 #header-search-div {
@@ -216,18 +218,19 @@ footer div .footer_link li + li::before {
 
 #search-icon {
     background-image: url(https://ssl.pstatic.net/static/kin/section/sprite/sp_gnb_230406.svg);
-    background-size: 85px 67px;
+    /*background-size: 85px 67px;*/
     background-position: 0 -52px;
     width: 15px;
     height: 15px;
-    display: block;
+    /*display: block;*/
     position: absolute;
     top: 50%;
     left: 50%;
     margin: -8px 0 0 -8px;
-    font-size: 0;
-    line-height: 0;
     color: transparent;
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
 }
 
 #header-login-link {
@@ -293,6 +296,8 @@ footer div .footer_link li + li::before {
     vertical-align: top;
     font-size: 12px;
     color: #444;
+    max-width: 14%;
+    overflow: hidden;
 }
 
 .blind {
@@ -387,11 +392,14 @@ footer div .footer_link li + li::before {
     vertical-align: top;
 }
 .layout-user-nick {
+    display: inline-block;
     position: relative;
     vertical-align: top;
     font-weight: bold;
     color: #222;
     text-decoration: none;
+    max-width: 122px;
+    overflow: hidden;
 }
 .layout-logout {
     position: relative;
@@ -418,7 +426,7 @@ footer div .footer_link li + li::before {
     position: absolute;
     top: 0;
     left: 0;
-    line-height: 21px;
+    line-height: 15px;
     width: 53px;
     color: #666;
     text-align: center;
@@ -427,6 +435,8 @@ footer div .footer_link li + li::before {
     margin-left: 10px;
 }
 .layout-user-domain {
+    display: block;
+    line-height: 25px;
     color: #666;
     font-size: 12px;
     text-decoration: none;
@@ -845,4 +855,186 @@ footer div .footer_link li + li::before {
     outline: 0;
     background-color: transparent;
     width: auto;
+}
+.inner-section-main2 {
+    width: 1000px;
+    position: relative;
+}
+.main2-area-section {
+    margin-right: 10px;
+    padding: 0 24px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+.main2-area-tab {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.main2-tab-title {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 40px;
+    padding: 24px 0 0;
+    border-bottom: 1px solid #cecece;
+    font-size: 16px;
+    font-weight: 600;
+    box-sizing: unset;
+}
+.line-hold {
+    border-bottom: 1px solid #cecece;
+    display: block;
+    text-align: center;
+    width: 180px;
+    position: relative;
+    height: 40px;
+    border-color: black;
+    box-sizing: unset;
+}
+.main2-contents-box {
+    position: relative;
+    width: 100%;
+}
+.main2-contents-header {
+    position: relative;
+    min-height: 80px;
+    font-size: 13px;
+}
+.main2-contents-title {
+    display: inline-block;
+    position: absolute;
+    top: -17px;
+    max-width: 170px;
+    height: 22px;
+    font-size: 22px;
+}
+.main2-contents-title a {
+    color: #000;
+    text-decoration: none;
+}
+.main2-contents-search {
+    position: absolute;
+    top: -19px;
+    right: 0;
+    width: 158px;
+    height: 34px;
+    border: 1px solid #ddd;
+}
+.main2-search-input {
+    display: inline-block;
+    width: 123px;
+    margin: 9px 0 0 7px;
+    border: 0;
+    font-size: 14px;
+    outline: 0;
+}
+.main2-search-input-btn {
+    background-image: url(https://ssl.pstatic.net/static/kin/section/sprite/sp_common_old_230405.png);
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    width: 14px;
+    height: 14px;
+    background-position: -16px -48px;
+    color: transparent;
+    border: 0;
+}
+.main2-contents-list-inner {
+    position: relative;
+    padding: 19px 0 22px;
+    border-bottom: 1px solid #ededed;
+    zoom: 1;
+    border-top: 1px solid #cacccc;
+}
+.main2-contents-block {
+    height: 26px;
+}
+.main2-contents-list-item {
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #000;
+}
+.main2-contents-item {
+    display: block;
+    width: 100%;
+    color: #000;
+    text-decoration: none;
+}
+.power_grade {
+    display: inline-block;
+    min-width: 10px;
+    padding: 2px 5px 3px;
+    border-radius: 2px;
+    background-color: #7f8fa4;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 0;
+    vertical-align: top;
+}
+.main2-item-title {
+    margin-top: 0;
+    vertical-align: top;
+    line-height: 1;
+}
+.main2-item-contents {
+    overflow: hidden;
+    max-height: 56px;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: normal;
+    color: #8c8c8c;
+}
+.main2-item-info {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 22px;
+}
+.item-info-answer {
+    color: #4c4c4c;
+    font-size: 13px;
+    line-height: 22px;
+}
+.item-info-time {
+    display: inline-block;
+    position: relative;
+    margin-left: 1px;
+    padding-left: 5px;
+    color: #777;
+    font-size: 13px;
+    line-height: 22px;
+}
+.item-info-time:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    margin-top: -1px;
+    background-color: #cacccc;
+    content: '';
+    color: #777;
+}
+.item-info-type {
+    display: inline-block;
+    position: relative;
+    margin-left: 1px;
+    padding-left: 5px;
+    color: #777;
+    font-size: 13px;
+    line-height: 22px;
+}
+.item-info-type:before {
+    width: 0;
+    background: transparent;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 2px;
 }

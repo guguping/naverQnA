@@ -85,7 +85,7 @@
                                                     <span class="list-no">${loop.index + 1}</span>
                                                     <a href="#" class="list-title"
                                                        target="_blank">${bestBoardList.boardTitle}</a>
-                                                    <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                                    <a href="#" class="list-txt" style="height: 19px;">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                     <span class="list-answer">답변수 0</span>
                                                 </li>
@@ -98,7 +98,7 @@
                                                         <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
                                                         <a href="#" class="list-title"
                                                            target="_blank">${bestBoardList.boardTitle}</a>
-                                                        <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                                        <a href="#" class="list-txt" style="height: 19px;">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                         <span class="list-answer">답변수 0</span>
                                                     </li>
@@ -116,7 +116,7 @@
                                                     <span class="list-no">${loop.index + 1}</span>
                                                     <a href="#" class="list-title"
                                                        target="_blank">${bestBoardList.boardTitle}</a>
-                                                    <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                                    <a href="#" class="list-txt" style="height: 19px;">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                     <span class="list-answer">답변수 0</span>
                                                 </li>
@@ -128,8 +128,8 @@
                                                     <li class="ranking-list-item">
                                                         <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
                                                         <a href="#" class="list-title"
-                                                           target="_blank">${bestBoardList.boardTitle}</a>
-                                                        <a href="#" class="list-txt">${bestBoardList.boardContents}</a>
+                                                           target="_blank" style="padding-left: 5px;">${bestBoardList.boardTitle}</a>
+                                                        <a href="#" class="list-txt" style="height: 19px;">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                         <span class="list-answer">답변수 0</span>
                                                     </li>
