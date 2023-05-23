@@ -151,7 +151,7 @@
                                             <a class="ranking-list-page-button-on">${i}</a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="/?page=${i}" class="ranking-list-page-button-off">${i}</a>
+                                            <a href="/?bestPage=${i}" class="ranking-list-page-button-off">${i}</a>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>

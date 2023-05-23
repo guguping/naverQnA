@@ -28,12 +28,15 @@ public class MemberController {
 
     @PostMapping("/member/login")
     public String loginMember(@ModelAttribute MemberDTO memberDTO ,
-                              @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                              @RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
                               HttpSession session , Model model) {
         List<BoardDTO> boardDTOList = null;
         PageDTO pageDTO = null;
-        boardDTOList =boardService.bestBoardList(page);
-        pageDTO =boardService.bestPagingParam(page);
+        PageDTO bestPageDTO = new PageDTO();
+        bestPageDTO.setPage(bestPage);
+        boardDTOList =boardService.bestBoardList(bestPageDTO);
+        bestPageDTO.setPage(bestPage);
+        pageDTO =boardService.bestPagingParam(bestPageDTO);
         MemberDTO memberDB = memberService.loginMember(memberDTO);
         String loginFalse = "아이디 또는 비밀번호를 잘못 입력했습니다."+"<br>"+"입력하신 내용을 다시 확인해주세요.";
         String bestBoardCount = "6";

@@ -23,30 +23,45 @@ public class HomeController {
     private MemberService memberService;
 
     @GetMapping("/")
-    public String Index(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-                        Model model) {
-        List<BoardDTO> boardDTOList = null;
-        PageDTO pageDTO = null;
+    public String Index(@RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
+                        Model model, HttpSession session) {
+        MemberDTO memberDTO = boardService.findById(session.getAttribute("memberId"));
+        PageDTO bestPageDTO = new PageDTO();
+        bestPageDTO.setPage(bestPage);
+        List<BoardDTO> bestBoardDTOList = null;
+        PageDTO bestPaging = null;
         String bestBoardCount = "6";
-        boardDTOList =boardService.bestBoardList(page);
-        pageDTO =boardService.bestPagingParam(page);
-        model.addAttribute("bestBoardDTOList",boardDTOList);
-        model.addAttribute("bestPaging",pageDTO);
+        bestBoardDTOList =boardService.bestBoardList(bestPageDTO);
+        bestPaging =boardService.bestPagingParam(bestPageDTO);
+        model.addAttribute("bestBoardDTOList",bestBoardDTOList);
+        model.addAttribute("bestPaging",bestPaging);
         model.addAttribute("bestBoardCount",bestBoardCount);
+        model.addAttribute("memberDTO",memberDTO);
         return "index";
     }
 
     @GetMapping("/login/index")
-    public String loginIndex(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+    public String loginIndex(@RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
+                             @RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
                              HttpSession session, Model model) {
         MemberDTO memberDTO = boardService.findById(session.getAttribute("memberId"));
-        List<BoardDTO> boardDTOList = null;
-        PageDTO pageDTO = null;
+        PageDTO bestPageDTO = new PageDTO();
+        bestPageDTO.setPage(bestPage);
+        // best게시물 페이징
+        List<BoardDTO> bestBoardDTOList = null;
+        PageDTO bestPaging = null;
+        bestBoardDTOList =boardService.bestBoardList(bestPageDTO);
+        bestPaging =boardService.bestPagingParam(bestPageDTO);
+        System.out.println("bestPaging = " + bestPaging);
+        
+        // qna게시물 페이징
+//        List<BoardDTO> qnaBoardDTOList = null;
+//        PageDTO qnaPaging = null;
+//        qnaBoardDTOList =boardService.qnaBoardList(qnaPage);
+//        qnaPaging =boardService.qnaPagingParam(qnaPage);
         String bestBoardCount = "6";
-        boardDTOList =boardService.bestBoardList(page);
-        pageDTO =boardService.bestPagingParam(page);
-        model.addAttribute("bestBoardDTOList",boardDTOList);
-        model.addAttribute("bestPaging",pageDTO);
+        model.addAttribute("bestBoardDTOList",bestBoardDTOList);
+        model.addAttribute("bestPaging",bestPaging);
         model.addAttribute("bestBoardCount",bestBoardCount);
         model.addAttribute("memberDTO", memberDTO);
         return "index";

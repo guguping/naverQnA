@@ -2,6 +2,7 @@ package com.icia.naverQnA.Repository;
 
 import com.icia.naverQnA.DTO.BoardDTO;
 import com.icia.naverQnA.DTO.MemberDTO;
+import com.icia.naverQnA.DTO.PageDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,8 +24,8 @@ public class BoardRepository {
         return boardDTO;
     }
 
-    public List<BoardDTO> bestBoardList(Map<String, Integer> listParam) {
-        return sql.selectList("naverBoard.bestBoardList",listParam);
+    public List<BoardDTO> bestBoardList(PageDTO bestPageDTO) {
+        return sql.selectList("naverBoard.bestBoardList",bestPageDTO);
     }
 
     public int bestBoardCount() {

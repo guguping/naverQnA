@@ -28,31 +28,24 @@ public class BoardService {
         }
     }
 
-    public List<BoardDTO> bestBoardList(int page) {
-        int pageLimit = 6;
-        int pageStart = (page-1) *pageLimit;
-        Map<String , Integer> listParam = new HashMap<>();
-        listParam.put("start",pageStart);
-        listParam.put("limit",pageLimit);
-        List<BoardDTO> boardDTOList =boardRepository.bestBoardList(listParam);
+    public List<BoardDTO> bestBoardList(PageDTO bestPageDTO) {
+        bestPageDTO.setPageLimit(6);
+        List<BoardDTO> boardDTOList =boardRepository.bestBoardList(bestPageDTO);
         return boardDTOList;
     }
 
-    public PageDTO bestPagingParam(int page) {
-        int pageLimit = 6;
-        int blockLimit = 2;
-        int boardCount =boardRepository.bestBoardCount();
-        int maxPage = (int)(Math.ceil((double)boardCount / pageLimit));
-        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
-        int endPage = startPage + blockLimit -1;
-        if(endPage > maxPage) {
-            endPage = maxPage;
+    public PageDTO bestPagingParam(PageDTO bestPageDTO) {
+        bestPageDTO.setBlockLimit(2);
+        bestPageDTO.setBoardCount(boardRepository.bestBoardCount());
+        if(bestPageDTO.getEndPage() > bestPageDTO.getMaxPage()) {
+            bestPageDTO.setEndPage(bestPageDTO.getMaxPage());
         }
-        PageDTO pageDTO = new PageDTO();
-        pageDTO.setPage(page);
-        pageDTO.setMaxPage(maxPage);
-        pageDTO.setStartPage(startPage);
-        pageDTO.setEndPage(endPage);
-        return pageDTO;
+        return bestPageDTO;
     }
+
+//    public List<BoardDTO> qnaBoardList(int qnaPage) {
+//    }
+//
+//    public PageDTO qnaPagingParam(int qnaPage) {
+//    }
 }
