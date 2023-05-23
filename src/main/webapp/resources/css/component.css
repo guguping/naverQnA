@@ -982,6 +982,7 @@ footer div .footer_link li + li::before {
     line-height: 1;
 }
 .main2-item-contents {
+    display: block;
     overflow: hidden;
     max-height: 56px;
     margin-top: 10px;

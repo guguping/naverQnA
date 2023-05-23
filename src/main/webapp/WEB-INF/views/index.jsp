@@ -85,7 +85,8 @@
                                                     <span class="list-no">${loop.index + 1}</span>
                                                     <a href="#" class="list-title"
                                                        target="_blank">${bestBoardList.boardTitle}</a>
-                                                    <a href="#" class="list-txt" style="height: 19px;">${bestBoardList.boardContents}</a>
+                                                    <a href="#" class="list-txt"
+                                                       style="height: 19px;">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                     <span class="list-answer">답변수 0</span>
                                                 </li>
@@ -98,7 +99,8 @@
                                                         <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
                                                         <a href="#" class="list-title"
                                                            target="_blank">${bestBoardList.boardTitle}</a>
-                                                        <a href="#" class="list-txt" style="height: 19px;">${bestBoardList.boardContents}</a>
+                                                        <a href="#" class="list-txt"
+                                                           style="height: 19px;">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                         <span class="list-answer">답변수 0</span>
                                                     </li>
@@ -116,7 +118,8 @@
                                                     <span class="list-no">${loop.index + 1}</span>
                                                     <a href="#" class="list-title"
                                                        target="_blank">${bestBoardList.boardTitle}</a>
-                                                    <a href="#" class="list-txt" style="height: 19px;">${bestBoardList.boardContents}</a>
+                                                    <a href="#" class="list-txt"
+                                                       style="height: 19px;">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                     <span class="list-answer">답변수 0</span>
                                                 </li>
@@ -128,8 +131,10 @@
                                                     <li class="ranking-list-item">
                                                         <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
                                                         <a href="#" class="list-title"
-                                                           target="_blank" style="padding-left: 5px;">${bestBoardList.boardTitle}</a>
-                                                        <a href="#" class="list-txt" style="height: 19px;">${bestBoardList.boardContents}</a>
+                                                           target="_blank"
+                                                           style="padding-left: 5px;">${bestBoardList.boardTitle}</a>
+                                                        <a href="#" class="list-txt"
+                                                           style="height: 19px;">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                         <span class="list-answer">답변수 0</span>
                                                     </li>
@@ -150,6 +155,73 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-inner-section">
+                <div class="inner-section-main2">
+                    <div class="main2-area-section">
+                        <div class="main2-area-tab">
+                            <ul>
+                                <li>
+                                    <span class="main2-tab-title">
+                                        <span class="line-hold">답변을 기다리는 질문</span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div>
+                                <h4 class="blind">답변을 기다리는 질문</h4>
+                                <div class="main2-contents-box">
+                                    <div class="main2-contents-inner">
+                                        <div class="main2-contents-header">
+                                            <h5 class="main2-contents-title">
+                                                <a href="#">
+                                                    <strong>전체</strong>
+                                                    <span class="blind">QnA바로가기 링크 넣는곳</span>
+                                                </a>
+                                            </h5>
+                                            <div class="main2-contents-search">
+                                                <form action="#" method="post" title="QnA검색을 위한 공간">
+                                                    <span class="blind">QnA검색을 위한 공간</span>
+                                                    <input type="text" class="main2-search-input">
+                                                    <input type="submit" class="main2-search-input-btn"
+                                                           name="main2Search" style="cursor: pointer;">
+                                                </form>
+                                            </div>
+                                            <div class="main2-contents-block">
+                                            </div>
+                                            <div class="main2-contents-list-box">
+                                                <div class="main2-contents-list-inner">
+                                                    <div class="main2-contents-list-item">
+                                                        <a href="#" class="main2-contents-item">
+                                                            <span class="power_grade" title="내공 전시장">
+                                                                    500
+                                                            </span>
+                                                            <span class="main2-item-title">
+                                                                    이거 꼭 만들고 잔다 ㅅㅂ
+                                                            </span>
+                                                            <p class="main2-item-contents">사범대 진학 희망하는데 사회문화 변화가 교육이랑
+                                                                관련된 책 추천 좀 해주세요..
+                                                                어렵지 않은 책으로여!</p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="main2-item-info">
+                                                        <span class="item-info-answer">답변 0</span>
+                                                        <span class="item-info-type">없음</span>
+                                                        <span class="item-info-time">방금</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="main2-contents-paging-box">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
