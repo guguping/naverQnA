@@ -38,4 +38,8 @@ public class BoardController {
         model.addAttribute("memberDTO",memberDTO);
         return "redirect:/login/index";
     }
+    @GetMapping("/board/detail")
+    public String boardDetail() {
+        return "/boardPage/boardDetail";
+    }
 }

@@ -84,10 +84,10 @@
                                                        varStatus="loop">
                                                 <li class="ranking-list-item">
                                                     <span class="list-no">${loop.index + 1}</span>
-                                                    <a href="#" class="list-title"
+                                                    <a href="/board/detail" class="list-title"
                                                        target="_blank">${bestBoardList.boardTitle}</a>
-                                                    <a href="#" class="list-txt"
-                                                       style="height: 19px;">${bestBoardList.boardContents}</a>
+                                                    <a href="/board/detail" class="list-txt"
+                                                       style="height: 19px;" target="_blank">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                     <span class="list-answer">답변수 0</span>
                                                 </li>
@@ -98,10 +98,10 @@
                                                 <c:if test="${loop.index >= 0 && loop.index <= 2}">
                                                     <li class="ranking-list-item">
                                                         <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
-                                                        <a href="#" class="list-title"
+                                                        <a href="/board/detail" class="list-title"
                                                            target="_blank">${bestBoardList.boardTitle}</a>
-                                                        <a href="#" class="list-txt"
-                                                           style="height: 19px;">${bestBoardList.boardContents}</a>
+                                                        <a href="/board/detail" class="list-txt"
+                                                           style="height: 19px;" target="_blank">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                         <span class="list-answer">답변수 0</span>
                                                     </li>
@@ -117,10 +117,10 @@
                                                        varStatus="loop">
                                                 <li class="ranking-list-item">
                                                     <span class="list-no">${loop.index + 1}</span>
-                                                    <a href="#" class="list-title"
+                                                    <a href="/board/detail" class="list-title"
                                                        target="_blank">${bestBoardList.boardTitle}</a>
-                                                    <a href="#" class="list-txt"
-                                                       style="height: 19px;">${bestBoardList.boardContents}</a>
+                                                    <a href="/board/detail" class="list-txt"
+                                                       style="height: 19px;" target="_blank">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                     <span class="list-answer">답변수 0</span>
                                                 </li>
@@ -131,11 +131,11 @@
                                                 <c:if test="${loop.index >= 3 && loop.index <= 3}">
                                                     <li class="ranking-list-item">
                                                         <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
-                                                        <a href="#" class="list-title"
+                                                        <a href="/board/detail" class="list-title"
                                                            target="_blank"
                                                            style="padding-left: 5px;">${bestBoardList.boardTitle}</a>
-                                                        <a href="#" class="list-txt"
-                                                           style="height: 19px;">${bestBoardList.boardContents}</a>
+                                                        <a href="/board/detail" class="list-txt"
+                                                           style="height: 19px;" target="_blank">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                         <span class="list-answer">답변수 0</span>
                                                     </li>
@@ -199,7 +199,7 @@
                                                 <div class="main2-contents-list-box">
                                                     <div class="main2-contents-list-inner">
                                                         <div class="main2-contents-list-item">
-                                                            <a href="#" class="main2-contents-item">
+                                                            <a href="/board/detail" target="_blank" class="main2-contents-item">
                                                             <span class="power_grade" title="내공 전시장">
                                                                     500
                                                             </span>
