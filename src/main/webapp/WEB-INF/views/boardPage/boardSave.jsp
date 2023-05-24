@@ -100,7 +100,9 @@
 
 <script>
     CKEDITOR.replace('editor1', {
-        height: '350px'
+        height: '350px',
+        language: 'ko',
+        enterMode: CKEDITOR.ENTER_DIV
     });
 
     CKEDITOR.instances['editor1'].on('contentDom', function () {
@@ -108,6 +110,15 @@
             CKEDITOR.instances.editor1.setData('<br>');
         });
     });
+
+    // CKEDITOR.editorConfig = function( config ) {
+    //     // Define changes to default configuration here. For example:
+    //     config.language = 'ko';
+    //     config.uiColor = '#DAEDF6';
+    //     CKEDITOR.dtd.$removeEmpty['i'] = false;
+    //     enterMode = CKEDITOR.ENTER_BR;
+    //     config.fillEmptyBlocks = false;
+    // };
 
     const back = () => {
         location.href = "/login/index";
@@ -144,7 +155,7 @@
             alert("제목이 너무 짧습니다\n최소 5자 이상으로 제목 내용을 알 수 있게 작성해 주세요");
             boardTitle.focus();
             return false;
-        } else if(boardTitle.value.match(regex)){
+        } else if (boardTitle.value.match(regex)) {
             alert("질문 제목을 상세하게 입력해주세요.");
             boardTitle.focus();
             return false;
@@ -157,7 +168,7 @@
             alert("내용입력해주세요");
             CKEDITOR.instances['editor1'].focus();
             return false;
-        } else if (cleanCheckResult.length < 5){
+        } else if (cleanCheckResult.length < 5) {
             alert("제목이 너무 짧습니다\n최소 5자 이상으로 제목 내용을 알 수 있게 작성해 주세요");
             CKEDITOR.instances['editor1'].focus();
             return false;

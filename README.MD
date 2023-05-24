@@ -61,3 +61,18 @@ memberId bigint,
 constraint fk_member_board foreign key (memberId) references member_table(id) on delete cascade
 );
 ```
+
+### ck에디터 플러그인
+- 목록
+https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-extraPlugins
+
+
+- 적용 방법
+```javascript
+CKEDITOR.replace('editor1', {
+    height: '350px',
+    language : 'ko',
+    enterMode : CKEDITOR.ENTER_BR // 엔터시 자동 br추가
+
+});
+```

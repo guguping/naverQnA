@@ -1288,6 +1288,7 @@ footer div .footer_link li + li::before {
     resize: none;
     -webkit-appearance: none;
     box-sizing: border-box;
+    outline: 0;
 }
 .detail-contents-comment-textarea-bottom {
     position: relative;
