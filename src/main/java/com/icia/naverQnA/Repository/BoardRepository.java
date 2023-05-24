@@ -28,11 +28,19 @@ public class BoardRepository {
         return sql.selectList("naverBoard.bestBoardList",bestPageDTO);
     }
 
-    public int BoardCount() {
-        return sql.selectOne("naverBoard.BoardCount");
+    public int BoardCount(PageDTO qnaPageDTO) {
+        if(!(qnaPageDTO.getQ().equals(""))){
+            return sql.selectOne("naverBoard.BoardSearchCount",qnaPageDTO);
+        } else {
+            return sql.selectOne("naverBoard.BoardCount");
+        }
     }
 
     public List<BoardDTO> qnaBoardDTOList(PageDTO qnaPageDTO) {
-        return sql.selectList("naverBoard.qnaBoardList",qnaPageDTO);
+        if(!(qnaPageDTO.getQ().equals(""))) {
+            return sql.selectList("naverBoard.qnaSearchBoardList",qnaPageDTO);
+        } else {
+            return sql.selectList("naverBoard.qnaBoardList", qnaPageDTO);
+        }
     }
 }

@@ -186,9 +186,9 @@
                                                 </a>
                                             </h5>
                                             <div class="main2-contents-search">
-                                                <form action="#" method="post" title="QnA검색을 위한 공간">
+                                                <form action="/" method="get" title="QnA검색을 위한 공간">
                                                     <span class="blind">QnA검색을 위한 공간</span>
-                                                    <input type="text" class="main2-search-input">
+                                                    <input type="text" name="q" class="main2-search-input">
                                                     <input type="submit" class="main2-search-input-btn"
                                                            name="main2Search" style="cursor: pointer;">
                                                 </form>

@@ -17,6 +17,8 @@ public class PageDTO {
     // 보드에 필요한 필드
     int pageLimit; // 한화면에 보여줄 게시글
     int pageStart; // 게시글 시작번호
+    // 검색어
+    String q;
 
     public void setPage(int page) {
         this.page = page;

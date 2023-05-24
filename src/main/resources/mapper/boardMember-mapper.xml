@@ -17,7 +17,19 @@
     <select id="qnaBoardList" parameterType="page" resultType="board">
         select * from board_table order by boardCreatedDate desc limit #{pageStart},#{pageLimit}
     </select>
+    <select id="qnaSearchBoardList" parameterType="page" resultType="board">
+        select *
+        from board_table
+        where boardContents like concat('%', #{q}, '%') or boardTitle like concat('%', #{q}, '%')
+        order by id desc limit #{pageStart}, #{pageLimit}
+    </select>
     <select id="BoardCount" resultType="Integer">
         select count(id) from board_table
+    </select>
+    <select id="BoardSearchCount" parameterType="page" resultType="Integer">
+        select count(id)
+        from board_table
+        where boardContents like concat('%', #{q}, '%')
+           or boardTitle like concat('%', #{q}, '%')
     </select>
 </mapper>

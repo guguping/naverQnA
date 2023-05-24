@@ -27,6 +27,7 @@ public class HomeController {
     @GetMapping("/")
     public String Index(@RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
                         @RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
+                        @RequestParam(value = "q",required = false,defaultValue = "") String q,
                         Model model, HttpSession session) {
         MemberDTO memberDTO = boardService.findById(session.getAttribute("memberId"));
         PageDTO bestPageDTO = new PageDTO();
@@ -43,19 +44,19 @@ public class HomeController {
 
         String bestBoardCount = "6";
         model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
-        model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO));
+        model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO,q));
+        model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
+        model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));
         model.addAttribute("bestBoardCount",bestBoardCount);
-        model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO));
-        model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO));
         model.addAttribute("bestBoardTime",bestBoardTime);
         model.addAttribute("memberDTO",memberDTO);
-        System.out.println("qnaPageDTO =" + qnaPageDTO.getMaxPage());
         return "index";
     }
 
     @GetMapping("/login/index")
     public String loginIndex(@RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
                              @RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
+                             @RequestParam(value = "q",required = false,defaultValue = "") String q,
                              HttpSession session, Model model) {
         PageDTO bestPageDTO = new PageDTO();
         bestPageDTO.setPage(bestPage);
@@ -72,10 +73,10 @@ public class HomeController {
 
         String bestBoardCount = "6";
         model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
-        model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO));
+        model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO,q));
         model.addAttribute("bestBoardCount",bestBoardCount);
-        model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO));
-        model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO));
+        model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
+        model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));
         model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "index";
     }
