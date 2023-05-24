@@ -222,11 +222,8 @@
                                                 </div>
                                             </c:forEach>
                                             <div class="main2-contents-paging-box">
-                                                <c:if test="${qnaPaging.page eq qnaPaging.maxPage}">
-                                                    <a href="/?qnaPage=${qnaPaging.page-1}" class="QnA-back-bnt-on">이전</a>
-                                                </c:if>
-                                                <c:if test="${qnaPaging.page != 1}">
-                                                    <a href="/?qnaPage=${qnaPaging.page-1}" class="QnA-back-bnt-on">이전</a>
+                                                <c:if test="${qnaPaging.page > 1}">
+                                                    <a href="/?qnaPage=${qnaPaging.page-1}&q=${qnaPaging.q}" class="QnA-back-bnt-on">이전</a>
                                                 </c:if>
                                                 <c:forEach begin="${qnaPaging.startPage}"
                                                            end="${qnaPaging.endPage}" var="i" step="1">
@@ -235,12 +232,12 @@
                                                             <a href="#" class="QnA-paging-bnt-off">${i}</a>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <a href="/?qnaPage=${i}" class="QnA-paging-bnt-on">${i}</a>
+                                                            <a href="/?qnaPage=${i}&q=${qnaPaging.q}" class="QnA-paging-bnt-on">${i}</a>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </c:forEach>
                                                 <c:if test="${qnaPaging.page != qnaPaging.maxPage}">
-                                                    <a href="/?qnaPage=${qnaPaging.page+1}"
+                                                    <a href="/?qnaPage=${qnaPaging.page+1}&q=${qnaPaging.q}"
                                                        class="QnA-next-bnt-on">다음</a>
                                                 </c:if>
                                             </div>

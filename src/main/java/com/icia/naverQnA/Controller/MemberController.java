@@ -29,35 +29,15 @@ public class MemberController {
 
     @PostMapping("/member/login")
     public String loginMember(@ModelAttribute MemberDTO memberDTO ,
-                              @RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
-                              @RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
-                              @RequestParam(value = "q",required = false,defaultValue = "") String q,
                               HttpSession session , Model model) {
-        PageDTO bestPageDTO = new PageDTO();
-        bestPageDTO.setPage(bestPage);
-
-        // qna게시물 페이징
-        PageDTO qnaPageDTO = new PageDTO();
-        qnaPageDTO.setPage(qnaPage);
-
-        Date Time = new Date();
-        int hours = Time.getHours();
-        String formattedHours = (hours < 10) ? "0" + hours : String.valueOf(hours);
-        String bestBoardTime = Time.getDate() + "일 " + formattedHours+"시 기준";
 
         MemberDTO memberDB = memberService.loginMember(memberDTO);
         String loginFalse = "아이디 또는 비밀번호를 잘못 입력했습니다."+"<br>"+"입력하신 내용을 다시 확인해주세요.";
         String bestBoardCount = "6";
         if(memberDB != null) {
-            model.addAttribute("bestBoardTime",bestBoardTime);
-            model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
-            model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO,q));
-            model.addAttribute("bestBoardCount",bestBoardCount);
-            model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
-            model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));
             session.setAttribute("memberId",memberDB.getId());
             model.addAttribute("memberDTO",memberDB);
-            return "index";
+            return "redirect:/login/index";
         } else {
             model.addAttribute("loginFalse",loginFalse);
             return "/memberPage/memberLogin";
