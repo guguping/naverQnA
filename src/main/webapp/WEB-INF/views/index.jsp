@@ -196,31 +196,53 @@
                                             <div class="main2-contents-block">
                                             </div>
                                             <c:forEach items="${qnaBoardDTOList}" var="qnaBoardList">
-                                            <div class="main2-contents-list-box">
-                                                <div class="main2-contents-list-inner">
-                                                    <div class="main2-contents-list-item">
-                                                        <a href="#" class="main2-contents-item">
+                                                <div class="main2-contents-list-box">
+                                                    <div class="main2-contents-list-inner">
+                                                        <div class="main2-contents-list-item">
+                                                            <a href="#" class="main2-contents-item">
                                                             <span class="power_grade" title="내공 전시장">
                                                                     500
                                                             </span>
-                                                            <span class="main2-item-title">
-                                                                    ${qnaBoardList.boardTitle}
-                                                            </span>
-                                                            <p class="main2-item-contents">
-                                                                    ${qnaBoardList.boardContents}
-                                                            </p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="main2-item-info">
-                                                        <span class="item-info-answer">답변 0</span>
-                                                        <span class="item-info-type">없음</span>
-                                                        <span class="item-info-time"><fmt:formatDate value="${qnaBoardList.boardCreatedDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></span>
+                                                                <span class="main2-item-title">
+                                                                        ${qnaBoardList.boardTitle}
+                                                                </span>
+                                                                <p class="main2-item-contents">
+                                                                        ${qnaBoardList.boardContents}
+                                                                </p>
+                                                            </a>
+                                                        </div>
+                                                        <div class="main2-item-info">
+                                                            <span class="item-info-answer">답변 0</span>
+                                                            <span class="item-info-type">없음</span>
+                                                            <span class="item-info-time"><fmt:formatDate
+                                                                    value="${qnaBoardList.boardCreatedDate}"
+                                                                    pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             </c:forEach>
                                             <div class="main2-contents-paging-box">
-
+                                                <c:if test="${qnaPaging.page eq qnaPaging.maxPage}">
+                                                    <a href="/?qnaPage=${qnaPaging.page-1}" class="QnA-back-bnt-on">이전</a>
+                                                </c:if>
+                                                <c:if test="${qnaPaging.page != 1}">
+                                                    <a href="/?qnaPage=${qnaPaging.page-1}" class="QnA-back-bnt-on">이전</a>
+                                                </c:if>
+                                                <c:forEach begin="${qnaPaging.startPage}"
+                                                           end="${qnaPaging.endPage}" var="i" step="1">
+                                                    <c:choose>
+                                                        <c:when test="${i eq qnaPaging.page}">
+                                                            <a href="#" class="QnA-paging-bnt-off">${i}</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a href="/?qnaPage=${i}" class="QnA-paging-bnt-on">${i}</a>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                                <c:if test="${qnaPaging.page != qnaPaging.maxPage}">
+                                                    <a href="/?qnaPage=${qnaPaging.page+1}"
+                                                       class="QnA-next-bnt-on">다음</a>
+                                                </c:if>
                                             </div>
                                         </div>
                                     </div>

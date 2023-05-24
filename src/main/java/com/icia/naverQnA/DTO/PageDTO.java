@@ -20,19 +20,18 @@ public class PageDTO {
 
     public void setPage(int page) {
         this.page = page;
-        this.pageStart = (page -1) * this.pageLimit;
     }
     public void setPageLimit(int pageLimit) {
         this.pageLimit = pageLimit;
+        this.pageStart = (this.page -1) * this.pageLimit;
     }
     public void setBlockLimit(int blockLimit) {
         this.blockLimit = blockLimit;
-        this.startPage =(((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+        this.startPage =(((int)(Math.ceil((double) this.page / blockLimit))) - 1) * blockLimit + 1;
     }
     public  void setBoardCount(int boardCount) {
         this.boardCount = boardCount;
         this.maxPage = (int)(Math.ceil((double)boardCount / this.pageLimit));
         this.endPage = this.startPage + this.blockLimit -1;
     }
-
 }

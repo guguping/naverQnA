@@ -49,6 +49,7 @@ public class HomeController {
         model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO));
         model.addAttribute("bestBoardTime",bestBoardTime);
         model.addAttribute("memberDTO",memberDTO);
+        System.out.println("qnaPageDTO =" + qnaPageDTO.getMaxPage());
         return "index";
     }
 

@@ -1039,3 +1039,80 @@ footer div .footer_link li + li::before {
     left: 0;
     height: 2px;
 }
+.main2-contents-paging-box {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+.QnA-back-bnt-on {
+    position: relative;
+    margin-right: 3px;
+    padding-left: 12px;
+    padding-right: 10px;
+    border-right: 1px solid #ebecee;
+    display: inline-block;
+    color: #959595;
+    text-decoration: none;
+    line-height: 1.2;
+}
+.QnA-back-bnt-on:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 5px;
+    height: 7px;
+    margin-top: -4px;
+    background-position: -134px -28px;
+    content: '';
+    display: block;
+    overflow: hidden;
+    background-image: url(https://ssl.pstatic.net/static/kin/section/sprite/sp_common_old_230405.png);
+    background-repeat: no-repeat;
+}
+.QnA-paging-bnt-off {
+    font-weight: bold;
+    color: #f54;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #e5e5e5;
+    text-decoration: none;
+    box-sizing: unset;
+}
+.QnA-paging-bnt-on {
+    display: inline-block;
+    color: #959595;
+    width: 28px;
+    height: 28px;
+    border: 1px solid transparent;
+    line-height: 28px;
+    text-decoration: none;
+    box-sizing: unset;
+}
+.QnA-next-bnt-on {
+    position: relative;
+    margin-right: 3px;
+    padding-left: 12px;
+    padding-right: 10px;
+    border-left: 1px solid #ebecee;
+    display: inline-block;
+    color: #959595;
+    text-decoration: none;
+    line-height: 1.2;
+}
+.QnA-next-bnt-on:before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 5px;
+    height: 7px;
+    margin-top: -4px;
+    background-position: -128px -28px;
+    content: '';
+    display: block;
+    overflow: hidden;
+    background-image: url(https://ssl.pstatic.net/static/kin/section/sprite/sp_common_old_230405.png);
+    background-repeat: no-repeat;
+}
