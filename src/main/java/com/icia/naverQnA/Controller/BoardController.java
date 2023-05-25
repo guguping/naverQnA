@@ -25,7 +25,7 @@ public class BoardController {
     @GetMapping("/member/logout")
     public String memberLogout(HttpSession session) {
         session.invalidate();
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/board/save")
@@ -52,7 +52,7 @@ public class BoardController {
                               HttpSession session,
                               Model model) {
         HttpSession BoardHitsSession = request.getSession(true);
-        BoardHitsSession.setMaxInactiveInterval(30);
+        BoardHitsSession.setMaxInactiveInterval(300);
         if (bestBoardId != null) {
             String bestBoardIdx = request.getParameter("bestBoardId");
             if (BoardHitsSession.getAttribute("visited_" + bestBoardIdx) == null) {

@@ -94,20 +94,20 @@
                                         <c:choose>
                                             <c:when test="${sessionScope.memberId != null}">
                                                 <c:if test="${bestBoardDTO.id != null}">
-                                                    <button type="button" class="detail-contents-comment-textarea-btn"
-                                                            onclick="commentSave(${bestBoardDTO.id},${sessionScope.memberId},${memberDTO.memberEmail})">
+                                                    <button type="button" class="detail-contents-comment-textarea-btn" id="bestbtn"
+                                                            onclick="commentSave(${bestBoardDTO.id})">
                                                         등록
                                                     </button>
                                                 </c:if>
                                                 <c:if test="${qnaBoardDTO.id != null}">
-                                                    <button type="button" class="detail-contents-comment-textarea-btn"
-                                                            onclick="commentSave(${qnaBoardDTO.id},${sessionScope.memberId},${memberDTO.memberEmail})">
+                                                    <button type="button" class="detail-contents-comment-textarea-btn" id="qnabtn"
+                                                            onclick="commentSave(${qnaBoardDTO.id})">
                                                         등록
                                                     </button>
                                                 </c:if>
                                             </c:when>
                                             <c:otherwise>
-                                                <button type="button" class="detail-contents-comment-textarea-btn"
+                                                <button type="button" class="detail-contents-comment-textarea-btn" id="notlogin"
                                                         onclick="plzLogin()">등록
                                                 </button>
                                             </c:otherwise>
@@ -217,16 +217,12 @@
             }
         })
     }
-    const commentSave = (boardid, memberid, memberEmail) => {
-        const commentWriter = memberEmail;
+    const commentSave = (boardid) => {
+        const commentWriter = '${memberDTO.memberEmail}';
         const commentContents = document.getElementById('detail-contents-comment-textarea').value;
         const boardId = boardid;
-        const memberId = memberid;
+        const memberId = '${sessionScope.memberId}';
         const commentResult = document.getElementById('detail-contents-comment-list-box');
-        console.log("memberEmail=" + memberEmail);
-        console.log("commentContents=" + commentContents);
-        console.log("boardId=" + boardId);
-        console.log("memberId=" + memberId);
 
         $.ajax({
             type: "post",
@@ -242,14 +238,11 @@
                 for (let i in res) {
                     output += '<div class="detail-contents-comment-list">';
                     output += '<p class="detail-contents-comment-title">';
-                    <%--if ('${bestBoardDTO.boardWriter}' == res[i].commentWriter) {--%>
-                    <%--    output += '<strong>질문 작성자</strong>';--%>
-                    <%--} else if ('${qnaBoardDTO.boardWriter}' == res[i].commentWriter) {--%>
-                    <%--    output += '<strong>질문 작성자</strong>';--%>
-                    <%--} else {--%>
-                    <%--    output += '<strong>' + res[i].commentWriter + '</strong>';--%>
-                    <%--}--%>
-                    output += '<strong>질문 작성자</strong>';
+                    if (memberId == res[i].memberId) {
+                        output += '<strong>질문 작성자</strong>';
+                    } else {
+                        output += '<strong>' + res[i].commentWriter + '</strong>';
+                    }
                     output += '</p>';
                     output += '<div class="detail-contents-comment-text">';
                     output += '<p>' + res[i].commentContents + '</p>';

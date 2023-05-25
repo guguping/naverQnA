@@ -298,6 +298,7 @@ footer div .footer_link li + li::before {
     color: #444;
     max-width: 14%;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .blind {
@@ -400,6 +401,7 @@ footer div .footer_link li + li::before {
     text-decoration: none;
     max-width: 122px;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 .layout-logout {
     position: relative;
@@ -985,12 +987,14 @@ footer div .footer_link li + li::before {
     display: block;
     overflow: hidden;
     max-height: 56px;
+    max-width: 665px;
     margin-top: 10px;
     font-size: 13px;
     line-height: 18px;
     font-weight: normal;
     color: #8c8c8c;
 }
+
 .main2-item-info {
     margin-top: 10px;
     font-size: 13px;
