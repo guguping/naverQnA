@@ -69,4 +69,8 @@ public class BoardService {
     public void boardHitsUp(Long BoardId) {
         boardRepository.boardHitsUp(BoardId);
     }
+
+    public String commentCount(Long BoardId) {
+        return boardRepository.commentCount(BoardId);
+    }
 }

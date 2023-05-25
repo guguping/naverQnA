@@ -65,6 +65,7 @@ public class BoardController {
             } else {
                 model.addAttribute("bestCommentList",bestCommentList);
             }
+            model.addAttribute("bestCommentCount",boardService.commentCount(bestBoardId));
             model.addAttribute("bestBoardDTO", boardService.findByBoard(bestBoardId));
         } else if (qnaBoardId != null) {
             String qnaBoardIdx = request.getParameter("qnaBoardId");
@@ -78,6 +79,7 @@ public class BoardController {
             } else {
                 model.addAttribute("qnaCommentList",qnaCommentList);
             }
+            model.addAttribute("qnaCommentCount",boardService.commentCount(qnaBoardId));
             model.addAttribute("qnaBoardDTO", boardService.findByBoard(qnaBoardId));
         }
         model.addAttribute("memberDTO",boardService.findById(session.getAttribute("memberId")));

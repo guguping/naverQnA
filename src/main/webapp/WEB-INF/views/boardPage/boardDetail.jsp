@@ -67,7 +67,8 @@
                                 <button type="button" class="detail-contents-comment-btn">
                                     <i class="bi bi-chat-square-dots" id="openComment"></i>
                                 </button>
-                                <em class="detail-contents-comment-count">11</em>
+                                <em class="detail-contents-comment-count"
+                                    id="detail-contents-comment-count">${bestCommentCount}${qnaCommentCount}</em>
                             </div>
                         </div>
                         <div id="detail-contents-comment-area" class="detail-contents-comment-area"
@@ -94,20 +95,23 @@
                                         <c:choose>
                                             <c:when test="${sessionScope.memberId != null}">
                                                 <c:if test="${bestBoardDTO.id != null}">
-                                                    <button type="button" class="detail-contents-comment-textarea-btn" id="bestbtn"
-                                                            onclick="commentSave(${bestBoardDTO.id})">
+                                                    <button type="button" class="detail-contents-comment-textarea-btn"
+                                                            id="bestbtn" style="cursor: pointer;"
+                                                            onclick="commentSave(${bestBoardDTO.id},${bestBoardDTO.memberId},${bestCommentCount})">
                                                         등록
                                                     </button>
                                                 </c:if>
                                                 <c:if test="${qnaBoardDTO.id != null}">
-                                                    <button type="button" class="detail-contents-comment-textarea-btn" id="qnabtn"
-                                                            onclick="commentSave(${qnaBoardDTO.id})">
+                                                    <button type="button" class="detail-contents-comment-textarea-btn"
+                                                            id="qnabtn" style="cursor: pointer;"
+                                                            onclick="commentSave(${qnaBoardDTO.id},${qnaBoardDTO.memberId},${qnaCommentCount})">
                                                         등록
                                                     </button>
                                                 </c:if>
                                             </c:when>
                                             <c:otherwise>
-                                                <button type="button" class="detail-contents-comment-textarea-btn" id="notlogin"
+                                                <button type="button" class="detail-contents-comment-textarea-btn"
+                                                        id="notlogin" style="cursor: pointer;"
                                                         onclick="plzLogin()">등록
                                                 </button>
                                             </c:otherwise>
@@ -217,12 +221,17 @@
             }
         })
     }
-    const commentSave = (boardid) => {
+    const commentSave = (boardid, boardMemberid, CommentCount) => {
         const commentWriter = '${memberDTO.memberEmail}';
         const commentContents = document.getElementById('detail-contents-comment-textarea').value;
         const boardId = boardid;
         const memberId = '${sessionScope.memberId}';
         const commentResult = document.getElementById('detail-contents-comment-list-box');
+        const boardMemberId = boardMemberid;
+        const commentCount = CommentCount;
+        console.log("CommentCount =" + CommentCount);
+        const countResult = document.getElementById('detail-contents-comment-count');
+        console.log("boardMemberId =" + boardMemberId);
 
         $.ajax({
             type: "post",
@@ -235,10 +244,11 @@
             },
             success: function (res) {
                 let output = "";
+                let upCount = commentCount+1;
                 for (let i in res) {
                     output += '<div class="detail-contents-comment-list">';
                     output += '<p class="detail-contents-comment-title">';
-                    if (memberId == res[i].memberId) {
+                    if (res[i].memberId == boardMemberId) {
                         output += '<strong>질문 작성자</strong>';
                     } else {
                         output += '<strong>' + res[i].commentWriter + '</strong>';
@@ -252,6 +262,7 @@
                     output += '</p>';
                     output += '</div>';
                 }
+                countResult.innerHTML = upCount;
                 commentResult.innerHTML = output;
                 document.getElementById('detail-contents-comment-textarea').value = "";
             },

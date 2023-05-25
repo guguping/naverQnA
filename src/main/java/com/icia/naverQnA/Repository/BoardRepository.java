@@ -51,4 +51,8 @@ public class BoardRepository {
     public void boardHitsUp(Long boardId) {
         sql.update("naverBoard.boardHitsUp",boardId);
     }
+
+    public String commentCount(Long boardId) {
+        return sql.selectOne("boardComment.commentCount",boardId);
+    }
 }
