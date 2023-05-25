@@ -32,4 +32,10 @@
         where boardContents like concat('%', #{q}, '%')
            or boardTitle like concat('%', #{q}, '%')
     </select>
+    <select id="findByBoard" parameterType="Long" resultType="board">
+        select * from board_table where id = #{boardId}
+    </select>
+    <update id="boardHitsUp" parameterType="Long">
+        update board_table set boardHits = boardHits+1 where id = #{boardId};
+    </update>
 </mapper>

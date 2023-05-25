@@ -61,4 +61,12 @@ public class BoardService {
         return qnaPageDTO;
 
     }
+
+    public BoardDTO findByBoard(Long BoardId) {
+        return boardRepository.findByBoard(BoardId);
+    }
+
+    public void boardHitsUp(Long BoardId) {
+        boardRepository.boardHitsUp(BoardId);
+    }
 }

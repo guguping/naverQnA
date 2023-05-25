@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>BoardDetail</title>
@@ -29,44 +31,12 @@
                             <div class="detail-item-title">
                                 <div class="detail-item-title-inner">
                                     <div class="detail-title">
-                                        헬린이입니다. 헬스 제대로 하고 있나요?
+                                        ${bestBoardDTO.boardTitle}${qnaBoardDTO.boardTitle}
                                     </div>
                                 </div>
                             </div>
                             <div class="detail-item-contents">
-                                안녕하세요, 현재 10월부터 헬스를 시작한 헬린이입니다.
-                                <div>주위에 운동 오래 해온 사람한테 한두달 가량 배우고 현재는 유튜브로 직장인 루틴을 짜서 혼자 하는 중입니다.</div>
-                                <div><br></div>
-                                <div>하루에 단백질은 최대한 섭취하려고 하는데, 직장인이다보니 그게 쉽지가 않아요 ㅠㅠ.</div>
-                                <div>아침에 무조건 밥이랑 닭가슴살 먹고, 점심은 구내식당 일반식 , 오후4시에 고구마 or 바나나 + 프로틴 한스쿱, 퇴근 후 7시 30분 부터 운동
-                                    시작해서 유산소까지 끝내면 9시20분 정도 됩니다.&nbsp;
-                                </div>
-                                <div><br></div>
-                                <div>원래 집에 와서 탄수화물과 단백질을 채우기 위해 밥과 닭가슴살을 먹었지만 , 유산소를 병행하지 않아서인지 너무 늦은 시간 (10시)에 먹고 자서
-                                    그런지, 체지방이 늘어나는게 보이더라고요,,&nbsp;
-                                </div>
-                                <div><br></div>
-                                <div>현재는 운동 후 바나나 2개와 닭가슴살을 먹고 있습니다.</div>
-                                <div><br></div>
-                                <div>1. 식단을 저렇게 짜서 수행하는게 맞는건가요? 오후4시에 먹는 탄수화물은 퇴근 후 운동할때 힘을 쓰기 위하여 먹어야 한다고 그래서 먹습니다. 혹시
-                                    수정하여야 할 부분이 있을까요?
-                                </div>
-                                <div><br></div>
-                                <div>2. 웨이트 + 인터벌 유산소를 충분히 하였으면 저녁 10시쯤 바나나와 닭가슴살을 먹어도&nbsp;체지방이 감소 될까요? (너무 늦은 시간에 먹는 것
-                                    같아서..) 잠은 1시~2시쯤 취침합니다.
-                                </div>
-                                <div><br></div>
-                                <div>3. 제가 초반에는 중량도 낮게하고 자극 위주로 하다가 요새 운동에 대해 깨우치고 하는 중입니다.</div>
-                                <div>10월 중순부터 시작하였고 그때와 오늘 인바디 수치를 비교해보니 근골격량이 0.5kg 밖에 늘지 않았더라고요.. 몸무게는 4kg이나 늘었는데.. 주로
-                                    한달에 근골격량이 몇kg정도 증가해야 운동을 잘한걸까요?
-                                </div>
-                                <div><br></div>
-                                <div><br></div>
-                                <div>채택, 내공 아낌없이 드릴테니 성심성의껏 답변 해주시면 정말 감사하겠습니다.</div>
-                                <div><br></div>
-                                <div>광고는 신고할게요 !&nbsp;</div>
-                                <div><br></div>
-                                <div>프로틴은 마이프로틴 스트로베리 크림 먹습니다.</div>
+                                ${bestBoardDTO.boardContents}${qnaBoardDTO.boardContents}
                             </div>
                         </div>
                         <div class="detail-contents-user-info">
@@ -83,7 +53,7 @@
                                     2023.02.02
                                 </span>
                                 <span class="contents-user-info-time">
-                                    조회수 99,450
+                                    조회수 ${bestBoardDTO.boardHits}${qnaBoardDTO.boardHits}
                                 </span>
                             </div>
                             <div class="contents-user-info-right">

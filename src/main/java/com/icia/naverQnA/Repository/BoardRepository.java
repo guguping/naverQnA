@@ -43,4 +43,12 @@ public class BoardRepository {
             return sql.selectList("naverBoard.qnaBoardList", qnaPageDTO);
         }
     }
+
+    public BoardDTO findByBoard(Long boardId) {
+        return sql.selectOne("naverBoard.findByBoard",boardId);
+    }
+
+    public void boardHitsUp(Long boardId) {
+        sql.update("naverBoard.boardHitsUp",boardId);
+    }
 }
