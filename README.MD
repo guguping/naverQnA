@@ -72,6 +72,23 @@ create table board_table
 );
 ```
 
+### sql - comment_table;
+
+```sql
+drop table if exists comment_table;
+create table comment_table
+(
+  id                 bigint auto_increment primary key,
+  boardId            bigint,
+  memberId           bigint,
+  commentWriter      varchar(20)  not null,
+  commentContents    varchar(500) not null,
+  commentCreatedDate datetime default now(),
+  constraint fk_member_comment foreign key (memberId) references member_table (id) on delete cascade,
+  constraint fk_board_comment foreign key (boardId) references board_table (id) on delete cascade
+);
+```
+
 ### ck에디터 플러그인
 
 - 목록

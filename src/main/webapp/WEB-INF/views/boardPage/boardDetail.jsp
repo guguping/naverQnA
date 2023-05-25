@@ -121,15 +121,22 @@
                                         <c:forEach items="${bestCommentList}" var="bestCommentList">
                                             <div class="detail-contents-comment-list">
                                                 <p class="detail-contents-comment-title">
-                                                    <strong>${bestCommentList.commentWriter}</strong>
+                                                    <c:choose>
+                                                        <c:when test="${bestCommentList.memberId == bestBoardDTO.memberId}">
+                                                            <strong>질문 작성자</strong>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <strong>${bestCommentList.commentWriter}</strong>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </p>
                                                 <div class="detail-contents-comment-text">
                                                         ${bestCommentList.commentContents}
                                                 </div>
                                                 <p class="detail-contents-comment-time">
                                                     <fmt:formatDate
-                                                        value="${bestCommentList.commentCreatedDate}"
-                                                        pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                                                            value="${bestCommentList.commentCreatedDate}"
+                                                            pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                                                 </p>
                                             </div>
                                         </c:forEach>
@@ -138,7 +145,14 @@
                                         <c:forEach items="${qnaCommentList}" var="qnaCommentList">
                                             <div class="detail-contents-comment-list">
                                                 <p class="detail-contents-comment-title">
-                                                    <strong>${qnaCommentList.commentWriter}</strong>
+                                                    <c:choose>
+                                                        <c:when test="${qnaCommentList.memberId == qnaBoardDTO.memberId}">
+                                                            <strong>질문 작성자</strong>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <strong>${qnaCommentList.commentWriter}</strong>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </p>
                                                 <div class="detail-contents-comment-text">
                                                         ${qnaCommentList.commentContents}
