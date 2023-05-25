@@ -91,7 +91,7 @@ CKEDITOR.replace('editor1', {
 
 ### 게시판 조회수 중복 제거
 
-```jshelllanguage
+```javascript
   // 세션 시작
   HttpSession BoardHitsSession = request.getSession(true);
   // 해당 세션의 유효 시간을 5분으로 설정 1=1초

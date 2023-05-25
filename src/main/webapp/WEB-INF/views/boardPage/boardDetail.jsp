@@ -13,6 +13,8 @@
     <title>BoardDetail</title>
     <link rel="stylesheet" href="/resources/css/component.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
 <body>
 <%@include file="../component/header.jsp" %>
@@ -47,10 +49,15 @@
                                             <span class="contents-user-info-default-item"></span>
                                         </div>
                                     </div>
-                                    <span class="contents-user-info-name">비공개</span>
+                                    <span class="contents-user-info-name">${bestBoardDTO.boardWriter}${qnaBoardDTO.boardWriter}</span>
                                 </div>
                                 <span class="contents-user-info-time">
-                                    2023.02.02
+                                    <fmt:formatDate
+                                            value="${qnaBoardDTO.boardCreatedDate}"
+                                            pattern="yyyy-MM-dd"></fmt:formatDate>
+                                    <fmt:formatDate
+                                            value="${bestBoardDTO.boardCreatedDate}"
+                                            pattern="yyyy-MM-dd"></fmt:formatDate>
                                 </span>
                                 <span class="contents-user-info-time">
                                     조회수 ${bestBoardDTO.boardHits}${qnaBoardDTO.boardHits}
@@ -58,35 +65,93 @@
                             </div>
                             <div class="contents-user-info-right">
                                 <button type="button" class="detail-contents-comment-btn">
-                                    <i class="bi bi-chat-square-dots"></i>
+                                    <i class="bi bi-chat-square-dots" id="openComment"></i>
                                 </button>
                                 <em class="detail-contents-comment-count">11</em>
                             </div>
                         </div>
-                        <div class="detail-contents-comment-area">
+                        <div id="detail-contents-comment-area" class="detail-contents-comment-area"
+                             style="display:none;">
                             <h2 class="blind">댓글 입력공간</h2>
                             <div class="detail-contents-comment-box">
-                                <form action="#" method="get">
-                                    <fieldset style="border: 0;">
-                                        <div class="detail-contents-comment-inner">
-                                            <textarea class="detail-contents-comment-textarea" maxlength="1000"
-                                                      placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></textarea>
-                                        </div>
-                                        <div class="detail-contents-comment-textarea-bottom">
-                                            <button type="submit" class="detail-contents-comment-textarea-btn">등록
-                                            </button>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                            <div class="detail-contents-comment-list-box">
-                                <div class="detail-contents-comment-list">
-                                    <p class="detail-contents-comment-title"><strong>질문 작성자</strong></p>
-                                    <div class="detail-contents-comment-text">
-                                        <p>남자입니다!!<br><br>성별을 안 적어놨었네요,,<br><br>아마 남자 기준으로 답변 해주신 것 같아요</p>
+                                <fieldset style="border: 0;">
+                                    <div class="detail-contents-comment-inner">
+                                        <c:choose>
+                                            <c:when test="${memberDTO != null}">
+                                                <textarea class="detail-contents-comment-textarea" maxlength="1000"
+                                                          id="detail-contents-comment-textarea"
+                                                          placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></textarea>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <textarea class="detail-contents-comment-textarea" maxlength="1000"
+                                                          id="detail-contents-comment-textarea"
+                                                          placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+                                                          onclick="plzLogin()"></textarea>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
-                                    <p class="detail-contents-comment-time">2023.05.24. 13:05:12</p>
-                                </div>
+                                    <div class="detail-contents-comment-textarea-bottom">
+                                        <c:choose>
+                                            <c:when test="${sessionScope.memberId != null}">
+                                                <c:if test="${bestBoardDTO.id != null}">
+                                                    <button type="button" class="detail-contents-comment-textarea-btn"
+                                                            onclick="commentSave(${bestBoardDTO.id},${sessionScope.memberId},${memberDTO.memberEmail})">
+                                                        등록
+                                                    </button>
+                                                </c:if>
+                                                <c:if test="${qnaBoardDTO.id != null}">
+                                                    <button type="button" class="detail-contents-comment-textarea-btn"
+                                                            onclick="commentSave(${qnaBoardDTO.id},${sessionScope.memberId},${memberDTO.memberEmail})">
+                                                        등록
+                                                    </button>
+                                                </c:if>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <button type="button" class="detail-contents-comment-textarea-btn"
+                                                        onclick="plzLogin()">등록
+                                                </button>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="detail-contents-comment-list-box" id="detail-contents-comment-list-box">
+                                <c:choose>
+                                    <c:when test="${bestCommentList != null}">
+                                        <c:forEach items="${bestCommentList}" var="bestCommentList">
+                                            <div class="detail-contents-comment-list">
+                                                <p class="detail-contents-comment-title">
+                                                    <strong>${bestCommentList.commentWriter}</strong>
+                                                </p>
+                                                <div class="detail-contents-comment-text">
+                                                        ${bestCommentList.commentContents}
+                                                </div>
+                                                <p class="detail-contents-comment-time">
+                                                    <fmt:formatDate
+                                                        value="${bestCommentList.commentCreatedDate}"
+                                                        pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                                                </p>
+                                            </div>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach items="${qnaCommentList}" var="qnaCommentList">
+                                            <div class="detail-contents-comment-list">
+                                                <p class="detail-contents-comment-title">
+                                                    <strong>${qnaCommentList.commentWriter}</strong>
+                                                </p>
+                                                <div class="detail-contents-comment-text">
+                                                        ${qnaCommentList.commentContents}
+                                                </div>
+                                                <p class="detail-contents-comment-time">
+                                                    <fmt:formatDate
+                                                            value="${qnaCommentList.commentCreatedDate}"
+                                                            pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                                                </p>
+                                            </div>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <div class="detail-contents-comment-paging">
                                 <a href="#" class="detail-contents-comment-paging-btn-off">1</a>
@@ -126,4 +191,72 @@
     </div>
 </footer>
 </body>
+<script>
+    window.onload = function () {
+        const openComment = document.getElementById('openComment');
+        const commentBox = document.getElementById('detail-contents-comment-area');
+        openComment.addEventListener("click", function () {
+            if (commentBox.style.display === "block") {
+                commentBox.style.display = "none";
+            } else {
+                commentBox.style.display = "block";
+            }
+        })
+    }
+    const commentSave = (boardid, memberid, memberEmail) => {
+        const commentWriter = memberEmail;
+        const commentContents = document.getElementById('detail-contents-comment-textarea').value;
+        const boardId = boardid;
+        const memberId = memberid;
+        const commentResult = document.getElementById('detail-contents-comment-list-box');
+        console.log("memberEmail=" + memberEmail);
+        console.log("commentContents=" + commentContents);
+        console.log("boardId=" + boardId);
+        console.log("memberId=" + memberId);
+
+        $.ajax({
+            type: "post",
+            url: "/comment/save",
+            data: {
+                "commentWriter": commentWriter,
+                "commentContents": commentContents,
+                "boardId": boardId,
+                "memberId": memberId
+            },
+            success: function (res) {
+                let output = "";
+                for (let i in res) {
+                    output += '<div class="detail-contents-comment-list">';
+                    output += '<p class="detail-contents-comment-title">';
+                    <%--if ('${bestBoardDTO.boardWriter}' == res[i].commentWriter) {--%>
+                    <%--    output += '<strong>질문 작성자</strong>';--%>
+                    <%--} else if ('${qnaBoardDTO.boardWriter}' == res[i].commentWriter) {--%>
+                    <%--    output += '<strong>질문 작성자</strong>';--%>
+                    <%--} else {--%>
+                    <%--    output += '<strong>' + res[i].commentWriter + '</strong>';--%>
+                    <%--}--%>
+                    output += '<strong>질문 작성자</strong>';
+                    output += '</p>';
+                    output += '<div class="detail-contents-comment-text">';
+                    output += '<p>' + res[i].commentContents + '</p>';
+                    output += '</div>';
+                    output += '<p class="detail-contents-comment-time">'
+                    output += moment(res[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss");
+                    output += '</p>';
+                    output += '</div>';
+                }
+                commentResult.innerHTML = output;
+                document.getElementById('detail-contents-comment-textarea').value = "";
+            },
+            error: function () {
+                console.log("실패");
+            }
+        })
+    }
+    const plzLogin = () => {
+        if (confirm("로그인 후 이용하실 수 있습니다.")) {
+            location.href = "/member/login";
+        }
+    }
+</script>
 </html>

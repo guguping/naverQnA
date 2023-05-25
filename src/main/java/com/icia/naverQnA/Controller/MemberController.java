@@ -36,6 +36,7 @@ public class MemberController {
         String bestBoardCount = "6";
         if(memberDB != null) {
             session.setAttribute("memberId",memberDB.getId());
+            System.out.println("session = " + session.getAttribute("memberId"));
             model.addAttribute("memberDTO",memberDB);
             return "redirect:/login/index";
         } else {

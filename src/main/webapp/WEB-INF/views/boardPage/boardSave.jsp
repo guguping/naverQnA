@@ -102,7 +102,7 @@
     CKEDITOR.replace('editor1', {
         height: '350px',
         language: 'ko',
-        enterMode: CKEDITOR.ENTER_DIV
+        enterMode: CKEDITOR.ENTER_BR
     });
 
     CKEDITOR.instances['editor1'].on('contentDom', function () {

@@ -5,6 +5,7 @@
     <typeAliases>
         <typeAlias type="com.icia.naverQnA.DTO.MemberDTO" alias="member"></typeAlias>
         <typeAlias type="com.icia.naverQnA.DTO.BoardDTO" alias="board"></typeAlias>
+        <typeAlias type="com.icia.naverQnA.DTO.CommentDTO" alias="comment"></typeAlias>
         <typeAlias type="com.icia.naverQnA.DTO.PageDTO" alias="page"></typeAlias>
     </typeAliases>
 </configuration>

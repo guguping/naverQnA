@@ -424,7 +424,7 @@ footer div .footer_link li + li::before {
 }
 .layout-logout-txt {
     position: absolute;
-    top: 0;
+    top: 3px;
     left: 0;
     line-height: 15px;
     width: 53px;

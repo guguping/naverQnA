@@ -13,11 +13,6 @@
     <title>index</title>
     <link rel="stylesheet" href="/resources/css/component.css">
 </head>
-<style>
-    p {
-        display: inline;
-    }
-</style>
 <body>
 <%@include file="component/header.jsp" %>
 <%@include file="component/nav.jsp" %>
@@ -203,12 +198,8 @@
                                                             <span class="power_grade" title="내공 전시장">
                                                                     500
                                                             </span>
-                                                                <span class="main2-item-title">
-                                                                        ${qnaBoardList.boardTitle}
-                                                                </span>
-                                                                <p class="main2-item-contents">
-                                                                        ${qnaBoardList.boardContents}
-                                                                </p>
+                                                                <span class="main2-item-title">${qnaBoardList.boardTitle}</span>
+                                                                <p class="main2-item-contents">${qnaBoardList.boardContents}</p>
                                                             </a>
                                                         </div>
                                                         <div class="main2-item-info">
