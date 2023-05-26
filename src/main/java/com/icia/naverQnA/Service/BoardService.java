@@ -70,7 +70,6 @@ public class BoardService {
         boardRepository.boardHitsUp(BoardId);
     }
 
-    public String commentCount(Long BoardId) {
-        return boardRepository.commentCount(BoardId);
-    }
+
+
 }

@@ -1367,6 +1367,12 @@ footer div .footer_link li + li::before {
     text-decoration: none;
     color: #8c8c8c;
 }
+.detail-contents-comment-paging-nbtn-on {
+    margin-right: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #8c8c8c;
+}
 .comment-back-icon {
     display: inline-block;
     overflow: hidden;
@@ -1378,7 +1384,7 @@ footer div .footer_link li + li::before {
 .comment-back-icon:before {
     content: '';
     position: absolute;
-    top: 50.5%;
+    top: 49%;
     left: 50%;
     width: 5px;
     height: 5px;

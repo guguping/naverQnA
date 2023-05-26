@@ -15,6 +15,7 @@ public class PageDTO {
     int blockLimit; // 한화면에 보여줄 피이지 번호 갯수
     int boardCount;
     // 보드에 필요한 필드
+    Long boardId; // detail에서 사용
     int pageLimit; // 한화면에 보여줄 게시글
     int pageStart; // 게시글 시작번호
     // 검색어

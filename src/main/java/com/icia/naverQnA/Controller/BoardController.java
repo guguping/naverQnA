@@ -3,6 +3,7 @@ package com.icia.naverQnA.Controller;
 import com.icia.naverQnA.DTO.BoardDTO;
 import com.icia.naverQnA.DTO.CommentDTO;
 import com.icia.naverQnA.DTO.MemberDTO;
+import com.icia.naverQnA.DTO.PageDTO;
 import com.icia.naverQnA.Service.BoardService;
 import com.icia.naverQnA.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,17 +50,18 @@ public class BoardController {
 
     @GetMapping("/board/detail")
     public String boardDetail(@RequestParam(value = "BoardId", required = false, defaultValue = "") Long BoardId,
+                              @RequestParam(value = "DetailPage", required = false, defaultValue = "1") int DetailPage,
+                              @RequestParam(value = "q",required = false,defaultValue = "") String q,
                               HttpServletResponse response,
                               HttpServletRequest request,
                               HttpSession session,
                               Model model) {
 
-//        boardService.boardHitsUp(BoardId);
         Cookie oldCookie = null;
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("postView")) {
+                if (cookie.getName().equals("BoardHits")) {
                     oldCookie = cookie;
                 }
             }
@@ -75,30 +77,20 @@ public class BoardController {
             }
         } else {
             boardService.boardHitsUp(BoardId);
-            Cookie newCookie = new Cookie("postView","[" + BoardId + "]");
+            Cookie newCookie = new Cookie("BoardHits","[" + BoardId + "]");
             newCookie.setPath("/");
             newCookie.setMaxAge(3600);
             response.addCookie(newCookie);
         }
 
-        List<CommentDTO> CommentList = commentService.commentList(BoardId);
-        if (CommentList.size() == 0) {
-            model.addAttribute("CommentList", null);
-        } else {
-            model.addAttribute("CommentList", CommentList);
-        }
-        model.addAttribute("CommentCount", boardService.commentCount(BoardId));
+        PageDTO DetailPageDTO = new PageDTO();
+        DetailPageDTO.setBoardId(BoardId);
+        DetailPageDTO.setPage(DetailPage);
+        model.addAttribute("CommentList", commentService.commentList(DetailPageDTO));
+        model.addAttribute("CommentPaging",commentService.commentPagingParam(DetailPageDTO,q));
+        model.addAttribute("CommentCount", commentService.commentCount(BoardId));
         model.addAttribute("BoardDTO", boardService.findByBoard(BoardId));
         model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "/boardPage/boardDetail";
     }
-
-    //        HttpSession BoardHitsSession = request.getSession(true);
-//        BoardHitsSession.setMaxInactiveInterval(10);
-//
-//        String BoardIdx = request.getParameter("BoardId");
-//        if (BoardHitsSession.getAttribute("visited_" + BoardIdx) == null) {
-//            BoardHitsSession.setAttribute("visited_" + BoardIdx, true);
-//            boardService.boardHitsUp(BoardId);
-//        }
 }

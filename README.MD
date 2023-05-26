@@ -106,7 +106,7 @@ CKEDITOR.replace('editor1', {
 });
 ```
 
-### 게시판 조회수 중복 제거 (오류 많음 사용 X)
+### 게시판 조회수 중복 제거 (세션 사용 오류 많음 사용 X)
 
 ```javascript
   // 세션 시작
@@ -127,7 +127,7 @@ if (BoardHitsSession.getAttribute("visited_" + bestBoardIdx) == null) {
 ```
 
 ### 게시판 조회수 중복 제거 (쿠키 사용)
-
+#### 참고 사이트 : https://mighty96.github.io/til/view/
 ```javascript
 Cookie oldCookie = null;
 Cookie[] cookies = request.getCookies();
@@ -156,4 +156,3 @@ if (oldCookie != null) {
     response.addCookie(newCookie);
 }
 ```
-#### 참고 사이트 : https://mighty96.github.io/til/view/

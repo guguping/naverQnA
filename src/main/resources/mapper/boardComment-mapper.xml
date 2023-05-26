@@ -8,8 +8,8 @@
         insert into comment_table(boardId,memberId,commentWriter,commentContents)
             values (#{boardId},#{memberId},#{commentWriter},#{commentContents})
     </insert>
-    <select id="commentList" parameterType="Long" resultType="comment">
-        select * from comment_table where boardId = #{boardId} order by commentCreatedDate desc
+    <select id="commentList" parameterType="page" resultType="comment">
+        select * from comment_table where boardId = #{boardId} order by commentCreatedDate desc limit #{pageStart},#{pageLimit}
     </select>
     <select id="commentCount" parameterType="Long" resultType="String">
         select count(id) from comment_table where boardId = #{boardId}
