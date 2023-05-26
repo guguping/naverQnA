@@ -78,14 +78,14 @@ create table board_table
 drop table if exists comment_table;
 create table comment_table
 (
-  id                 bigint auto_increment primary key,
-  boardId            bigint,
-  memberId           bigint,
-  commentWriter      varchar(20)  not null,
-  commentContents    varchar(500) not null,
-  commentCreatedDate datetime default now(),
-  constraint fk_member_comment foreign key (memberId) references member_table (id) on delete cascade,
-  constraint fk_board_comment foreign key (boardId) references board_table (id) on delete cascade
+    id                 bigint auto_increment primary key,
+    boardId            bigint,
+    memberId           bigint,
+    commentWriter      varchar(20)  not null,
+    commentContents    varchar(500) not null,
+    commentCreatedDate datetime default now(),
+    constraint fk_member_comment foreign key (memberId) references member_table (id) on delete cascade,
+    constraint fk_board_comment foreign key (boardId) references board_table (id) on delete cascade
 );
 ```
 
@@ -106,20 +106,54 @@ CKEDITOR.replace('editor1', {
 });
 ```
 
-### 게시판 조회수 중복 제거
+### 게시판 조회수 중복 제거 (오류 많음 사용 X)
 
 ```javascript
   // 세션 시작
-  HttpSession BoardHitsSession = request.getSession(true);
-  // 해당 세션의 유효 시간을 5분으로 설정 1=1초
-  BoardHitsSession.setMaxInactiveInterval(30);
-  // 파라미터로 받은 값을 세션 벨류로 저장
-  String bestBoardIdx = request.getParameter("bestBoardId");
-  // 중복 조회 확인
-  if (BoardHitsSession.getAttribute("visited_" + bestBoardIdx) == null) {
+HttpSession
+BoardHitsSession = request.getSession(true);
+// 해당 세션의 유효 시간을 5분으로 설정 1=1초
+BoardHitsSession.setMaxInactiveInterval(30);
+// 파라미터로 받은 값을 세션 벨류로 저장
+String
+bestBoardIdx = request.getParameter("bestBoardId");
+// 중복 조회 확인
+if (BoardHitsSession.getAttribute("visited_" + bestBoardIdx) == null) {
     // 중복 조회가 아닌 경우
     BoardHitsSession.setAttribute("visited_" + bestBoardIdx, true);
     // 조회수 증가 및 기타 로직 처리
     boardService.boardHitsUp(bestBoardId);
-  }
+}
 ```
+
+### 게시판 조회수 중복 제거 (쿠키 사용)
+
+```javascript
+Cookie oldCookie = null;
+Cookie[] cookies = request.getCookies();
+if (cookies != null) {
+    for (Cookie cookie:cookies) {
+        if (cookie.getName().equals("postView")) {
+            oldCookie = cookie;
+        }
+    }
+}
+
+if (oldCookie != null) {
+    if (!oldCookie.getValue().contains("[" + BoardId.toString() + "]")) {
+        boardService.boardHitsUp(BoardId);
+        oldCookie.setValue(oldCookie.getValue() + "_[" + BoardId + "]");
+        oldCookie.setPath("/");
+        oldCookie.setMaxAge(3600);
+        response.addCookie(oldCookie);
+    }
+} else {
+    boardService.boardHitsUp(BoardId);
+    Cookie
+    newCookie = new Cookie("postView", "[" + BoardId + "]");
+    newCookie.setPath("/");
+    newCookie.setMaxAge(3600);
+    response.addCookie(newCookie);
+}
+```
+#### 참고 사이트 : https://mighty96.github.io/til/view/

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
@@ -47,17 +49,38 @@ public class BoardController {
 
     @GetMapping("/board/detail")
     public String boardDetail(@RequestParam(value = "BoardId", required = false, defaultValue = "") Long BoardId,
+                              HttpServletResponse response,
                               HttpServletRequest request,
                               HttpSession session,
                               Model model) {
-        HttpSession BoardHitsSession = request.getSession(true);
-        BoardHitsSession.setMaxInactiveInterval(300);
 
-        String BoardIdx = request.getParameter("BoardId");
-        if (BoardHitsSession.getAttribute("visited_" + BoardIdx) == null) {
-            BoardHitsSession.setAttribute("visited_" + BoardIdx, true);
-            boardService.boardHitsUp(BoardId);
+//        boardService.boardHitsUp(BoardId);
+        Cookie oldCookie = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("postView")) {
+                    oldCookie = cookie;
+                }
+            }
         }
+
+        if (oldCookie != null) {
+            if (!oldCookie.getValue().contains("[" + BoardId.toString() + "]")) {
+                boardService.boardHitsUp(BoardId);
+                oldCookie.setValue(oldCookie.getValue() + "_[" + BoardId + "]");
+                oldCookie.setPath("/");
+                oldCookie.setMaxAge(3600);
+                response.addCookie(oldCookie);
+            }
+        } else {
+            boardService.boardHitsUp(BoardId);
+            Cookie newCookie = new Cookie("postView","[" + BoardId + "]");
+            newCookie.setPath("/");
+            newCookie.setMaxAge(3600);
+            response.addCookie(newCookie);
+        }
+
         List<CommentDTO> CommentList = commentService.commentList(BoardId);
         if (CommentList.size() == 0) {
             model.addAttribute("CommentList", null);
@@ -69,4 +92,13 @@ public class BoardController {
         model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "/boardPage/boardDetail";
     }
+
+    //        HttpSession BoardHitsSession = request.getSession(true);
+//        BoardHitsSession.setMaxInactiveInterval(10);
+//
+//        String BoardIdx = request.getParameter("BoardId");
+//        if (BoardHitsSession.getAttribute("visited_" + BoardIdx) == null) {
+//            BoardHitsSession.setAttribute("visited_" + BoardIdx, true);
+//            boardService.boardHitsUp(BoardId);
+//        }
 }
