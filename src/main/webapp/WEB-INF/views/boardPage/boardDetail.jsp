@@ -97,14 +97,14 @@
                                                 <c:if test="${bestBoardDTO.id != null}">
                                                     <button type="button" class="detail-contents-comment-textarea-btn"
                                                             id="bestbtn" style="cursor: pointer;"
-                                                            onclick="commentSave(${bestBoardDTO.id},${bestBoardDTO.memberId},${bestCommentCount})">
+                                                            onclick="commentSave(${bestBoardDTO.id},${bestBoardDTO.memberId})">
                                                         등록
                                                     </button>
                                                 </c:if>
                                                 <c:if test="${qnaBoardDTO.id != null}">
                                                     <button type="button" class="detail-contents-comment-textarea-btn"
                                                             id="qnabtn" style="cursor: pointer;"
-                                                            onclick="commentSave(${qnaBoardDTO.id},${qnaBoardDTO.memberId},${qnaCommentCount})">
+                                                            onclick="commentSave(${qnaBoardDTO.id},${qnaBoardDTO.memberId})">
                                                         등록
                                                     </button>
                                                 </c:if>
@@ -221,15 +221,13 @@
             }
         })
     }
-    const commentSave = (boardid, boardMemberid, CommentCount) => {
+    const commentSave = (boardid, boardMemberid) => {
         const commentWriter = '${memberDTO.memberEmail}';
         const commentContents = document.getElementById('detail-contents-comment-textarea').value;
         const boardId = boardid;
         const memberId = '${sessionScope.memberId}';
         const commentResult = document.getElementById('detail-contents-comment-list-box');
         const boardMemberId = boardMemberid;
-        const commentCount = CommentCount;
-        console.log("CommentCount =" + CommentCount);
         const countResult = document.getElementById('detail-contents-comment-count');
         console.log("boardMemberId =" + boardMemberId);
 
@@ -244,25 +242,25 @@
             },
             success: function (res) {
                 let output = "";
-                let upCount = commentCount+1;
-                for (let i in res) {
+                let commentCount = res.count;
+                for (let i in res.comments) {
                     output += '<div class="detail-contents-comment-list">';
                     output += '<p class="detail-contents-comment-title">';
-                    if (res[i].memberId == boardMemberId) {
+                    if (res.comments[i].memberId == boardMemberId) {
                         output += '<strong>질문 작성자</strong>';
                     } else {
-                        output += '<strong>' + res[i].commentWriter + '</strong>';
+                        output += '<strong>' + res.comments[i].commentWriter + '</strong>';
                     }
                     output += '</p>';
                     output += '<div class="detail-contents-comment-text">';
-                    output += '<p>' + res[i].commentContents + '</p>';
+                    output += '<p>' + res.comments[i].commentContents + '</p>';
                     output += '</div>';
                     output += '<p class="detail-contents-comment-time">'
-                    output += moment(res[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss");
+                    output += moment(res.comments[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss");
                     output += '</p>';
                     output += '</div>';
                 }
-                countResult.innerHTML = upCount;
+                countResult.innerHTML = commentCount;
                 commentResult.innerHTML = output;
                 document.getElementById('detail-contents-comment-textarea').value = "";
             },

@@ -74,6 +74,7 @@ public class BoardController {
                 boardService.boardHitsUp(qnaBoardId);
             }
             List<CommentDTO> qnaCommentList = commentService.commentList(qnaBoardId);
+            System.out.println("qnaCommentList = " + qnaCommentList);
             if (qnaCommentList.size() == 0) {
                 model.addAttribute("qnaCommentList",null);
             } else {
