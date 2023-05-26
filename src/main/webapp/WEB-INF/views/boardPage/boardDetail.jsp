@@ -33,12 +33,12 @@
                             <div class="detail-item-title">
                                 <div class="detail-item-title-inner">
                                     <div class="detail-title">
-                                        ${bestBoardDTO.boardTitle}${qnaBoardDTO.boardTitle}
+                                        ${BoardDTO.boardTitle}
                                     </div>
                                 </div>
                             </div>
                             <div class="detail-item-contents">
-                                ${bestBoardDTO.boardContents}${qnaBoardDTO.boardContents}
+                                ${BoardDTO.boardContents}
                             </div>
                         </div>
                         <div class="detail-contents-user-info">
@@ -49,18 +49,15 @@
                                             <span class="contents-user-info-default-item"></span>
                                         </div>
                                     </div>
-                                    <span class="contents-user-info-name">${bestBoardDTO.boardWriter}${qnaBoardDTO.boardWriter}</span>
+                                    <span class="contents-user-info-name">${BoardDTO.boardWriter}</span>
                                 </div>
                                 <span class="contents-user-info-time">
                                     <fmt:formatDate
-                                            value="${qnaBoardDTO.boardCreatedDate}"
-                                            pattern="yyyy-MM-dd"></fmt:formatDate>
-                                    <fmt:formatDate
-                                            value="${bestBoardDTO.boardCreatedDate}"
+                                            value="${BoardDTO.boardCreatedDate}"
                                             pattern="yyyy-MM-dd"></fmt:formatDate>
                                 </span>
                                 <span class="contents-user-info-time">
-                                    조회수 ${bestBoardDTO.boardHits}${qnaBoardDTO.boardHits}
+                                    조회수 ${BoardDTO.boardHits}
                                 </span>
                             </div>
                             <div class="contents-user-info-right">
@@ -68,7 +65,7 @@
                                     <i class="bi bi-chat-square-dots" id="openComment"></i>
                                 </button>
                                 <em class="detail-contents-comment-count"
-                                    id="detail-contents-comment-count">${bestCommentCount}${qnaCommentCount}</em>
+                                    id="detail-contents-comment-count">${CommentCount}</em>
                             </div>
                         </div>
                         <div id="detail-contents-comment-area" class="detail-contents-comment-area"
@@ -94,20 +91,11 @@
                                     <div class="detail-contents-comment-textarea-bottom">
                                         <c:choose>
                                             <c:when test="${sessionScope.memberId != null}">
-                                                <c:if test="${bestBoardDTO.id != null}">
-                                                    <button type="button" class="detail-contents-comment-textarea-btn"
-                                                            id="bestbtn" style="cursor: pointer;"
-                                                            onclick="commentSave(${bestBoardDTO.id},${bestBoardDTO.memberId})">
-                                                        등록
-                                                    </button>
-                                                </c:if>
-                                                <c:if test="${qnaBoardDTO.id != null}">
-                                                    <button type="button" class="detail-contents-comment-textarea-btn"
-                                                            id="qnabtn" style="cursor: pointer;"
-                                                            onclick="commentSave(${qnaBoardDTO.id},${qnaBoardDTO.memberId})">
-                                                        등록
-                                                    </button>
-                                                </c:if>
+                                                <button type="button" class="detail-contents-comment-textarea-btn"
+                                                        id="bestbtn" style="cursor: pointer;"
+                                                        onclick="commentSave(${BoardDTO.id},${BoardDTO.memberId})">
+                                                    등록
+                                                </button>
                                             </c:when>
                                             <c:otherwise>
                                                 <button type="button" class="detail-contents-comment-textarea-btn"
@@ -120,60 +108,40 @@
                                 </fieldset>
                             </div>
                             <div class="detail-contents-comment-list-box" id="detail-contents-comment-list-box">
-                                <c:choose>
-                                    <c:when test="${bestCommentList != null}">
-                                        <c:forEach items="${bestCommentList}" var="bestCommentList">
-                                            <div class="detail-contents-comment-list">
-                                                <p class="detail-contents-comment-title">
-                                                    <c:choose>
-                                                        <c:when test="${bestCommentList.memberId == bestBoardDTO.memberId}">
-                                                            <strong>질문 작성자</strong>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <strong>${bestCommentList.commentWriter}</strong>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </p>
-                                                <div class="detail-contents-comment-text">
-                                                        ${bestCommentList.commentContents}
-                                                </div>
-                                                <p class="detail-contents-comment-time">
-                                                    <fmt:formatDate
-                                                            value="${bestCommentList.commentCreatedDate}"
-                                                            pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
-                                                </p>
-                                            </div>
-                                        </c:forEach>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:forEach items="${qnaCommentList}" var="qnaCommentList">
-                                            <div class="detail-contents-comment-list">
-                                                <p class="detail-contents-comment-title">
-                                                    <c:choose>
-                                                        <c:when test="${qnaCommentList.memberId == qnaBoardDTO.memberId}">
-                                                            <strong>질문 작성자</strong>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <strong>${qnaCommentList.commentWriter}</strong>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </p>
-                                                <div class="detail-contents-comment-text">
-                                                        ${qnaCommentList.commentContents}
-                                                </div>
-                                                <p class="detail-contents-comment-time">
-                                                    <fmt:formatDate
-                                                            value="${qnaCommentList.commentCreatedDate}"
-                                                            pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
-                                                </p>
-                                            </div>
-                                        </c:forEach>
-                                    </c:otherwise>
-                                </c:choose>
+                                <c:forEach items="${CommentList}" var="CommentList">
+                                    <div class="detail-contents-comment-list">
+                                        <p class="detail-contents-comment-title">
+                                            <c:choose>
+                                                <c:when test="${CommentList.memberId == BoardDTO.memberId}">
+                                                    <strong>질문 작성자</strong>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <strong>${CommentList.commentWriter}</strong>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </p>
+                                        <div class="detail-contents-comment-text">
+                                                ${CommentList.commentContents}
+                                        </div>
+                                        <p class="detail-contents-comment-time">
+                                            <fmt:formatDate
+                                                    value="${CommentList.commentCreatedDate}"
+                                                    pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                                        </p>
+                                    </div>
+                                </c:forEach>
                             </div>
                             <div class="detail-contents-comment-paging">
+                                <a href="#" methods="post" class="detail-contents-comment-paging-bbtn-on">
+                                    <i class="comment-back-icon"></i>
+                                    <span>이전</span>
+                                </a>
                                 <a href="#" class="detail-contents-comment-paging-btn-off">1</a>
                                 <a href="#" class="detail-contents-comment-paging-btn-on">2</a>
+                                <a href="#" class="detail-contents-comment-paging-bbtn-on">
+                                    <span>다음</span>
+                                    <i class="comment-next-icon"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

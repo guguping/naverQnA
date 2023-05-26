@@ -46,44 +46,27 @@ public class BoardController {
     }
 
     @GetMapping("/board/detail")
-    public String boardDetail(@RequestParam(value = "bestBoardId", required = false, defaultValue = "") Long bestBoardId,
-                              @RequestParam(value = "qnaBoardId", required = false, defaultValue = "") Long qnaBoardId,
+    public String boardDetail(@RequestParam(value = "BoardId", required = false, defaultValue = "") Long BoardId,
                               HttpServletRequest request,
                               HttpSession session,
                               Model model) {
         HttpSession BoardHitsSession = request.getSession(true);
         BoardHitsSession.setMaxInactiveInterval(300);
-        if (bestBoardId != null) {
-            String bestBoardIdx = request.getParameter("bestBoardId");
-            if (BoardHitsSession.getAttribute("visited_" + bestBoardIdx) == null) {
-                BoardHitsSession.setAttribute("visited_" + bestBoardIdx, true);
-                boardService.boardHitsUp(bestBoardId);
-            }
-            List<CommentDTO> bestCommentList = commentService.commentList(bestBoardId);
-            if (bestCommentList.size() == 0) {
-                model.addAttribute("bestCommentList",null);
-            } else {
-                model.addAttribute("bestCommentList",bestCommentList);
-            }
-            model.addAttribute("bestCommentCount",boardService.commentCount(bestBoardId));
-            model.addAttribute("bestBoardDTO", boardService.findByBoard(bestBoardId));
-        } else if (qnaBoardId != null) {
-            String qnaBoardIdx = request.getParameter("qnaBoardId");
-            if (BoardHitsSession.getAttribute("visited_" + qnaBoardIdx) == null) {
-                BoardHitsSession.setAttribute("visited_" + qnaBoardIdx, true);
-                boardService.boardHitsUp(qnaBoardId);
-            }
-            List<CommentDTO> qnaCommentList = commentService.commentList(qnaBoardId);
-            System.out.println("qnaCommentList = " + qnaCommentList);
-            if (qnaCommentList.size() == 0) {
-                model.addAttribute("qnaCommentList",null);
-            } else {
-                model.addAttribute("qnaCommentList",qnaCommentList);
-            }
-            model.addAttribute("qnaCommentCount",boardService.commentCount(qnaBoardId));
-            model.addAttribute("qnaBoardDTO", boardService.findByBoard(qnaBoardId));
+
+        String BoardIdx = request.getParameter("BoardId");
+        if (BoardHitsSession.getAttribute("visited_" + BoardIdx) == null) {
+            BoardHitsSession.setAttribute("visited_" + BoardIdx, true);
+            boardService.boardHitsUp(BoardId);
         }
-        model.addAttribute("memberDTO",boardService.findById(session.getAttribute("memberId")));
+        List<CommentDTO> CommentList = commentService.commentList(BoardId);
+        if (CommentList.size() == 0) {
+            model.addAttribute("CommentList", null);
+        } else {
+            model.addAttribute("CommentList", CommentList);
+        }
+        model.addAttribute("CommentCount", boardService.commentCount(BoardId));
+        model.addAttribute("BoardDTO", boardService.findByBoard(BoardId));
+        model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "/boardPage/boardDetail";
     }
 }

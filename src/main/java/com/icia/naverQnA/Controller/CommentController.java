@@ -22,15 +22,6 @@ public class CommentController {
     @Autowired
     private BoardService boardService;
 
-    //    @PostMapping("/comment/save")
-//    public ResponseEntity commentSave(@ModelAttribute CommentDTO commentDTO, Model model) {
-//        commentService.commentSave(commentDTO);
-//        List<CommentDTO> commentDTOList = commentService.commentList(commentDTO.getBoardId());
-//        String count = boardService.commentCount(commentDTO.getBoardId());
-//        System.out.println("count = " + count);
-//        model.addAttribute("bestCount",count);
-//        return new ResponseEntity<>(commentDTOList, HttpStatus.OK);
-//    }
     @PostMapping("/comment/save")
     public ResponseEntity<Map<String, Object>> commentSave(@ModelAttribute CommentDTO commentDTO) {
         commentService.commentSave(commentDTO);

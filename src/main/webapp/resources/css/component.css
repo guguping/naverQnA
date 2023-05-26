@@ -1361,3 +1361,55 @@ footer div .footer_link li + li::before {
     text-decoration: none;
     color: #8c8c8c;
 }
+.detail-contents-comment-paging-bbtn-on {
+    margin-right: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #8c8c8c;
+}
+.comment-back-icon {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 5px;
+    height: 10px;
+    margin-right: -1px;
+}
+.comment-back-icon:before {
+    content: '';
+    position: absolute;
+    top: 50.5%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    transform: translate(-50%,-50%) scale(1,1) rotate(45deg);
+    margin-left: 2px;
+    border-left: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+.detail-contents-comment-paging-nbtn-on {
+    margin-left: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #8c8c8c;
+}
+.comment-next-icon {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 5px;
+    height: 10px;
+    margin-right: 4px;
+}
+.comment-next-icon:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    transform: translate(-50%,-50%) scale(1,1) rotate(45deg);
+    margin-left: -2px;
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
+}
