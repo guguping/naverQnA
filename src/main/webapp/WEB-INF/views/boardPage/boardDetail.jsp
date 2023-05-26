@@ -153,7 +153,8 @@
                                         <c:otherwise>
                                             <span id="detail-contents-comment-paging-btn-on">
                                                 <a onclick="commentNBBtn(${BoardDTO.id},${BoardDTO.memberId},${i})"
-                                                   class="detail-contents-comment-paging-btn-on" style="cursor: pointer">${i}</a>
+                                                   class="detail-contents-comment-paging-btn-on"
+                                                   style="cursor: pointer">${i}</a>
                                                 <%--href="/board/detail?BoardId=${BoardDTO.id}&DetailPage=${i}"--%>
                                             </span>
                                         </c:otherwise>
@@ -312,20 +313,25 @@
                         output += '</p>';
                         output += '</div>';
                     }
-                    for (let i in res.DetailCommentPage) {
-                        if (i == res.DetailCommentPage[i].page) {
-                            numOffPut += '<a href="#" class="detail-contents-comment-paging-btn-off">' + i + '</a>';
-                        } else {
-                            numOnPut += '<a href="#" onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + i + ')" class="detail-contents-comment-paging-btn-on" style="cursor: pointer">' + i + '</a>';
-                        }
+                    for (let i = 1; i <= res.DetailCommentPage.length; i++) {
+                        numOffPut += '<a href="#" class="detail-contents-comment-paging-btn-off">' + i + '</a>';
+                        numOnPut += '<a href="#" onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + i + ')" class="detail-contents-comment-paging-btn-on" style="cursor: pointer">' + i + '</a>';
                     }
+
+
                     if (res.DetailCommentPage.page > 1) {
                         commentPageDResult.innerHTML = downPut;
                     } else if (res.DetailCommentPage.page != res.DetailCommentPage.maxPage) {
                         commentPageUResult.innerHTML = upPut;
                     }
+                    if (res.DetailCommentPage.page == DetailPage){
+                        commentNumPageOff.innerHTML = numOffPut;
+                    } else {
+                        commentNumPageOn.innerHTML = numOnPut;
+                    }
                     console.log("res.DetailCommentPage.maxPage = " + res.DetailCommentPage.maxPage);
                     console.log("res.DetailCommentPage.page = " + res.DetailCommentPage.page);
+
                     commentResult.innerHTML = output;
                 },
                 error: function () {
