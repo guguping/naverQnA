@@ -107,7 +107,7 @@
                                     </div>
                                 </fieldset>
                             </div>
-                            <div class="detail-contents-comment-list-box" id="detail-contents-comment-list-box">
+                            <span class="detail-contents-comment-list-box" id="detail-contents-comment-list-box">
                                 <c:forEach items="${CommentList}" var="CommentList">
                                     <div class="detail-contents-comment-list">
                                         <p class="detail-contents-comment-title">
@@ -130,36 +130,26 @@
                                         </p>
                                     </div>
                                 </c:forEach>
-                            </div>
+                            </span>
                             <div class="detail-contents-comment-paging">
-                                <c:if test="${CommentPaging.page > 1}">
                                     <span id="detail-contents-comment-paging-bbtn-on">
-                                        <a class="detail-contents-comment-paging-bbtn-on"
-                                           onclick="commentNBBtn(${BoardDTO.id},${BoardDTO.memberId},${CommentPaging.page-1})"
-                                           style="cursor: pointer;">
-                                            <i class="comment-back-icon"></i>
-                                            <span>이전</span>
-                                        </a>
                                     </span>
-                                </c:if>
-                                <c:forEach begin="${CommentPaging.startPage}" end="${CommentPaging.endPage}" var="i"
-                                           step="1">
-                                    <c:choose>
-                                        <c:when test="${i eq CommentPaging.page}">
-                                            <span id="detail-contents-comment-paging-btn-off">
-                                                <a href="#" class="detail-contents-comment-paging-btn-off">${i}</a>
-                                            </span>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <span id="detail-contents-comment-paging-btn-on">
+                                <div style="display: inline-block;" id="numResult">
+                                    <c:forEach begin="${CommentPaging.startPage}" end="${CommentPaging.endPage}" var="i"
+                                               step="1">
+                                        <c:choose>
+                                            <c:when test="${i eq CommentPaging.page}">
+                                                <a class="detail-contents-comment-paging-btn-off">${i}</a>
+                                            </c:when>
+                                            <c:otherwise>
                                                 <a onclick="commentNBBtn(${BoardDTO.id},${BoardDTO.memberId},${i})"
                                                    class="detail-contents-comment-paging-btn-on"
                                                    style="cursor: pointer">${i}</a>
-                                                <%--href="/board/detail?BoardId=${BoardDTO.id}&DetailPage=${i}"--%>
-                                            </span>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <%--href="/board/detail?BoardId=${BoardDTO.id}&DetailPage=${i}"--%>
+                                    </c:forEach>
+                                </div>
                                 <c:if test="${CommentPaging.page != CommentPaging.maxPage}">
                                     <span id="detail-contents-comment-paging-nbtn-on">
                                         <a class="detail-contents-comment-paging-nbtn-on"
@@ -275,10 +265,9 @@
         const boardId = boardid;
         const boardMemberId = boardMemberid;
         const commentResult = document.getElementById('detail-contents-comment-list-box');
-        const commentPageUResult = document.getElementById('detail-contents-comment-paging-bbtn-on');
-        const commentPageDResult = document.getElementById('detail-contents-comment-paging-nbtn-on');
-        const commentNumPageOff = document.getElementById('detail-contents-comment-paging-btn-off');
-        const commentNumPageOn = document.getElementById('detail-contents-comment-paging-btn-on');
+        const commentPageDResult = document.getElementById('detail-contents-comment-paging-bbtn-on');
+        const commentPageUResult = document.getElementById('detail-contents-comment-paging-nbtn-on');
+        const commentNumPageOn = document.getElementById('numResult');
         $.ajax({
                 type: "post",
                 url: "/comment/UDPage",
@@ -288,14 +277,13 @@
                 },
                 success: function (res) {
                     let output = "";
-                    let upPut = "";
-                    upPut += '<a class="detail-contents-comment-paging-bbtn-on" onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + (res.DetailCommentPage.page - 1) + ')" style="cursor: pointer;">' +
-                        '<i class="comment-back-icon"></i>' + '<span>이전</span>' + '</a>';
+
                     let downPut = "";
-                    downPut += '<a class="detail-contents-comment-paging-nbtn-on" onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + (res.DetailCommentPage.page + 1) + ')" style="cursor: pointer;">' +
-                        '<span>다음</span>' + '<i class="comment-next-icon"></i>' + '</a>';
-                    let numOffPut = "";
-                    let numOnPut = "";
+                    downPut += '<a class="detail-contents-comment-paging-bbtn-on" onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + (res.DetailCommentPage.page - 1) + ')" style="cursor: pointer;">' +
+                        '<i class="comment-back-icon"></i>' + '<span> 이전</span>' + '</a>';
+                    let upPut = "";
+                    upPut += '<a class="detail-contents-comment-paging-nbtn-on" onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + (res.DetailCommentPage.page + 1) + ')" style="cursor: pointer;">' + '<span>다음 </span>' + '<i class="comment-next-icon"></i>' + '</a>';
+                    let numPut = "";
                     for (let i in res.commentDTOList) {
                         output += '<div class="detail-contents-comment-list">';
                         output += '<p class="detail-contents-comment-title">';
@@ -313,25 +301,28 @@
                         output += '</p>';
                         output += '</div>';
                     }
-                    for (let i = 1; i <= res.DetailCommentPage.length; i++) {
-                        numOffPut += '<a href="#" class="detail-contents-comment-paging-btn-off">' + i + '</a>';
-                        numOnPut += '<a href="#" onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + i + ')" class="detail-contents-comment-paging-btn-on" style="cursor: pointer">' + i + '</a>';
+                    for (let i = 1; i <= res.DetailCommentPage.endPage; i++) {
+                        if (DetailPage == i) {
+                            numPut += '<a class="detail-contents-comment-paging-btn-off">' + i + '</a>';
+                        } else {
+                            numPut += '<a onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + i + ')" class="detail-contents-comment-paging-btn-on" style="cursor: pointer">' + i + '</a>';
+                        }
+                    }
+                    if (res.DetailCommentPage.page <= res.DetailCommentPage.startPage) {
+                        commentPageDResult.innerHTML = "";
+                    } else if (res.DetailCommentPage.page > res.DetailCommentPage.startPage) {
+                        commentPageDResult.innerHTML = downPut;
                     }
 
-
-                    if (res.DetailCommentPage.page > 1) {
-                        commentPageDResult.innerHTML = downPut;
+                    if (res.DetailCommentPage.page == res.DetailCommentPage.maxPage) {
+                        commentPageUResult.innerHTML = "";
                     } else if (res.DetailCommentPage.page != res.DetailCommentPage.maxPage) {
                         commentPageUResult.innerHTML = upPut;
                     }
-                    if (res.DetailCommentPage.page == DetailPage){
-                        commentNumPageOff.innerHTML = numOffPut;
-                    } else {
-                        commentNumPageOn.innerHTML = numOnPut;
-                    }
+
                     console.log("res.DetailCommentPage.maxPage = " + res.DetailCommentPage.maxPage);
                     console.log("res.DetailCommentPage.page = " + res.DetailCommentPage.page);
-
+                    commentNumPageOn.innerHTML = numPut;
                     commentResult.innerHTML = output;
                 },
                 error: function () {
