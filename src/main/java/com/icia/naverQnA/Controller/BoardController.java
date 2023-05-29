@@ -1,12 +1,11 @@
 package com.icia.naverQnA.Controller;
 
-import com.icia.naverQnA.DTO.BoardDTO;
-import com.icia.naverQnA.DTO.CommentDTO;
-import com.icia.naverQnA.DTO.MemberDTO;
-import com.icia.naverQnA.DTO.PageDTO;
+import com.icia.naverQnA.DTO.*;
 import com.icia.naverQnA.Service.BoardService;
 import com.icia.naverQnA.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -97,4 +96,11 @@ public class BoardController {
         model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "/boardPage/boardDetail";
     }
+    @PostMapping("/answer/save")
+    public String answerSave(@ModelAttribute AnswerDTO answerDTO){
+        System.out.println("answerDTO = " + answerDTO);
+
+        return "index";
+    }
+
 }

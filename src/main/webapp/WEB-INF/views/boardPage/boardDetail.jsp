@@ -178,69 +178,137 @@
 
                 <div id="answerArea" class="answer-content">
                     <div id="answerAreaZero" class="answer-content-inner">
-                        <c:choose>
-                            <c:when test="${sessionScope.memberId == null}">
-                                <div class="answer-content-noLogin-box">
-                                    <div id="answerAreaNoLogin" class="answer-content-noLogin-inner">
-                                        <div class="answer-content-noLogin-inner-txt-box">
-                                            <div class="answer-content-noLogin-inner-txt-item1">
-                                                <div class="c-userinfo">
-                                                    <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
-                                                </div>
+                        <c:if test="${sessionScope.memberId == null}">
+                            <div class="answer-content-Login-box" id="answer-content-Login-box">
+                                <div id="answerAreaNoLogin" class="answer-content-noLogin-inner">
+                                    <div class="answer-content-noLogin-inner-txt-box">
+                                        <div class="answer-content-noLogin-inner-txt-item1">
+                                            <div class="c-userinfo">
+                                                <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
                                             </div>
-                                            <div class="answer-content-noLogin-inner-txt-item2">
-                                                <a href="/member/login" class="c-userinfo__item2"><span
-                                                        class="c-button-default__title">답변하기</span></a>
-                                            </div>
+                                        </div>
+                                        <div class="answer-content-noLogin-inner-txt-item2">
+                                            <a href="/member/login" class="c-userinfo__item2"><span
+                                                    class="c-button-default__title">답변하기</span></a>
                                         </div>
                                     </div>
                                 </div>
-                            </c:when>
-                            <c:otherwise>
-                                <h3 class="blind">로그인 답변 시작입니다</h3>
-                                <div class="qna_answer_editor">
-                                    <div class="ckEditorHeaderArea">
-                                        <div class="c-heading-answer--editor-inner">
-                                            <div class="c-heading-answer__profile">
-                                                <div class="profile-default">
-                                                    <a href="#" class="profile-default--inner">
+                            </div>
+                        </c:if>
+                        <c:if test="${sessionScope.memberId != null && BoardDTO.boardAnswer != 0}">
+                            <div class="answer-content-Login-box" id="answer-content-Login-box">
+                                <div id="answerAreaNoLogin1" class="answer-content-noLogin-inner">
+                                    <div class="answer-content-noLogin-inner-txt-box">
+                                        <div class="answer-content-noLogin-inner-txt-item1">
+                                            <div class="c-userinfo">
+                                                <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
+                                            </div>
+                                        </div>
+                                        <div class="answer-content-noLogin-inner-txt-item2">
+                                            <a class="c-userinfo__item2" style="cursor: pointer"><span
+                                                    class="c-button-default__title"
+                                                    onclick="goAnswer()">답변하기</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="blind">로그인 답변 시작입니다</h3>
+                            <div class="qna_answer_editor" id="editor-On-Off" style="display: none;">
+                                <div class="ckEditorHeaderArea">
+                                    <div class="c-heading-answer--editor-inner">
+                                        <div class="c-heading-answer__profile">
+                                            <div class="profile-default">
+                                                <a href="#" class="profile-default--inner">
                                                 <span class="profile-default__thumbnail">
                                                     <span class="blind">내 프로필 이미지</span>
                                                 </span>
-                                                    </a>
-                                                </div>
-                                                <div class="c-heading-answer__body">
-                                                    <div class="c-heading-answer__title">
-                                                        <p class="user-info-title">qkfh****님, 답변해주세요!</p>
-                                                        <div class="c-userinfo">
-                                                            <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
-                                                        </div>
+                                                </a>
+                                            </div>
+                                            <div class="c-heading-answer__body">
+                                                <div class="c-heading-answer__title">
+                                                    <p class="user-info-title">${memberDTO.memberEmail}님, 답변해주세요!</p>
+                                                    <div class="c-userinfo">
+                                                        <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
                                                     </div>
-                                                    <div class="answerButtonArea">
-                                                        <div class="button-answer__subdivide">
-                                                            <a href="#" class="answerRegisterButton">
+                                                </div>
+                                                <div class="answerButtonArea">
+                                                    <div class="button-answer__subdivide">
+                                                        <label for="answerBtn1">
+                                                            <a class="answerRegisterButton" style="cursor: pointer">
                                                                 <span class="c-button-default__title">답변등록</span>
                                                             </a>
-                                                        </div>
+                                                        </label>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ckEditor-body">
-                                        <div class="ckEditor-body-inner">
-                                            <div class="ckEditor-size">
-                                                <input type="text" id="editor1"
-                                                       placeholder="이미지나 링크를 첨부하시고, 상세 모집 내용을 적어주세요.">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </c:otherwise>
-                        </c:choose>
+                                <div class="ckEditor-body">
+                                    <div class="ckEditor-body-inner">
+                                        <div class="ckEditor-size">
+                                            <form action="/answer/save" method="post" enctype="multipart/form-data">
+                                                <textarea id="editor2" name="anserContents"></textarea>
+                                                <input type="text" name="anserWriter" value="${memberDTO.memberEmail}" style="display: none;">
+                                                <input type="text" name="boardId" value="${BoardDTO.id}" style="display: none;">
+                                                <input type="text" name="memberId" value="${memberDTO.id}" style="display: none">
+                                                <input type="submit" id="answerBtn1" style="display: none;">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${sessionScope.memberId != null && BoardDTO.boardAnswer == 0}">
+                            <h3 class="blind">로그인 답변 시작입니다</h3>
+                            <div class="qna_answer_editor">
+                                <div class="ckEditorHeaderArea">
+                                    <div class="c-heading-answer--editor-inner">
+                                        <div class="c-heading-answer__profile">
+                                            <div class="profile-default">
+                                                <a href="#" class="profile-default--inner">
+                                                <span class="profile-default__thumbnail">
+                                                    <span class="blind">내 프로필 이미지</span>
+                                                </span>
+                                                </a>
+                                            </div>
+                                            <div class="c-heading-answer__body">
+                                                <div class="c-heading-answer__title">
+                                                    <p class="user-info-title">${memberDTO.memberEmail}님, 답변해주세요!</p>
+                                                    <div class="c-userinfo">
+                                                        <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
+                                                    </div>
+                                                </div>
+                                                <div class="answerButtonArea">
+                                                    <div class="button-answer__subdivide">
+                                                        <label for="answerBtn">
+                                                            <a class="answerRegisterButton" style="cursor: pointer">
+                                                                <span class="c-button-default__title">답변등록</span>
+                                                            </a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ckEditor-body">
+                                    <div class="ckEditor-body-inner">
+                                        <div class="ckEditor-size">
+                                            <form action="/answer/save" method="post" enctype="multipart/form-data">
+                                                <textarea id="editor1" name="anserContents"></textarea>
+                                                <input type="text" name="anserWriter" value="${memberDTO.memberEmail}" style="display: none;">
+                                                <input type="text" name="boardId" value="${BoardDTO.id}" style="display: none;">
+                                                <input type="text" name="memberId" value="${memberDTO.id}" style="display: none">
+                                                <input type="submit" id="answerBtn" style="display: none">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
-
             </div>
 
             <h3 class="blind">여기서 부터 광고 시작입니다</h3>
@@ -316,6 +384,17 @@
 </footer>
 </body>
 <script>
+    CKEDITOR.replace('editor1', {
+        height: '400px',
+        language: 'ko',
+        enterMode: CKEDITOR.ENTER_BR
+    });
+    CKEDITOR.replace('editor2', {
+        height: '400px',
+        language: 'ko',
+        enterMode: CKEDITOR.ENTER_BR
+    });
+
     window.onload = function () {
         const openComment = document.getElementById('openComment');
         const commentBox = document.getElementById('detail-contents-comment-area');
@@ -336,12 +415,6 @@
             }
         })
     }
-    CKEDITOR.replace('editor1', {
-        height: '400px',
-        language: 'ko',
-        editorplaceholder: 'Type your comment…',
-        enterMode: CKEDITOR.ENTER_BR
-    });
 
     const commentSave = (boardid, boardMemberid) => {
         const commentWriter = '${memberDTO.memberEmail}';
@@ -490,5 +563,14 @@
             }
         )
     }
+    const goAnswer = () => {
+        const answer = document.getElementById('answer-content-Login-box');
+        const editorOnOff = document.getElementById('editor-On-Off');
+        answer.style.display = "none";
+        editorOnOff.style.display = "block";
+
+    }
+
+
 </script>
 </html>

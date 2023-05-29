@@ -15,7 +15,7 @@ public class BoardDTO {
     String boardWriter;
     String boardContents;
     int boardHits;
-    int boardAnswer;
+    int boardAnswer = 0;
     Timestamp boardCreatedDate;
     int fileAttached = 0;
     List<MultipartFile> boardFile;
