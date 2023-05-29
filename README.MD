@@ -95,14 +95,14 @@ create table comment_table
 drop table if exists answer_table;
 create table answer_table
 (
-    id               bigint auto_increment primary key,
-    boardId          bigint,
-    memberId         bigint,
-    anserWriter      varchar(20)  not null,
-    anserContents    varchar(500) not null,
-    anserCreatedDate datetime default now(),
-    fileAttached     int      default 0,
-    goodAnser        int      default 0,
+    id                bigint auto_increment primary key,
+    boardId           bigint,
+    memberId          bigint,
+    answerWriter      varchar(20)  not null,
+    answerContents    varchar(500) not null,
+    answerCreatedDate datetime default now(),
+    fileAttached      int      default 0,
+    goodAnswer        int      default 0,
     constraint fk_member_answer foreign key (memberId) references member_table (id) on delete cascade,
     constraint fk_board_answer foreign key (boardId) references board_table (id) on delete cascade
 );

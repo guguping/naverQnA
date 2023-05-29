@@ -7,5 +7,6 @@
         <typeAlias type="com.icia.naverQnA.DTO.BoardDTO" alias="board"></typeAlias>
         <typeAlias type="com.icia.naverQnA.DTO.CommentDTO" alias="comment"></typeAlias>
         <typeAlias type="com.icia.naverQnA.DTO.PageDTO" alias="page"></typeAlias>
+        <typeAlias type="com.icia.naverQnA.DTO.AnswerDTO" alias="answer"></typeAlias>
     </typeAliases>
 </configuration>

@@ -1,5 +1,6 @@
 package com.icia.naverQnA.Service;
 
+import com.icia.naverQnA.DTO.AnswerDTO;
 import com.icia.naverQnA.DTO.BoardDTO;
 import com.icia.naverQnA.DTO.MemberDTO;
 import com.icia.naverQnA.DTO.PageDTO;
@@ -74,5 +75,20 @@ public class BoardService {
         bestPageDTO.setPageLimit(4);
         List<BoardDTO> boardDTOList = boardRepository.bestBoardList(bestPageDTO);
         return boardDTOList;
+    }
+
+    public void boardAnswerUp(Long boardId) {
+        boardRepository.boardAnswerUp(boardId);
+    }
+
+    public void boardAnswerSave(AnswerDTO answerDTO) throws IOException {
+        if (answerDTO.getAnswerFile().get(0).isEmpty()) {
+            answerDTO.setFileAttached(0);
+            boardRepository.boardAnswerSave(answerDTO);
+        }
+    }
+
+    public List<AnswerDTO> findByAnswerList(Long boardId) {
+        return boardRepository.findByAnswerList(boardId);
     }
 }

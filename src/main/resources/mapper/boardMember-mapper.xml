@@ -38,4 +38,14 @@
     <update id="boardHitsUp" parameterType="Long">
         update board_table set boardHits = boardHits+1 where id = #{boardId};
     </update>
+    <update id="boardAnswerUp" parameterType="Long">
+        update board_table set boardAnswer = boardAnswer+1 where id = #{boardId}
+    </update>
+    <insert id="boardAnswerSave" parameterType="answer">
+        insert into answer_table(boardId, memberId, answerWriter, answerContents, fileAttached)
+            value (#{boardId},#{memberId},#{answerWriter},#{answerContents},#{fileAttached})
+    </insert>
+    <select id="findByAnswerList" parameterType="answer" resultType="answer">
+        select * from answer_table where boardId = #{boardId}
+    </select>
 </mapper>

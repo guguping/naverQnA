@@ -88,6 +88,8 @@ public class BoardController {
         DetailPageDTO.setPage(DetailPage);
         PageDTO bestPageDTO = new PageDTO();
         bestPageDTO.setPage(bestPage);
+
+        model.addAttribute("answerDTOList",boardService.findByAnswerList(BoardId));
         model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
         model.addAttribute("CommentList", commentService.commentList(DetailPageDTO));
         model.addAttribute("CommentPaging",commentService.commentPagingParam(DetailPageDTO,q));
@@ -97,10 +99,11 @@ public class BoardController {
         return "/boardPage/boardDetail";
     }
     @PostMapping("/answer/save")
-    public String answerSave(@ModelAttribute AnswerDTO answerDTO){
+    public String answerSave(@ModelAttribute AnswerDTO answerDTO) throws IOException{
         System.out.println("answerDTO = " + answerDTO);
-
-        return "index";
+        boardService.boardAnswerUp(answerDTO.getBoardId());
+        boardService.boardAnswerSave(answerDTO);
+        return "redirect:/board/detail?BoardId="+answerDTO.getBoardId();
     }
 
 }

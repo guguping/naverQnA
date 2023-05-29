@@ -1,5 +1,6 @@
 package com.icia.naverQnA.Repository;
 
+import com.icia.naverQnA.DTO.AnswerDTO;
 import com.icia.naverQnA.DTO.BoardDTO;
 import com.icia.naverQnA.DTO.MemberDTO;
 import com.icia.naverQnA.DTO.PageDTO;
@@ -52,4 +53,15 @@ public class BoardRepository {
         sql.update("naverBoard.boardHitsUp",boardId);
     }
 
+    public void boardAnswerUp(Long boardId) {
+        sql.update("naverBoard.boardAnswerUp",boardId);
+    }
+
+    public void boardAnswerSave(AnswerDTO answerDTO) {
+        sql.insert("naverBoard.boardAnswerSave",answerDTO);
+    }
+
+    public List<AnswerDTO> findByAnswerList(Long boardId) {
+        return sql.selectList("naverBoard.findByAnswerList",boardId);
+    }
 }

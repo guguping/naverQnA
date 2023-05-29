@@ -248,10 +248,14 @@
                                     <div class="ckEditor-body-inner">
                                         <div class="ckEditor-size">
                                             <form action="/answer/save" method="post" enctype="multipart/form-data">
-                                                <textarea id="editor2" name="anserContents"></textarea>
-                                                <input type="text" name="anserWriter" value="${memberDTO.memberEmail}" style="display: none;">
-                                                <input type="text" name="boardId" value="${BoardDTO.id}" style="display: none;">
-                                                <input type="text" name="memberId" value="${memberDTO.id}" style="display: none">
+                                                <textarea id="editor2" name="answerContents"></textarea>
+                                                <input type="text" name="answerWriter" value="${memberDTO.memberEmail}"
+                                                       style="display: none;">
+                                                <input type="text" name="boardId" value="${BoardDTO.id}"
+                                                       style="display: none;">
+                                                <input type="text" name="memberId" value="${memberDTO.id}"
+                                                       style="display: none">
+                                                <input type="file" name="answerFile" style="display:none;">
                                                 <input type="submit" id="answerBtn1" style="display: none;">
                                             </form>
                                         </div>
@@ -296,16 +300,93 @@
                                     <div class="ckEditor-body-inner">
                                         <div class="ckEditor-size">
                                             <form action="/answer/save" method="post" enctype="multipart/form-data">
-                                                <textarea id="editor1" name="anserContents"></textarea>
-                                                <input type="text" name="anserWriter" value="${memberDTO.memberEmail}" style="display: none;">
-                                                <input type="text" name="boardId" value="${BoardDTO.id}" style="display: none;">
-                                                <input type="text" name="memberId" value="${memberDTO.id}" style="display: none">
+                                                <textarea id="editor1" name="answerContents"></textarea>
+                                                <input type="text" name="answerWriter" value="${memberDTO.memberEmail}"
+                                                       style="display: none;">
+                                                <input type="text" name="boardId" value="${BoardDTO.id}"
+                                                       style="display: none;">
+                                                <input type="text" name="memberId" value="${memberDTO.id}"
+                                                       style="display: none">
+                                                <input type="file" name="answerFile" style="display:none;">
                                                 <input type="submit" id="answerBtn" style="display: none">
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </c:if>
+                    </div>
+                    <h3 class="blind">여긴 답글 입니다</h3>
+                    <div class="answer-content-inner">
+                        <c:if test="${BoardDTO.boardAnswer != 0}">
+                            <div class="answer-content-tag">
+                                <div class="answer-content-tag-title-part">
+                                    <h3 class="answer-content-tag-title">
+                                        <i class="answer-content-tag-title-icon" aria-hidden="true">A</i>
+                                        <em class="answerCount-num"
+                                            style="font-style: normal;">${BoardDTO.boardAnswer}개</em>
+                                    </h3>
+                                </div>
+                            </div>
+                            <c:forEach items="${answerDTOList}" var="answerDTOList">
+                                <div class="answer-List-area">
+                                    <div class="answer-List-area-box">
+                                        <div class="answer-List-area-item">
+                                            <div class="adoptCheck">
+                                                <div class="checkText">
+                                                    <span style="color: #fd5f56;font-size: 12px;font-weight: bold;line-height: 1.2;">지식인 채택</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-card">
+                                                <div class="card-inner">
+                                                    <div class="card-info">
+                                                        <div class="profile-info">
+                                                            <strong class="profile-card-name">${answerDTOList.answerWriter}</strong>
+                                                            <div class="profile-item-area">
+                                                                <div class="profile-item-answer">
+                                                                    <span class="profile-card-answer-count">채택답변수 57</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" class="thumbnail-area">
+                                                            <div class="thumbnail">
+                                                                <img src="https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m/6_3d.png"
+                                                                     alt="프로필 사진">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="endContents">
+                                                <div class="endContents-txt">
+                                                        ${answerDTOList.answerContents}
+                                                </div>
+                                                <div class="c-guideline-default">
+                                                    <strong class="c-guideline-title"><i
+                                                            class="icon_notice"></i>알아두세요</strong>
+                                                    <p class="c-guideline__desc">본 답변은 참고 용도로만 활용 가능하며 정확한 정보는 관련기관에서
+                                                        확인해보시기
+                                                        바랍니다.</p>
+                                                    <p class="c-guideline__desc">위 답변은 답변작성자가 경험과 지식을 바탕으로 작성한 내용입니다.
+                                                        포인트로
+                                                        감사할 때 참고해주세요.</p>
+                                                </div>
+                                                <p class="endContent-date-time"><fmt:formatDate
+                                                        value="${answerDTOList.answerCreatedDate}"
+                                                        pattern="yyyy-MM-dd"></fmt:formatDate></p>
+                                            </div>
+                                            <div class="answerBottom">
+                                                <div class="answerBottom-left">
+                                                    <button type="button" class="answerBottom-left-comment">
+                                                        <i class="bi bi-chat-square-dots"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="aiai"></div>
+                            </c:forEach>
                         </c:if>
                     </div>
                 </div>
