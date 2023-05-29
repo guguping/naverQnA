@@ -5,6 +5,7 @@
     <title>Detail</title>
     <link rel="stylesheet" href="../css/component.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 </head>
 <body>
 <header>
@@ -204,8 +205,169 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h2 class="blind">여기서 부터 답글 시작합니다</h2>
+                <h2 class="blind">여기서 부터 답글 시작합니다</h2>
+                <div id="answerArea" class="answer-content">
+                    <div id="answerAreaZero" class="answer-content-inner">
+
+                        <div class="answer-content-noLogin-box">
+                            <div id="answerAreaNoLogin" class="answer-content-noLogin-inner">
+                                <div class="answer-content-noLogin-inner-txt-box">
+                                    <div class="answer-content-noLogin-inner-txt-item1">
+                                        <div class="c-userinfo">
+                                            <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
+                                        </div>
+                                    </div>
+                                    <div class="answer-content-noLogin-inner-txt-item2">
+                                        <a href="#" class="c-userinfo__item2"><span
+                                                class="c-button-default__title">답변하기</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="blind">로그인 답변 시작입니다</h3>
+                        <div class="qna_answer_editor">
+                            <div class="ckEditorHeaderArea">
+                                <div class="c-heading-answer--editor-inner">
+                                    <div class="c-heading-answer__profile">
+                                        <div class="profile-default">
+                                            <a href="#" class="profile-default--inner">
+                                                <span class="profile-default__thumbnail">
+                                                    <span class="blind">내 프로필 이미지</span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="c-heading-answer__body">
+                                            <div class="c-heading-answer__title">
+                                                <p class="user-info-title">qkfh****님, 답변해주세요!</p>
+                                                <div class="c-userinfo">
+                                                    <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
+                                                </div>
+                                            </div>
+                                            <div class="answerButtonArea">
+                                                <div class="button-answer__subdivide">
+                                                    <a href="#" class="answerRegisterButton">
+                                                        <span class="c-button-default__title">답변등록</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ckEditor-body">
+                                <div class="ckEditor-body-inner">
+                                    <div class="ckEditor-size">
+                                        <input type="text" id="editor1" placeholder="이미지나 링크를 첨부하시고, 상세 모집 내용을 적어주세요.">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="qna-list-on-footer">
+                <div class="personal-data">
+                    <div class="personal-data__inner">
+                        <div class="detailQnaListTabTitleArea">
+                            <div class="c-tab__list">
+                                <a href="#" class="reactRankQnaListTabPanel">많이 본 Q&A </a>
+                            </div>
+                        </div>
+                        <div class="detailQnaListTabContentsArea" style="margin-top: 34px;">
+                            <div class="detailArticleReactRankListArea">
+                                <div class="carousel-slide-inner" style="overflow: hidden;">
+                                    <div class="_detailQnaListArea c-qna c-qna-lot">
+                                        <h2 class="blind">많이 본 Q&amp;A</h2>
+                                        <div class="detailQnaListArea-item-box">
+                                            <h3 class="blind">리스트 for문은 a태그로</h3>
+                                            <a href="#" target="_blank" class="detailQnaListArea-item">
+                                                <div class="c-heading">
+                                                    <div class="c-heading__title">
+                                                        <div class="c-heading__title-inner">
+                                                            <div class="c-heading__number">1</div>
+                                                            <div class="c-title">내성발톱 자가치료할수있나요ㅣ</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="c-heading__content">저도 정말 내성발톱 때문에 정말 오랫동안 고생 무지 했고 안해
+                                                        본게 없는데 제일 간단 하면서도 쉬운 방법이 있습니다. 수술도 해보고 일본에서 들어왔다던 테이프도 붙여 봤지만
+                                                        얼마지...
+                                                    </div>
+                                                    <div class="c-qna__userinfo">
+                                                        <span class="c-qna__userinfo--item1">조회수 <em
+                                                                style="font-style: normal;">1023</em></span>
+                                                        <span class="c-qna__userinfo--item2">답변수 <em
+                                                                style="font-style: normal;">19</em></span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" target="_blank" class="detailQnaListArea-item">
+                                                <div class="c-heading">
+                                                    <div class="c-heading__title">
+                                                        <div class="c-heading__title-inner">
+                                                            <div class="c-heading__number">1</div>
+                                                            <div class="c-title">내성발톱 자가치료할수있나요ㅣ</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="c-heading__content">저도 정말 내성발톱 때문에 정말 오랫동안 고생 무지 했고 안해
+                                                        본게 없는데 제일 간단 하면서도 쉬운 방법이 있습니다. 수술도 해보고 일본에서 들어왔다던 테이프도 붙여 봤지만
+                                                        얼마지...
+                                                    </div>
+                                                    <div class="c-qna__userinfo">
+                                                        <span class="c-qna__userinfo--item1">조회수 <em
+                                                                style="font-style: normal;">1023</em></span>
+                                                        <span class="c-qna__userinfo--item2">답변수 <em
+                                                                style="font-style: normal;">19</em></span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" target="_blank" class="detailQnaListArea-item">
+                                                <div class="c-heading">
+                                                    <div class="c-heading__title">
+                                                        <div class="c-heading__title-inner">
+                                                            <div class="c-heading__number">1</div>
+                                                            <div class="c-title">내성발톱 자가치료할수있나요ㅣ</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="c-heading__content">저도 정말 내성발톱 때문에 정말 오랫동안 고생 무지 했고 안해
+                                                        본게 없는데 제일 간단 하면서도 쉬운 방법이 있습니다. 수술도 해보고 일본에서 들어왔다던 테이프도 붙여 봤지만
+                                                        얼마지...
+                                                    </div>
+                                                    <div class="c-qna__userinfo">
+                                                        <span class="c-qna__userinfo--item1">조회수 <em
+                                                                style="font-style: normal;">1023</em></span>
+                                                        <span class="c-qna__userinfo--item2">답변수 <em
+                                                                style="font-style: normal;">19</em></span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" target="_blank" class="detailQnaListArea-item">
+                                                <div class="c-heading">
+                                                    <div class="c-heading__title">
+                                                        <div class="c-heading__title-inner">
+                                                            <div class="c-heading__number">1</div>
+                                                            <div class="c-title">내성발톱 자가치료할수있나요ㅣ</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="c-heading__content">저도 정말 내성발톱 때문에 정말 오랫동안 고생 무지 했고 안해
+                                                        본게 없는데 제일 간단 하면서도 쉬운 방법이 있습니다. 수술도 해보고 일본에서 들어왔다던 테이프도 붙여 봤지만
+                                                        얼마지...
+                                                    </div>
+                                                    <div class="c-qna__userinfo">
+                                                        <span class="c-qna__userinfo--item1">조회수 <em
+                                                                style="font-style: normal;">1023</em></span>
+                                                        <span class="c-qna__userinfo--item2">답변수 <em
+                                                                style="font-style: normal;">19</em></span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -247,5 +409,11 @@
             }
         })
     }
+    CKEDITOR.replace('editor1', {
+        height: '400px',
+        language: 'ko',
+        editorplaceholder: 'Type your comment…',
+        enterMode: CKEDITOR.ENTER_BR
+    });
 </script>
 </html>
