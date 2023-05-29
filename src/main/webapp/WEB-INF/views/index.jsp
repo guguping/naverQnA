@@ -319,7 +319,6 @@
                             numPut += '<a class="QnA-paging-bnt-off">' + i + '</a>';
                         } else {
                             numPut += '<a class="QnA-paging-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + i + ',' + res.qnaBoardPage.q + ')">' + i + '</a>';
-                            console.log("res.qnaBoardDTOList.length ="+ res.qnaBoardDTOList.length)
                         }
                     }
                     if (res.qnaBoardPage.page <= 1) {

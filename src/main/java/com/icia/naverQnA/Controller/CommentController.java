@@ -27,6 +27,7 @@ public class CommentController {
 
     @PostMapping("/comment/save")
     public ResponseEntity<Map<String, Object>> commentSave(@RequestParam(value = "DetailPage", required = false, defaultValue = "1") int DetailPage,
+                                                           @RequestParam(value = "q",required = false,defaultValue = "") String q,
                                                            @ModelAttribute CommentDTO commentDTO) {
         commentService.commentSave(commentDTO);
         PageDTO DetailPageDTO = new PageDTO();
@@ -38,6 +39,8 @@ public class CommentController {
         Map<String, Object> commentResponse = new HashMap<>();
         commentResponse.put("comments", commentDTOList);
         commentResponse.put("count", count);
+        commentResponse.put("boardDTO",boardService.findByBoard(commentDTO.getBoardId()));
+        commentResponse.put("DetailCommentPage",commentService.commentPagingParam(DetailPageDTO,q));
 
         return new ResponseEntity<>(commentResponse, HttpStatus.OK);
     }
