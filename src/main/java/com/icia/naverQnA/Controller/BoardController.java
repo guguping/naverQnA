@@ -50,6 +50,7 @@ public class BoardController {
 
     @GetMapping("/board/detail")
     public String boardDetail(@RequestParam(value = "BoardId", required = false, defaultValue = "") Long BoardId,
+                              @RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
                               @RequestParam(value = "DetailPage", required = false, defaultValue = "1") int DetailPage,
                               @RequestParam(value = "q",required = false,defaultValue = "") String q,
                               HttpServletResponse response,
@@ -86,6 +87,9 @@ public class BoardController {
         PageDTO DetailPageDTO = new PageDTO();
         DetailPageDTO.setBoardId(BoardId);
         DetailPageDTO.setPage(DetailPage);
+        PageDTO bestPageDTO = new PageDTO();
+        bestPageDTO.setPage(bestPage);
+        model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
         model.addAttribute("CommentList", commentService.commentList(DetailPageDTO));
         model.addAttribute("CommentPaging",commentService.commentPagingParam(DetailPageDTO,q));
         model.addAttribute("CommentCount", commentService.commentCount(BoardId));

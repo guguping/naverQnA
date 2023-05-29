@@ -70,6 +70,9 @@ public class BoardService {
         boardRepository.boardHitsUp(BoardId);
     }
 
-
-
+    public Object answerBestBoardList(PageDTO bestPageDTO) {
+        bestPageDTO.setPageLimit(4);
+        List<BoardDTO> boardDTOList = boardRepository.bestBoardList(bestPageDTO);
+        return boardDTOList;
+    }
 }

@@ -52,5 +52,4 @@ public class BoardRepository {
         sql.update("naverBoard.boardHitsUp",boardId);
     }
 
-
 }

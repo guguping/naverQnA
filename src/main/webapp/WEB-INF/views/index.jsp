@@ -88,7 +88,7 @@
                                                        style="height: 19px;"
                                                        target="_blank">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
-                                                    <span class="list-answer">답변수 0</span>
+                                                    <span class="list-answer">답변수 ${bestBoardList.boardAnswer}</span>
                                                 </li>
                                             </c:forEach>
                                         </c:when>
@@ -105,7 +105,7 @@
                                                            style="height: 19px;"
                                                            target="_blank">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
-                                                        <span class="list-answer">답변수 0</span>
+                                                        <span class="list-answer">답변수 ${bestBoardList.boardAnswer}</span>
                                                     </li>
                                                 </c:if>
                                             </c:forEach>
@@ -126,7 +126,7 @@
                                                        style="height: 19px;"
                                                        target="_blank">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
-                                                    <span class="list-answer">답변수 0</span>
+                                                    <span class="list-answer">답변수 ${bestBoardList.boardAnswer}</span>
                                                 </li>
                                             </c:forEach>
                                         </c:when>
@@ -144,7 +144,7 @@
                                                            style="height: 19px;"
                                                            target="_blank">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
-                                                        <span class="list-answer">답변수 0</span>
+                                                        <span class="list-answer">답변수 ${bestBoardList.boardAnswer}</span>
                                                     </li>
                                                 </c:if>
                                             </c:forEach>
@@ -217,7 +217,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="main2-item-info">
-                                                                <span class="item-info-answer">답변 0</span>
+                                                                <span class="item-info-answer">답변 ${qnaBoardList.boardAnswer}</span>
                                                                 <span class="item-info-type">없음</span>
                                                                 <span class="item-info-time"><fmt:formatDate
                                                                         value="${qnaBoardList.boardCreatedDate}"
@@ -307,7 +307,7 @@
                         outPut += '</a>';
                         outPut += '</div>';
                         outPut += '<div class="main2-item-info">';
-                        outPut += '<span class="item-info-answer">답변 0</span>';
+                        outPut += '<span class="item-info-answer">답변 ' + res.qnaBoardDTOList[i].boardAnswer + '</span>';
                         outPut += '<span class="item-info-type">없음</span>';
                         outPut += '<span class="item-info-time">' + moment(res.qnaBoardDTOList[i].boardCreatedDate).format("YYYY-MM-DD HH:mm:ss") + '</span>';
                         outPut += '</div>';

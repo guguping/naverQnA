@@ -48,7 +48,7 @@ public class HomeController {
         String bestBoardTime = Time.getDate() + "일 " + formattedHours+"시 기준";
 
         String bestBoardCount = "6";
-        model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
+        model.addAttribute("bestBoardDTOList",boardService.answerBestBoardList(bestPageDTO));
         model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO,q));
         model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
         model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));

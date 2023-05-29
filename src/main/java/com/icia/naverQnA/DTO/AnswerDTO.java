@@ -4,20 +4,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class BoardDTO {
+public class AnswerDTO {
     Long id;
-    String boardTitle;
-    String boardWriter;
-    String boardContents;
-    int boardHits;
-    int boardAnswer;
-    Timestamp boardCreatedDate;
+    Long boardId;
+    Long memberId;
+    String anserWriter;
+    String anserContents;
+    String anserCreatedDate;
     int fileAttached = 0;
     List<MultipartFile> boardFile;
-    Long memberId;
+    int goodAnser = 0;
 }

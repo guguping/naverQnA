@@ -260,86 +260,25 @@
                                         <h2 class="blind">많이 본 Q&amp;A</h2>
                                         <div class="detailQnaListArea-item-box">
                                             <h3 class="blind">리스트 for문은 a태그로</h3>
-                                            <a href="#" target="_blank" class="detailQnaListArea-item">
-                                                <div class="c-heading">
-                                                    <div class="c-heading__title">
-                                                        <div class="c-heading__title-inner">
-                                                            <div class="c-heading__number">1</div>
-                                                            <div class="c-title">내성발톱 자가치료할수있나요ㅣ</div>
+                                            <c:forEach items="${bestBoardDTOList}" var="bestBoardDTOList">
+                                                <a href="#" target="_blank" class="detailQnaListArea-item">
+                                                    <div class="c-heading">
+                                                        <div class="c-heading__title">
+                                                            <div class="c-heading__title-inner">
+                                                                <div class="c-heading__number">${i}</div>
+                                                                <div class="c-title">${bestBoardDTOList.boardTitle}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="c-heading__content">${bestBoardDTOList.boardContents}</div>
+                                                        <div class="c-qna__userinfo">
+                                                        <span class="c-qna__userinfo--item1">조회수 <em
+                                                                style="font-style: normal;">${bestBoardDTOList.boardHits}</em></span>
+                                                            <span class="c-qna__userinfo--item2">답변수 <em
+                                                                    style="font-style: normal;">${bestBoardDTOList.boardAnswer}</em></span>
                                                         </div>
                                                     </div>
-                                                    <div class="c-heading__content">저도 정말 내성발톱 때문에 정말 오랫동안 고생 무지 했고 안해
-                                                        본게 없는데 제일 간단 하면서도 쉬운 방법이 있습니다. 수술도 해보고 일본에서 들어왔다던 테이프도 붙여 봤지만
-                                                        얼마지...
-                                                    </div>
-                                                    <div class="c-qna__userinfo">
-                                                        <span class="c-qna__userinfo--item1">조회수 <em
-                                                                style="font-style: normal;">1023</em></span>
-                                                        <span class="c-qna__userinfo--item2">답변수 <em
-                                                                style="font-style: normal;">19</em></span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" target="_blank" class="detailQnaListArea-item">
-                                                <div class="c-heading">
-                                                    <div class="c-heading__title">
-                                                        <div class="c-heading__title-inner">
-                                                            <div class="c-heading__number">1</div>
-                                                            <div class="c-title">내성발톱 자가치료할수있나요ㅣ</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="c-heading__content">저도 정말 내성발톱 때문에 정말 오랫동안 고생 무지 했고 안해
-                                                        본게 없는데 제일 간단 하면서도 쉬운 방법이 있습니다. 수술도 해보고 일본에서 들어왔다던 테이프도 붙여 봤지만
-                                                        얼마지...
-                                                    </div>
-                                                    <div class="c-qna__userinfo">
-                                                        <span class="c-qna__userinfo--item1">조회수 <em
-                                                                style="font-style: normal;">1023</em></span>
-                                                        <span class="c-qna__userinfo--item2">답변수 <em
-                                                                style="font-style: normal;">19</em></span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" target="_blank" class="detailQnaListArea-item">
-                                                <div class="c-heading">
-                                                    <div class="c-heading__title">
-                                                        <div class="c-heading__title-inner">
-                                                            <div class="c-heading__number">1</div>
-                                                            <div class="c-title">내성발톱 자가치료할수있나요ㅣ</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="c-heading__content">저도 정말 내성발톱 때문에 정말 오랫동안 고생 무지 했고 안해
-                                                        본게 없는데 제일 간단 하면서도 쉬운 방법이 있습니다. 수술도 해보고 일본에서 들어왔다던 테이프도 붙여 봤지만
-                                                        얼마지...
-                                                    </div>
-                                                    <div class="c-qna__userinfo">
-                                                        <span class="c-qna__userinfo--item1">조회수 <em
-                                                                style="font-style: normal;">1023</em></span>
-                                                        <span class="c-qna__userinfo--item2">답변수 <em
-                                                                style="font-style: normal;">19</em></span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" target="_blank" class="detailQnaListArea-item">
-                                                <div class="c-heading">
-                                                    <div class="c-heading__title">
-                                                        <div class="c-heading__title-inner">
-                                                            <div class="c-heading__number">1</div>
-                                                            <div class="c-title">내성발톱 자가치료할수있나요ㅣ</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="c-heading__content">저도 정말 내성발톱 때문에 정말 오랫동안 고생 무지 했고 안해
-                                                        본게 없는데 제일 간단 하면서도 쉬운 방법이 있습니다. 수술도 해보고 일본에서 들어왔다던 테이프도 붙여 봤지만
-                                                        얼마지...
-                                                    </div>
-                                                    <div class="c-qna__userinfo">
-                                                        <span class="c-qna__userinfo--item1">조회수 <em
-                                                                style="font-style: normal;">1023</em></span>
-                                                        <span class="c-qna__userinfo--item2">답변수 <em
-                                                                style="font-style: normal;">19</em></span>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
