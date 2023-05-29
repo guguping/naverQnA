@@ -12,7 +12,7 @@ public class PageDTO {
     int maxPage; // 전체페이지갯수
     int startPage; // 하단에 보여지는 시작 페이지 번호
     int endPage; // 하단에 보여지는 마지막 페이지 번호
-    int blockLimit; // 한화면에 보여줄 피이지 번호 갯수
+    int blockLimit; // 한화면에 보여줄 페이지 번호 갯수
     int boardCount;
     // 보드에 필요한 필드
     Long boardId; // detail에서 사용

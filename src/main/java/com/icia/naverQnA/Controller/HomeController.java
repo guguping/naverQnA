@@ -7,15 +7,20 @@ import com.icia.naverQnA.Service.BoardService;
 import com.icia.naverQnA.Service.MemberService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -80,4 +85,16 @@ public class HomeController {
         model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "index";
     }
+    @PostMapping("/index/UDPage")
+    public ResponseEntity main2ListBox(@RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
+                                       @RequestParam(value = "q",required = false,defaultValue = "") String q){
+        PageDTO main2PageDTO = new PageDTO();
+        main2PageDTO.setPage(qnaPage);
+
+        Map<String,Object> main2Response = new HashMap<>();
+        main2Response.put("qnaBoardDTOList",boardService.qnaBoardList(main2PageDTO,q));
+        main2Response.put("qnaBoardPage",boardService.qnaPagingParam(main2PageDTO,q));
+        return new ResponseEntity<>(main2Response,HttpStatus.OK);
+    }
+
 }

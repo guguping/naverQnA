@@ -261,7 +261,6 @@
     }
     const commentNBBtn = (boardid, boardMemberid, CommentPagingPage) => {
         const DetailPage = CommentPagingPage;
-        console.log("CommentPagingPage =" + CommentPagingPage);
         const boardId = boardid;
         const boardMemberId = boardMemberid;
         const commentResult = document.getElementById('detail-contents-comment-list-box');
@@ -301,14 +300,14 @@
                         output += '</p>';
                         output += '</div>';
                     }
-                    for (let i = 1; i <= res.DetailCommentPage.endPage; i++) {
+                    for (let i = res.DetailCommentPage.startPage; i <= res.DetailCommentPage.endPage; i++) {
                         if (DetailPage == i) {
                             numPut += '<a class="detail-contents-comment-paging-btn-off">' + i + '</a>';
                         } else {
                             numPut += '<a onclick="commentNBBtn(' + res.boardDTO.id + ',' + res.boardDTO.memberId + ',' + i + ')" class="detail-contents-comment-paging-btn-on" style="cursor: pointer">' + i + '</a>';
                         }
                     }
-                    if (res.DetailCommentPage.page <= res.DetailCommentPage.startPage) {
+                    if (res.DetailCommentPage.page <= 1) {
                         commentPageDResult.innerHTML = "";
                     } else if (res.DetailCommentPage.page > res.DetailCommentPage.startPage) {
                         commentPageDResult.innerHTML = downPut;
@@ -320,8 +319,6 @@
                         commentPageUResult.innerHTML = upPut;
                     }
 
-                    console.log("res.DetailCommentPage.maxPage = " + res.DetailCommentPage.maxPage);
-                    console.log("res.DetailCommentPage.page = " + res.DetailCommentPage.page);
                     commentNumPageOn.innerHTML = numPut;
                     commentResult.innerHTML = output;
                 },

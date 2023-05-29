@@ -12,6 +12,8 @@
 <head>
     <title>index</title>
     <link rel="stylesheet" href="/resources/css/component.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
 <body>
 <%@include file="component/header.jsp" %>
@@ -79,10 +81,12 @@
                                                        varStatus="loop">
                                                 <li class="ranking-list-item">
                                                     <span class="list-no">${loop.index + 1}</span>
-                                                    <a href="/board/detail?BoardId=${bestBoardList.id}" class="list-title"
+                                                    <a href="/board/detail?BoardId=${bestBoardList.id}"
+                                                       class="list-title"
                                                        target="_blank">${bestBoardList.boardTitle}</a>
                                                     <a href="/board/detail?BoardId=${bestBoardList.id}" class="list-txt"
-                                                       style="height: 19px;" target="_blank">${bestBoardList.boardContents}</a>
+                                                       style="height: 19px;"
+                                                       target="_blank">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                     <span class="list-answer">답변수 0</span>
                                                 </li>
@@ -93,10 +97,13 @@
                                                 <c:if test="${loop.index >= 0 && loop.index <= 2}">
                                                     <li class="ranking-list-item">
                                                         <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
-                                                        <a href="/board/detail?BoardId=${bestBoardList.id}" class="list-title"
+                                                        <a href="/board/detail?BoardId=${bestBoardList.id}"
+                                                           class="list-title"
                                                            target="_blank">${bestBoardList.boardTitle}</a>
-                                                        <a href="/board/detail?BoardId=${bestBoardList.id}" class="list-txt"
-                                                           style="height: 19px;" target="_blank">${bestBoardList.boardContents}</a>
+                                                        <a href="/board/detail?BoardId=${bestBoardList.id}"
+                                                           class="list-txt"
+                                                           style="height: 19px;"
+                                                           target="_blank">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                         <span class="list-answer">답변수 0</span>
                                                     </li>
@@ -112,10 +119,12 @@
                                                        varStatus="loop">
                                                 <li class="ranking-list-item">
                                                     <span class="list-no">${loop.index + 1}</span>
-                                                    <a href="/board/detail?BoardId=${bestBoardList.id}" class="list-title"
+                                                    <a href="/board/detail?BoardId=${bestBoardList.id}"
+                                                       class="list-title"
                                                        target="_blank">${bestBoardList.boardTitle}</a>
                                                     <a href="/board/detail?BoardId=${bestBoardList.id}" class="list-txt"
-                                                       style="height: 19px;" target="_blank">${bestBoardList.boardContents}</a>
+                                                       style="height: 19px;"
+                                                       target="_blank">${bestBoardList.boardContents}</a>
                                                     <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                     <span class="list-answer">답변수 0</span>
                                                 </li>
@@ -126,11 +135,14 @@
                                                 <c:if test="${loop.index >= 3 && loop.index <= 3}">
                                                     <li class="ranking-list-item">
                                                         <span class="list-no">${bestBoardCount = bestBoardCount + 1}</span>
-                                                        <a href="/board/detail?BoardId=${bestBoardList.id}" class="list-title"
+                                                        <a href="/board/detail?BoardId=${bestBoardList.id}"
+                                                           class="list-title"
                                                            target="_blank"
                                                            style="padding-left: 5px;">${bestBoardList.boardTitle}</a>
-                                                        <a href="/board/detail?BoardId=${bestBoardList.id}" class="list-txt"
-                                                           style="height: 19px;" target="_blank">${bestBoardList.boardContents}</a>
+                                                        <a href="/board/detail?BoardId=${bestBoardList.id}"
+                                                           class="list-txt"
+                                                           style="height: 19px;"
+                                                           target="_blank">${bestBoardList.boardContents}</a>
                                                         <span class="list-views">조회수 ${bestBoardList.boardHits}</span>
                                                         <span class="list-answer">답변수 0</span>
                                                     </li>
@@ -156,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            <div class="section-inner-section">
+            <div class="section-inner-section" id="section-inner-section">
                 <div class="inner-section-main2">
                     <div class="main2-area-section">
                         <div class="main2-area-tab">
@@ -190,47 +202,61 @@
                                             </div>
                                             <div class="main2-contents-block">
                                             </div>
-                                            <c:forEach items="${qnaBoardDTOList}" var="qnaBoardList">
-                                                <div class="main2-contents-list-box">
-                                                    <div class="main2-contents-list-inner">
-                                                        <div class="main2-contents-list-item">
-                                                            <a href="/board/detail?BoardId=${qnaBoardList.id}" target="_blank" class="main2-contents-item">
-                                                            <span class="power_grade" title="내공 전시장">
+                                            <div id="ajax-main2-contents-list-box">
+                                                <c:forEach items="${qnaBoardDTOList}" var="qnaBoardList">
+                                                    <div class="main2-contents-list-box">
+                                                        <div class="main2-contents-list-inner">
+                                                            <div class="main2-contents-list-item">
+                                                                <a href="/board/detail?BoardId=${qnaBoardList.id}"
+                                                                   target="_blank" class="main2-contents-item">
+                                                                <span class="power_grade" title="내공 전시장">
                                                                     500
-                                                            </span>
-                                                                <span class="main2-item-title">${qnaBoardList.boardTitle}</span>
-                                                                <p class="main2-item-contents">${qnaBoardList.boardContents}</p>
-                                                            </a>
-                                                        </div>
-                                                        <div class="main2-item-info">
-                                                            <span class="item-info-answer">답변 0</span>
-                                                            <span class="item-info-type">없음</span>
-                                                            <span class="item-info-time"><fmt:formatDate
-                                                                    value="${qnaBoardList.boardCreatedDate}"
-                                                                    pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></span>
+                                                                </span>
+                                                                    <span class="main2-item-title">${qnaBoardList.boardTitle}</span>
+                                                                    <p class="main2-item-contents">${qnaBoardList.boardContents}</p>
+                                                                </a>
+                                                            </div>
+                                                            <div class="main2-item-info">
+                                                                <span class="item-info-answer">답변 0</span>
+                                                                <span class="item-info-type">없음</span>
+                                                                <span class="item-info-time"><fmt:formatDate
+                                                                        value="${qnaBoardList.boardCreatedDate}"
+                                                                        pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </c:forEach>
-                                            <div class="main2-contents-paging-box">
-                                                <c:if test="${qnaPaging.page > 1}">
-                                                    <a href="/?qnaPage=${qnaPaging.page-1}&q=${qnaPaging.q}" class="QnA-back-bnt-on">이전</a>
-                                                </c:if>
-                                                <c:forEach begin="${qnaPaging.startPage}"
-                                                           end="${qnaPaging.endPage}" var="i" step="1">
-                                                    <c:choose>
-                                                        <c:when test="${i eq qnaPaging.page}">
-                                                            <a href="#" class="QnA-paging-bnt-off">${i}</a>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <a href="/?qnaPage=${i}&q=${qnaPaging.q}" class="QnA-paging-bnt-on">${i}</a>
-                                                        </c:otherwise>
-                                                    </c:choose>
                                                 </c:forEach>
-                                                <c:if test="${qnaPaging.page != qnaPaging.maxPage}">
-                                                    <a href="/?qnaPage=${qnaPaging.page+1}&q=${qnaPaging.q}"
-                                                       class="QnA-next-bnt-on">다음</a>
+                                            </div>
+                                            <div class="main2-contents-paging-box">
+                                                <span id="backBtnResult">
+                                                <c:if test="${qnaPaging.page > 1}">
+                                                    <a class="QnA-back-bnt-on" style="cursor: pointer;"
+                                                       onclick="main2ListNBBtn(${qnaPaging.page-1},${qnaPaging.q})">이전</a>
+                                                    <%-- href="/?qnaPage=${qnaPaging.page-1}&q=${qnaPaging.q}" --%>
                                                 </c:if>
+                                                </span>
+                                                <div style="display: inline-block;" id="numResult">
+                                                    <c:forEach begin="${qnaPaging.startPage}"
+                                                               end="${qnaPaging.endPage}" var="i" step="1">
+                                                        <c:choose>
+                                                            <c:when test="${i eq qnaPaging.page}">
+                                                                <a class="QnA-paging-bnt-off">${i}</a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <a class="QnA-paging-bnt-on" style="cursor: pointer;"
+                                                                   onclick="main2ListNBBtn(${i},${qnaPaging.q})">${i}</a>
+                                                                <%--href="/?qnaPage=${i}&q=${qnaPaging.q}"--%>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                </div>
+                                                <span id="nextBtnResult">
+                                                <c:if test="${qnaPaging.page != qnaPaging.maxPage}">
+                                                    <a class="QnA-next-bnt-on" style="cursor: pointer;"
+                                                       onclick="main2ListNBBtn(${qnaPaging.page+1},${qnaPaging.q})">다음</a>
+                                                    <%--href="/?qnaPage=${qnaPaging.page+1}&q=${qnaPaging.q}"--%>
+                                                </c:if>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -245,4 +271,75 @@
 </section>
 <%@include file="component/footer.jsp" %>
 </body>
+<script>
+    const main2ListNBBtn = (main2PagingPage, main2Search) => {
+        const qnaPage = main2PagingPage;
+        const q = main2Search;
+        const ListResult = document.getElementById('ajax-main2-contents-list-box');
+        const numResult = document.getElementById('numResult');
+        const backBtnResult = document.getElementById('backBtnResult');
+        const nextBtnResult = document.getElementById('nextBtnResult');
+        const target = document.getElementById('section-inner-section');
+        $.ajax({
+                type: "post",
+                url: "/index/UDPage",
+                data: {
+                    "qnaPage": qnaPage,
+                    "q": q
+                },
+                success: function (res) {
+                    let outPut = "";
+                    let numPut = "";
+                    let downPut = "";
+                    downPut += '<a class="QnA-back-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + (res.qnaBoardPage.page - 1) + ',' + res.qnaBoardPage.q + ')">이전</a>';
+                    let upPut = "";
+                    upPut += '<a class="QnA-next-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + (res.qnaBoardPage.page + 1) + ',' + res.qnaBoardPage.q + ')">다음</a>';
+                    for (let i in res.qnaBoardDTOList) {
+                        outPut += '<div class="main2-contents-list-box">';
+                        outPut += '<div class="main2-contents-list-inner">';
+                        outPut += '<div class="main2-contents-list-item">';
+                        outPut += '<a href="/board/detail?BoardId=' + res.qnaBoardDTOList[i].id + '" target="_blank" class="main2-contents-item">';
+                        outPut += '<span class="power_grade" title="내공 전시장">';
+                        outPut += '500';
+                        outPut += '</span>';
+                        outPut += '<span class="main2-item-title">' + res.qnaBoardDTOList[i].boardTitle + '</span>';
+                        outPut += '<p class="main2-item-contents">' + res.qnaBoardDTOList[i].boardContents + '</p>';
+                        outPut += '</a>';
+                        outPut += '</div>';
+                        outPut += '<div class="main2-item-info">';
+                        outPut += '<span class="item-info-answer">답변 0</span>';
+                        outPut += '<span class="item-info-type">없음</span>';
+                        outPut += '<span class="item-info-time">' + moment(res.qnaBoardDTOList[i].boardCreatedDate).format("YYYY-MM-DD HH:mm:ss") + '</span>';
+                        outPut += '</div>';
+                        outPut += '</div>';
+                        outPut += '</div>';
+                    }
+                    for (let i = res.qnaBoardPage.startPage; i <= res.qnaBoardPage.endPage; i++) {
+                        if (res.qnaBoardPage.page == i) {
+                            numPut += '<a class="QnA-paging-bnt-off">' + i + '</a>';
+                        } else {
+                            numPut += '<a class="QnA-paging-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + i + ',' + res.qnaBoardPage.q + ')">' + i + '</a>';
+                            console.log("res.qnaBoardDTOList.length ="+ res.qnaBoardDTOList.length)
+                        }
+                    }
+                    if (res.qnaBoardPage.page <= 1) {
+                        backBtnResult.innerHTML = "";
+                    } else {
+                        backBtnResult.innerHTML = downPut;
+                    }
+                    if (res.qnaBoardPage.page == res.qnaBoardPage.maxPage) {
+                        nextBtnResult.innerHTML = "";
+                    } else if (res.qnaBoardPage.page != res.qnaBoardPage.maxPage) {
+                        nextBtnResult.innerHTML = upPut;
+                    }
+                    numResult.innerHTML = numPut;
+                    ListResult.innerHTML = outPut;
+                },
+                error: function () {
+                    console.log("실패");
+                }
+            })
+        target.scrollIntoView({ behavior: 'auto' });
+    }
+</script>
 </html>

@@ -1362,17 +1362,11 @@ footer div .footer_link li + li::before {
     color: #8c8c8c;
 }
 .detail-contents-comment-paging-bbtn-on {
-    margin-right: 10px;
     font-size: 14px;
     text-decoration: none;
     color: #8c8c8c;
 }
-.detail-contents-comment-paging-nbtn-on {
-    margin-right: 10px;
-    font-size: 14px;
-    text-decoration: none;
-    color: #8c8c8c;
-}
+
 .comment-back-icon {
     display: inline-block;
     overflow: hidden;
@@ -1394,7 +1388,6 @@ footer div .footer_link li + li::before {
     border-bottom: 1px solid #333;
 }
 .detail-contents-comment-paging-nbtn-on {
-    margin-left: 10px;
     font-size: 14px;
     text-decoration: none;
     color: #8c8c8c;
