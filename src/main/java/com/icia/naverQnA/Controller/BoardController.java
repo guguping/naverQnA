@@ -100,10 +100,19 @@ public class BoardController {
     }
     @PostMapping("/answer/save")
     public String answerSave(@ModelAttribute AnswerDTO answerDTO) throws IOException{
-        System.out.println("answerDTO = " + answerDTO);
         boardService.boardAnswerUp(answerDTO.getBoardId());
         boardService.boardAnswerSave(answerDTO);
         return "redirect:/board/detail?BoardId="+answerDTO.getBoardId();
+    }
+    @GetMapping("/board/Qna")
+    public String boardQna(@RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
+                           @RequestParam(value = "q",required = false,defaultValue = "") String q,
+                           Model model){
+        PageDTO qnaPageDTO = new PageDTO();
+        qnaPageDTO.setPage(qnaPage);
+        model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
+        model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));
+        return "/boardPage/boardQna";
     }
 
 }

@@ -1957,3 +1957,81 @@ footer div .footer_link li + li::before {
     height: 60px;
     background-color: #f4f5f6;
 }
+.qnaContainer {
+    background-color: #e9ecef;
+    position: relative;
+    margin: 0 auto;
+}
+.container-fluid-content-inner {
+    padding: 18px 0;
+    width: 980px;
+    margin: 0 auto;
+}
+.section_answer {
+    overflow: hidden;
+    margin-top: 10px;
+}
+.section_answer-container {
+    width: 1000px;
+    position: relative;
+}
+.section_answer-main-container {
+    margin-right: 10px;
+    padding: 0 24px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+.title_area {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+ul {
+    list-style: none;
+}
+.sort-list-box {
+    margin-top: 6px;
+    position: relative;
+    min-height: 33px;
+}
+.sort-list-box-left {
+    float: left;
+}
+.view_type_list{
+    float: left;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+._preview {
+    position: relative;
+    float: left;
+    list-style: none;
+}
+.type_preview {
+    background-position: -31px -30px;
+    width: 27px;
+    display: inline-block;
+    height: 25px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/new_master/ico_view_type.png);
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+    vertical-align: top;
+}
+._onlyTitle {
+    position: relative;
+    float: left;
+    list-style: none;
+}
+.type_title {
+    background-position: -1px 0;
+    display: inline-block;
+    width: 26px;
+    height: 25px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/new_master/ico_view_type.png);
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+    vertical-align: top;
+}

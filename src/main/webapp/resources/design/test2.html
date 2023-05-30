@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test2</title>
+    <link rel="stylesheet" href="../css/component.css">
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+</head>
+<body>
+<header>
+    <div class="header-box">
+        <div style="width: 600px;;margin-left: 15px;">
+            <span><a href="/login/index" class="header-logo">NAVER</a></span>
+            <h2 style="display: inline"><a href="#" id="header-logo2">지식iN</a></h2>
+            <div id="header-search-div">
+                <form action="#" method="post">
+                    <input type="text" name="headerSearch" id="header-search">
+                    <span id="search-Query">
+                    <input type="submit" id="search-icon">
+                        </span>
+                </form>
+            </div>
+            <div style="position: relative;display: inline;" class="gnb_common_area">
+                <div id="header-myPage-box">
+                    <a href="#" style="position: relative;text-decoration: none;color: black;"
+                       id="layout-controller">
+                        <img id="header-myPage-img"
+                             src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
+                             alt="내 프로필 이미지" style="display: inline-block;">
+                        <span class="filter_mask" style="display: inline-block;"></span>
+                        <span id="header-myPage-name" style="display: inline-block;">${memberDTO.memberEmail}</span>
+                        <em class="blind">내정보 보기</em>
+                    </a>
+                </div>
+                <!-- 레이아웃 박스 -->
+                <div class="header-layout-box" id="layout-box">
+                    <span class="header-layout-pointer"></span>
+                    <div class="header-layout-content">
+                        <div class="layout-img-area">
+                            <span class="layout-img-mask"></span>
+                            <img src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
+                                 width="80" height="80" alt="프로필 이미지">
+                            <a href="#"
+                               class="layout-img-change">
+                                <span class="blind">프로필 사진 변경</span>
+                            </a>
+                        </div>
+                        <div class="layout-txt-area">
+                            <p class="layout-user-account">
+                            <span class="layout-user-name">
+                                <a class="layout-user-nick" href="#">${memberDTO.memberEmail}</a>님
+                            </span>
+                                <a class="layout-logout" href="/member/logout">
+                                    <span class="layout-logout-bg"></span>
+                                    <span class="layout-logout-bdr"></span>
+                                    <span class="layout-logout-txt">로그아웃</span>
+                                </a>
+                            </p>
+                            <a href="#" class="layout-user-domain">${memberDTO.memberDomain}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<nav>
+    <div id="nav-inner">
+        <h3 class="blind"></h3>
+        <ul id="nav-list" style="display: flex;justify-content: center;">
+            <li class="nav-menu"><a href="/login/index" class="nav-list-item"><em>홈</em></a></li>
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>Q&A</em></a></li>
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>답변하기</em></a></li>
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>명예의전당</em></a></li>
+            <li class="nav-menu"><span class="nav-list-bar">|</span><a href="#" class="nav-list-item"
+                                                                       style="width: auto;"><em>프로필</em></a></li>
+            <li class="nav-menu"><a href="#" class="nav-list-item"><em>룰렛</em></a></li>
+            <li class="nav-menu"><span class="nav-list-bar">|</span></li>
+
+            <li class="nav-menu" style="background-color: #00c73c;border: 1px solid #00bd39;margin-left: 15px;">
+                <a href="/board/save" class="nav-list-item-question">
+                    <span class="btn_inner">
+                        <i class="nav-list-item-question-icon"></i>질문하기
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section>
+    <div class="qnaContainer">
+        <div class="container-fluid-content-inner">
+            <h3 class="blind">답변하기 영역</h3>
+            <div class="section_answer">
+                <div class="section_answer-container">
+                    <div class="section_answer-main-container">
+                        <div class="title_area">
+                            <ul>
+                                <li class="title_area-item">
+                                    <span class="main2-tab-title">
+                                        <span class="line-hold">답변을 기다리는 질문</span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div>
+                                <h4 class="blind">답변을 기다리는 질문</h4>
+                                <div class="main2-contents-box">
+                                    <div class="main2-contents-inner">
+                                        <div class="main2-contents-header">
+                                            <h5 class="main2-contents-title">
+                                                <a href="#">
+                                                    <strong>전체</strong>
+                                                    <span class="blind">QnA바로가기 링크 넣는곳</span>
+                                                </a>
+                                            </h5>
+                                            <div class="main2-contents-search">
+                                                <form action="#" method="post" title="QnA검색을 위한 공간">
+                                                    <span class="blind">QnA검색을 위한 공간</span>
+                                                    <input type="text" class="main2-search-input">
+                                                    <input type="submit" class="main2-search-input-btn" name="main2Search" style="cursor: pointer;">
+                                                </form>
+                                            </div>
+                                            <div class="sort-list-box">
+                                                <div class="sort-list-box-left">
+                                                    <div class="views-type-area">
+                                                        <p class="blind">보기옵션 선택</p>
+                                                        <ul class="view_type_list">
+                                                            <li class="_preview">
+                                                                <a href="#" class="type_preview">미리보기형</a>
+                                                            </li>
+                                                            <li class="_onlyTitle">
+                                                                <a href="#" class="type_title">제목형</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="main2-contents-block">
+                                            </div>
+                                            <div class="main2-contents-list-box">
+                                                <div class="main2-contents-list-inner">
+                                                    <div class="main2-contents-list-item">
+                                                        <a href="#" class="main2-contents-item">
+                                                            <span class="power_grade" title="내공 전시장">
+                                                                    500
+                                                            </span>
+                                                            <span class="main2-item-title">
+                                                                    이거 꼭 만들고 잔다 ㅅㅂ
+                                                            </span>
+                                                            <p class="main2-item-contents">
+                                                                사범대 진학 희망하는데 사회문화 변화가 교육이랑
+                                                                관련된 책 추천 좀 해주세요..
+                                                                어렵지 않은 책으로여!
+                                                            </p>
+                                                        </a>
+                                                    </div>
+                                                    <div class="main2-item-info">
+                                                        <span class="item-info-answer">답변 0</span>
+                                                        <span class="item-info-type">없음</span>
+                                                        <span class="item-info-time">방금</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="main2-contents-paging-box">
+                                                <a href="#" class="QnA-back-bnt-on">이전</a>
+                                                <a href="#" class="QnA-paging-bnt-off">1</a>
+                                                <a href="#" class="QnA-paging-bnt-on">2</a>
+                                                <a href="#" class="QnA-next-bnt-on">다음</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer style="text-align: center;padding:15px 0 15px;">
+    <div style="margin-top: 9px;letter-spacing: -.5px;">
+        <ul class="footer_link" id="footer_link" style="list-style: none;">
+            <li><a target="_blank" class="footer_item" href="http://www.naver.com/rules/service.html"
+                   id="fot.agreement"><span class="text">이용약관</span></a></li>
+
+            <li><a target="_blank" class="footer_item" href="http://www.naver.com/rules/privacy.html"
+                   id="fot.privacy"><span class="text"><strong>개인정보처리방침</strong></span></a></li>
+
+            <li><a target="_blank" class="footer_item" href="http://www.naver.com/rules/disclaimer.html"
+                   id="fot.disclaimer"><span class="text">책임의 한계와 법적고지</span></a></li>
+
+            <li><a target="_blank" class="footer_item"
+                   href="https://help.naver.com/support/service/main.nhn?serviceNo=532" id="fot.help"><span
+                    class="text">회원정보 고객센터</span></a></li>
+        </ul>
+        <a href="https://www.navercorp.com/" style="text-decoration: none;color: black;"><samp
+                id="footer-logo"><samp style="position: absolute;clip:rect( 0 0 0 0);">NAVE</samp></samp></a>
+        <span class="text" style="font-size: 12px;line-height: 16px;color: #888;">Copyright</span>
+        <span class="corp" style="font-size: 12px;line-height: 16px;">© NAVER Corp.</span>
+        <span class="text" style="font-size: 12px;line-height: 16px;color: #888;">All Rights Reserved.</span>
+    </div>
+</footer>
+<script>
+    window.onload = function () {
+        const layoutController = document.getElementById('layout-controller');
+        const layoutBox = document.getElementById('layout-box');
+        layoutController.addEventListener("click", function () {
+            if (layoutBox.style.display === "block") {
+                layoutBox.style.display = "none";
+            } else {
+                layoutBox.style.display = "block";
+            }
+        })
+    }
+</script>
+</body>
+</html>

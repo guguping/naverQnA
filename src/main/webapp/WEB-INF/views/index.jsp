@@ -218,7 +218,7 @@
                                                             </div>
                                                             <div class="main2-item-info">
                                                                 <span class="item-info-answer">답변 ${qnaBoardList.boardAnswer}</span>
-                                                                <span class="item-info-type">없음</span>
+                                                                <span class="item-info-type">조회수 ${qnaBoardList.boardHits}</span>
                                                                 <span class="item-info-time"><fmt:formatDate
                                                                         value="${qnaBoardList.boardCreatedDate}"
                                                                         pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></span>
