@@ -52,21 +52,21 @@
                                                            name="main2Search" style="cursor: pointer;">
                                                 </form>
                                             </div>
-                                            <div class="sort-list-box">
-                                                <div class="sort-list-box-left">
-                                                    <div class="views-type-area">
-                                                        <p class="blind">보기옵션 선택</p>
-                                                        <ul class="view_type_list">
-                                                            <li class="_preview">
-                                                                <a href="#" class="type_preview">미리보기형</a>
-                                                            </li>
-                                                            <li class="_onlyTitle">
-                                                                <a href="#" class="type_title">제목형</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+<%--                                            <div class="sort-list-box">--%>
+<%--                                                <div class="sort-list-box-left">--%>
+<%--                                                    <div class="views-type-area">--%>
+<%--                                                        <p class="blind">보기옵션 선택</p>--%>
+<%--                                                        <ul class="view_type_list">--%>
+<%--                                                            <li class="_preview">--%>
+<%--                                                                <a href="#" class="type_preview">미리보기형</a>--%>
+<%--                                                            </li>--%>
+<%--                                                            <li class="_onlyTitle">--%>
+<%--                                                                <a href="#" class="type_title">제목형</a>--%>
+<%--                                                            </li>--%>
+<%--                                                        </ul>--%>
+<%--                                                    </div>--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
                                             <div class="main2-contents-block">
                                             </div>
                                             <div class="main2-contents-list-box">

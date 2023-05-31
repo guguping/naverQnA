@@ -186,7 +186,7 @@
                                 <div class="main2-contents-box">
                                     <div class="main2-contents-inner">
                                         <div class="main2-contents-header">
-                                            <h5 class="main2-contents-title">
+                                            <h5 class="main2-contents-title" style="top: -3px;">
                                                 <a href="#">
                                                     <strong>전체</strong>
                                                     <span class="blind">QnA바로가기 링크 넣는곳</span>
