@@ -2090,9 +2090,10 @@ a{
     font-size: 13px;
     line-height: 22px;
     font-style: normal;
+    min-width: 50px;
 }
 .info {
-    width: 86px;
+    min-width: 51px;
     margin-right: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2118,4 +2119,10 @@ a{
 }
 em {
     font-style: normal;
+}
+#titleTypeQna {
+    display: none;
+}
+#ajax-numResult {
+    display: none;
 }

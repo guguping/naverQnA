@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class BoardController {
@@ -114,6 +116,18 @@ public class BoardController {
         model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));
         model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "/boardPage/boardQna";
+    }
+    @PostMapping("/boardQna/UDPage")
+    public ResponseEntity boardQnaUD(@RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
+                                     @RequestParam(value = "q",required = false,defaultValue = "") String q) {
+        PageDTO qnaPageDTO = new PageDTO();
+        qnaPageDTO.setPage(qnaPage);
+
+        Map<String,Object> boardQnaResponse = new HashMap<>();
+
+        boardQnaResponse.put("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
+        boardQnaResponse.put("qnaBoardPage",boardService.qnaPagingParam(qnaPageDTO,q));
+        return new ResponseEntity<>(boardQnaResponse,HttpStatus.OK);
     }
 
 }

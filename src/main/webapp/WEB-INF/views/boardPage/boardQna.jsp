@@ -14,6 +14,7 @@
     <title>boardQna</title>
     <link rel="stylesheet" href="/resources/css/component.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
 <body>
 <%@include file="../component/header.jsp" %>
@@ -148,6 +149,8 @@
                                                     <div class="tit_wrap">
                                                         <a href="/board/detail?BoardId=${qnaBoardDTOList.id}"
                                                            target="_blank" class="tit_wrap_link_a">
+                                                            <span class="power_grade" style="margin-right: 10px;"
+                                                                  title="내공 전시장">500</span>
                                                             <span class="tit_txt">${qnaBoardDTOList.boardTitle}</span>
                                                         </a>
                                                     </div>
@@ -199,14 +202,15 @@
                                             </c:forEach>
                                         </div>
 
-                                        <div class="main2-contents-paging-box">
-                                                <span id="backBtnResult">
+                                        <div class="main2-contents-paging-box" id="numResult">
+                                                <span>
                                                 <c:if test="${qnaPaging.page > 1}">
-                                                    <a href="/board/Qna?qnaPage=${qnaPaging.page-1}&q=${qnaPaging.q}"
-                                                       class="QnA-back-bnt-on" style="cursor: pointer;">이전</a>
+                                                    <a class="QnA-back-bnt-on"
+                                                       href="/board/Qna?qnaPage=${qnaPaging.page-1}&q=${qnaPaging.q}"
+                                                       style="cursor: pointer;">이전</a>
                                                 </c:if>
                                                 </span>
-                                            <div style="display: inline-block;" id="numResult">
+                                            <div style="display: inline-block;">
                                                 <c:forEach begin="${qnaPaging.startPage}"
                                                            end="${qnaPaging.endPage}" var="i" step="1">
                                                     <c:choose>
@@ -214,8 +218,40 @@
                                                             <a class="QnA-paging-bnt-off">${i}</a>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <a href="/board/Qna?qnaPage=${i}&q=${qnaPaging.q}"
-                                                               class="QnA-paging-bnt-on"
+                                                            <a class="QnA-paging-bnt-on"
+                                                               href="/board/Qna?qnaPage=${i}&q=${qnaPaging.q}"
+                                                               style="cursor: pointer;">${i}</a>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </div>
+                                            <span>
+                                                <c:if test="${qnaPaging.page != qnaPaging.maxPage}">
+                                                    <a class="QnA-next-bnt-on"
+                                                       href="/board/Qna?qnaPage=${qnaPaging.page+1}&q=${qnaPaging.q}"
+                                                       style="cursor: pointer;">다음</a>
+                                                </c:if>
+                                            </span>
+                                        </div>
+
+                                        <div class="main2-contents-paging-box" id="ajax-numResult">
+                                                <span id="backBtnResult">
+                                                <c:if test="${qnaPaging.page > 1}">
+                                                    <a class="QnA-back-bnt-on"
+                                                       onclick="qnaListNBBtn(${qnaPaging.page-1},${qnaPaging.q})"
+                                                       style="cursor: pointer;">이전</a>
+                                                </c:if>
+                                                </span>
+                                            <div id="ajax-numResult-numBtn" style="display: inline-block;">
+                                                <c:forEach begin="${qnaPaging.startPage}"
+                                                           end="${qnaPaging.endPage}" var="i" step="1">
+                                                    <c:choose>
+                                                        <c:when test="${i eq qnaPaging.page}">
+                                                            <a class="QnA-paging-bnt-off">${i}</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a class="QnA-paging-bnt-on"
+                                                               onclick="qnaListNBBtn(${i},${qnaPaging.q})"
                                                                style="cursor: pointer;">${i}</a>
                                                         </c:otherwise>
                                                     </c:choose>
@@ -223,11 +259,13 @@
                                             </div>
                                             <span id="nextBtnResult">
                                                 <c:if test="${qnaPaging.page != qnaPaging.maxPage}">
-                                                    <a href="/board/Qna?qnaPage=${qnaPaging.page+1}&q=${qnaPaging.q}"
-                                                       class="QnA-next-bnt-on" style="cursor: pointer;">다음</a>
+                                                    <a class="QnA-next-bnt-on"
+                                                       onclick="qnaListNBBtn(${qnaPaging.page+1},${qnaPaging.q})"
+                                                       style="cursor: pointer;">다음</a>
                                                 </c:if>
                                             </span>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -266,23 +304,113 @@
     const previewTypeQna = () => {
         const previewTypeQna = document.getElementById('previewTypeQna');
         const titleTypeQna = document.getElementById('titleTypeQna');
+        const numResult = document.getElementById('numResult');
+        const ajaxNumResult = document.getElementById('ajax-numResult');
         $('#type_title').removeClass('type_title1');
         $('#type_preview').removeClass('type_preview1');
         $('#type_title').addClass('type_title');
         $('#type_preview').addClass('type_preview');
         previewTypeQna.style.display = "block";
+        numResult.style.display = "block";
         titleTypeQna.style.display = "none";
+        ajaxNumResult.style.display = "none";
     }
     const titleTypeQna = () => {
         const titleTypeQna = document.getElementById('titleTypeQna');
         const previewTypeQna = document.getElementById('previewTypeQna');
+        const numResult = document.getElementById('numResult');
+        const ajaxNumResult = document.getElementById('ajax-numResult');
         $('#type_title').removeClass('type_title');
         $('#type_preview').removeClass('type_preview');
         $('#type_title').addClass('type_title1');
         $('#type_preview').addClass('type_preview1');
         previewTypeQna.style.display = "none";
+        numResult.style.display = "none";
         titleTypeQna.style.display = "block";
-
+        ajaxNumResult.style.display = "block";
+    }
+    const qnaListNBBtn = (qnaPagingPage, qnaSearch) => {
+        const qnaPage = qnaPagingPage;
+        const q = qnaSearch;
+        const ListResult = document.getElementById('titleTypeQna');
+        const numResult = document.getElementById('ajax-numResult-numBtn');
+        const backBtnResult = document.getElementById('backBtnResult');
+        const nextBtnResult = document.getElementById('nextBtnResult');
+        const previewTypeQna = document.getElementById('previewTypeQna');
+        $.ajax({
+            type: "post",
+            url: "/boardQna/UDPage",
+            data: {
+                "qnaPage": qnaPage,
+                "q": q
+            },
+            success: function (res) {
+                let outPut = "";
+                let numPut = "";
+                let downPut = "";
+                downPut += '<a class="QnA-back-bnt-on" style="cursor: pointer;" onclick="qnaListNBBtn(' + (res.qnaBoardPage.page - 1) + ',' + res.qnaBoardPage.q + ')">이전</a>';
+                let upPut = "";
+                upPut += '<a class="QnA-next-bnt-on" style="cursor: pointer;" onclick="qnaListNBBtn(' + (res.qnaBoardPage.page + 1) + ',' + res.qnaBoardPage.q + ')">다음</a>';
+                for (let i in res.qnaBoardDTOList) {
+                    outPut += '<div class="answer_box" style="border-top: 1px solid #cacccc;position: relative;">';
+                    outPut += '<div class="tit_wrap">'
+                    outPut += '<a href="/board/detail?BoardId=' + res.qnaBoardDTOList[i].id + '" target="_blank" class="tit_wrap_link_a">';
+                    outPut += '<span class="power_grade" style="margin-right: 10px;" title="내공 전시장">500</span>';
+                    outPut += '<span class=tit_txt">' + res.qnaBoardDTOList[i].boardTitle + '</span>';
+                    outPut += '</a>';
+                    outPut += '</div>';
+                    outPut += '<div class="update_info">';
+                    outPut += '<span class="num_answer">';
+                    outPut += '답변 <em>' + res.qnaBoardDTOList[i].boardAnswer +'</em>';
+                    outPut += '</span>';
+                    outPut += '<span class="info">';
+                    let nowTime = new Date().getTime(); // 현재 시간을 밀리초로 가져옴
+                    let commentDate = new Date(res.qnaBoardDTOList[i].boardCreatedDate); // DTO의 boardCreatedDate를 JavaScript Date 객체로 변환
+                    let timeDifference = (nowTime - commentDate) / (1000 * 60); // 분 단위로 시간 차이 계산
+                    if (timeDifference <= 10) {
+                        outPut += '방금 전';
+                    } else if (timeDifference > 10 && timeDifference <= 60) {
+                        outPut += moment(timeDifference) + '분 전';
+                    } else if (timeDifference > 60 && timeDifference <= 60 * 24) {
+                        timeDifference = (timeDifference / 60);
+                        outPut += moment(timeDifference) + '시간 전';
+                    } else if (timeDifference > 60 * 24 && timeDifference <= 60 * 24 * 30) {
+                        timeDifference = (timeDifference / (60 * 24));
+                        outPut += moment(timeDifference) + '일 전';
+                    } else if (timeDifference > 60*24 && timeDifference <= 60*24*30){
+                        outPut += moment(timeDifference) + '일 전';
+                    } else {
+                        outPut += moment(res.qnaBoardDTOList[i].boardCreatedDate).format("YYYY-MM-DD HH:mm");
+                    }
+                    outPut += '</span>';
+                    outPut += '</div>';
+                    outPut += '</div>';
+                }
+                for (let i = res.qnaBoardPage.startPage; i <= res.qnaBoardPage.endPage; i++) {
+                    if (res.qnaBoardPage.page == i) {
+                        numPut += '<a class="QnA-paging-bnt-off">' + i + '</a>';
+                    } else {
+                        numPut += '<a class="QnA-paging-bnt-on" style="cursor: pointer;" onclick="qnaListNBBtn(' + i + ',' + res.qnaBoardPage.q + ')">' + i + '</a>';
+                    }
+                }
+                if (res.qnaBoardPage.page <= 1) {
+                    backBtnResult.innerHTML = "";
+                } else {
+                    backBtnResult.innerHTML = downPut;
+                }
+                if (res.qnaBoardPage.page == res.qnaBoardPage.maxPage) {
+                    nextBtnResult.innerHTML = "";
+                } else if (res.qnaBoardPage.page != res.qnaBoardPage.maxPage) {
+                    nextBtnResult.innerHTML = upPut;
+                }
+                numResult.innerHTML = numPut;
+                ListResult.innerHTML = outPut;
+            },
+            error: function () {
+                console.log("실패");
+            }
+        })
+        previewTypeQna.scrollIntoView({behavior: 'auto'});
     }
 </script>
 </html>

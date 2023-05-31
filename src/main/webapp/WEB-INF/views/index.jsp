@@ -347,15 +347,14 @@
                     outPut += '</div>';
                     outPut += '<div class="main2-item-info">';
                     outPut += '<span class="item-info-answer">답변 ' + res.qnaBoardDTOList[i].boardAnswer + '</span>';
-                    outPut += '<span class="item-info-type">없음</span>';
+                    outPut += '<span class="item-info-type">조회수 '+ res.qnaBoardDTOList[i].boardHits +'</span>';
                     outPut += '<span class="item-info-time">';
                     let nowTime = new Date().getTime(); // 현재 시간을 밀리초로 가져옴
                     let commentDate = new Date(res.qnaBoardDTOList[i].boardCreatedDate); // DTO의 boardCreatedDate를 JavaScript Date 객체로 변환
                     let timeDifference = (nowTime - commentDate) / (1000 * 60); // 분 단위로 시간 차이 계산
                     if (timeDifference <= 10){
                         outPut +=  '방금 전';
-                    }
-                    if (timeDifference > 10 && timeDifference <= 60){
+                    } else if (timeDifference > 10 && timeDifference <= 60){
                         outPut += moment(timeDifference)+'분 전';
                     } else if (timeDifference > 60 && timeDifference <= 60*24){
                         timeDifference = (timeDifference / 60);
