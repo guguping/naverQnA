@@ -1,5 +1,6 @@
 package com.icia.naverQnA.Service;
 
+import com.icia.naverQnA.DTO.BoardDTO;
 import com.icia.naverQnA.DTO.CommentDTO;
 import com.icia.naverQnA.DTO.PageDTO;
 import com.icia.naverQnA.Repository.CommentRepository;
@@ -32,5 +33,9 @@ public class CommentService {
             DetailPageDTO.setEndPage(DetailPageDTO.getMaxPage());
         }
         return DetailPageDTO;
+    }
+    public Long findByHoly() {
+        String holy = "성지";
+        return commentRepository.findByHoly(holy);
     }
 }

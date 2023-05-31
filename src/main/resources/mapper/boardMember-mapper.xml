@@ -48,4 +48,7 @@
     <select id="findByAnswerList" parameterType="answer" resultType="answer">
         select * from answer_table where boardId = #{boardId}
     </select>
+    <select id="findByFirst" resultType="board">
+        select * from board_table where boardCreatedDate >= DATE (now()) order by boardCreatedDate asc limit 1
+    </select>
 </mapper>

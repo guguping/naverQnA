@@ -23,4 +23,8 @@ public class CommentRepository {
     public List<CommentDTO> commentList(PageDTO DetailPage) {
         return sql.selectList("boardComment.commentList",DetailPage);
     }
+
+    public Long findByHoly(String holy) {
+        return sql.selectOne("boardComment.findByHoly",holy);
+    }
 }

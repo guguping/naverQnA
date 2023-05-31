@@ -4,6 +4,7 @@ import com.icia.naverQnA.DTO.BoardDTO;
 import com.icia.naverQnA.DTO.MemberDTO;
 import com.icia.naverQnA.DTO.PageDTO;
 import com.icia.naverQnA.Service.BoardService;
+import com.icia.naverQnA.Service.CommentService;
 import com.icia.naverQnA.Service.MemberService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class HomeController {
     private BoardService boardService;
     @Autowired
     private MemberService memberService;
+    @Autowired
+    CommentService commentService;
 
     @GetMapping("/")
     public String Index(@RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
@@ -48,6 +51,8 @@ public class HomeController {
         String bestBoardTime = Time.getDate() + "일 " + formattedHours+"시 기준";
 
         String bestBoardCount = "6";
+        model.addAttribute("firstBoard",boardService.findByFirst());
+        model.addAttribute("holyLand",boardService.findByBoard(commentService.findByHoly()));
         model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
         model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO,q));
         model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
@@ -77,6 +82,8 @@ public class HomeController {
         model.addAttribute("bestBoardTime",bestBoardTime);
 
         String bestBoardCount = "6";
+        model.addAttribute("firstBoard",boardService.findByFirst());
+        model.addAttribute("holyLand",boardService.findByBoard(commentService.findByHoly()));
         model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
         model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO,q));
         model.addAttribute("bestBoardCount",bestBoardCount);

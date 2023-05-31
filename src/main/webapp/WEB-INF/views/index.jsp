@@ -44,23 +44,23 @@
                         </a>
                     </div>
                     <div class="section-wrap-hall" style="margin-right: 10px;">
-                        <a href="#" class="hall-link">
+                        <a href="/board/detail?BoardId=${holyLand.id}" target="_blank" class="hall-link">
                             <div class="hall-title">
                                 <h2 class="subtitle1">
                                     <span class="blind">지식iN 성지</span>
                                 </h2>
-                                <!-- 댓글 "성지순례" 갯수 당 자동 등록-->
-                                <p class="description">김보성 기부 많이 하나요?</p>
+                                <!-- 댓글 "성지" 갯수 당 자동 등록-->
+                                <p class="description">${holyLand.boardTitle}</p>
                             </div>
                         </a>
                     </div>
                     <div class="section-wrap-today" style="margin-right: 10px;">
-                        <a href="#" class="today-link">
+                        <a href="/board/detail?BoardId=${firstBoard.id}" target="_blank" class="today-link">
                             <div class="today-title">
                                 <h2 class="subtitle2">
                                     <span class="blind">오늘의 질문</span>
                                 </h2>
-                                <p class="description">내가 좋아하는 소스는?!</p>
+                                <p class="description">${firstBoard.boardTitle}</p>
                             </div>
                         </a>
                     </div>

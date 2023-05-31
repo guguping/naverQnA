@@ -64,4 +64,8 @@ public class BoardRepository {
     public List<AnswerDTO> findByAnswerList(Long boardId) {
         return sql.selectList("naverBoard.findByAnswerList",boardId);
     }
+
+    public Object findByFirst() {
+        return sql.selectOne("naverBoard.findByFirst");
+    }
 }

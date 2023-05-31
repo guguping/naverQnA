@@ -91,4 +91,8 @@ public class BoardService {
     public List<AnswerDTO> findByAnswerList(Long boardId) {
         return boardRepository.findByAnswerList(boardId);
     }
+
+    public Object findByFirst() {
+        return boardRepository.findByFirst();
+    }
 }
