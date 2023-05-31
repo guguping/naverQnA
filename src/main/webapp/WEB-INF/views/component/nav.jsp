@@ -13,7 +13,14 @@
                 </c:otherwise>
             </c:choose>
             <li class="nav-menu"><a href="/board/Qna" class="nav-list-item"><em>Q&A</em></a></li>
-            <li class="nav-menu"><a href="/board/Rank" class="nav-list-item"><em>명예의전당</em></a></li>
+<%--            <c:choose>--%>
+<%--                <c:when test="${sessionScope.memberId != null}">--%>
+<%--                    <li class="nav-menu"><a href="/board/loginRank?memberId=${sessionScope.memberId}" class="nav-list-item"><em>명예의전당</em></a></li>--%>
+<%--                </c:when>--%>
+<%--                <c:otherwise>--%>
+                    <li class="nav-menu"><a href="/board/Rank" class="nav-list-item"><em>명예의전당</em></a></li>
+<%--                </c:otherwise>--%>
+<%--            </c:choose>--%>
             <li class="nav-menu"><span class="nav-list-bar">|</span><a href="#" class="nav-list-item"
                                                                        style="width: auto;"><em>프로필</em></a></li>
             <li class="nav-menu"><a href="#" class="nav-list-item"><em>룰렛</em></a></li>

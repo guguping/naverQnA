@@ -130,8 +130,8 @@ public class BoardController {
         return new ResponseEntity<>(boardQnaResponse,HttpStatus.OK);
     }
     @GetMapping("/board/Rank")
-    public String boardRank() {
+    public String boardRank(Model model,HttpSession session) {
+        model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "/boardPage/boardRank";
     }
-
 }
