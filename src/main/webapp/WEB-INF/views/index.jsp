@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date"/>
 <html>
 <head>
     <title>index</title>
@@ -219,9 +220,47 @@
                                                             <div class="main2-item-info">
                                                                 <span class="item-info-answer">답변 ${qnaBoardList.boardAnswer}</span>
                                                                 <span class="item-info-type">조회수 ${qnaBoardList.boardHits}</span>
-                                                                <span class="item-info-time"><fmt:formatDate
-                                                                        value="${qnaBoardList.boardCreatedDate}"
-                                                                        pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></span>
+                                                                <span class="item-info-time">
+                                                                    <fmt:parseNumber value="${now.time / (1000*60)}" var="nowfmtTime"/><!-- .time 필수 -->
+                                                                    <fmt:parseNumber value="${qnaBoardList.boardCreatedDate.time / (1000*60)}" var="commentDatefmtTime"/><!-- .time 필수 -->
+                                                            <fmt:parseNumber value="${nowfmtTime - commentDatefmtTime}"
+                                                                             var="timeDefference"/>
+                                                            <c:choose>
+                                                                <c:when test="${timeDefference <= 10}"><!-- 10분 이하 -->
+                                                                    방금 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 10 && timeDefference <= 60}"><!-- 1시간 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }분 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60 && timeDefference <= 60*24}"><!-- 24시간 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference / 60}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }시간 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24 && timeDefference <= 60*24*30}"><!-- 30일 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference / (60*24)}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }일 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24*30 && timeDefference <= 60*24*365}"><!-- 1년 이하 -->
+                                                                    <fmt:parseNumber
+                                                                            value="${timeDefference / (60*24*30)}"
+                                                                            integerOnly="true" var="timeDefference"/>
+                                                                    ${timeDefference }월 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24*365}">
+                                                                    <fmt:parseNumber
+                                                                            value="${timeDefference / (60*24*365)}"
+                                                                            integerOnly="true" var="timeDefference"/>
+                                                                    ${timeDefference }년 전
+                                                                </c:when>
+                                                            </c:choose>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -281,64 +320,82 @@
         const nextBtnResult = document.getElementById('nextBtnResult');
         const target = document.getElementById('section-inner-section');
         $.ajax({
-                type: "post",
-                url: "/index/UDPage",
-                data: {
-                    "qnaPage": qnaPage,
-                    "q": q
-                },
-                success: function (res) {
-                    let outPut = "";
-                    let numPut = "";
-                    let downPut = "";
-                    downPut += '<a class="QnA-back-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + (res.qnaBoardPage.page - 1) + ',' + res.qnaBoardPage.q + ')">이전</a>';
-                    let upPut = "";
-                    upPut += '<a class="QnA-next-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + (res.qnaBoardPage.page + 1) + ',' + res.qnaBoardPage.q + ')">다음</a>';
-                    for (let i in res.qnaBoardDTOList) {
-                        outPut += '<div class="main2-contents-list-box">';
-                        outPut += '<div class="main2-contents-list-inner">';
-                        outPut += '<div class="main2-contents-list-item">';
-                        outPut += '<a href="/board/detail?BoardId=' + res.qnaBoardDTOList[i].id + '" target="_blank" class="main2-contents-item">';
-                        outPut += '<span class="power_grade" title="내공 전시장">';
-                        outPut += '500';
-                        outPut += '</span>';
-                        outPut += '<span class="main2-item-title">' + res.qnaBoardDTOList[i].boardTitle + '</span>';
-                        outPut += '<p class="main2-item-contents">' + res.qnaBoardDTOList[i].boardContents + '</p>';
-                        outPut += '</a>';
-                        outPut += '</div>';
-                        outPut += '<div class="main2-item-info">';
-                        outPut += '<span class="item-info-answer">답변 ' + res.qnaBoardDTOList[i].boardAnswer + '</span>';
-                        outPut += '<span class="item-info-type">없음</span>';
-                        outPut += '<span class="item-info-time">' + moment(res.qnaBoardDTOList[i].boardCreatedDate).format("YYYY-MM-DD HH:mm:ss") + '</span>';
-                        outPut += '</div>';
-                        outPut += '</div>';
-                        outPut += '</div>';
+            type: "post",
+            url: "/index/UDPage",
+            data: {
+                "qnaPage": qnaPage,
+                "q": q
+            },
+            success: function (res) {
+                let outPut = "";
+                let numPut = "";
+                let downPut = "";
+                downPut += '<a class="QnA-back-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + (res.qnaBoardPage.page - 1) + ',' + res.qnaBoardPage.q + ')">이전</a>';
+                let upPut = "";
+                upPut += '<a class="QnA-next-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + (res.qnaBoardPage.page + 1) + ',' + res.qnaBoardPage.q + ')">다음</a>';
+                for (let i in res.qnaBoardDTOList) {
+                    outPut += '<div class="main2-contents-list-box">';
+                    outPut += '<div class="main2-contents-list-inner">';
+                    outPut += '<div class="main2-contents-list-item">';
+                    outPut += '<a href="/board/detail?BoardId=' + res.qnaBoardDTOList[i].id + '" target="_blank" class="main2-contents-item">';
+                    outPut += '<span class="power_grade" title="내공 전시장">';
+                    outPut += '500';
+                    outPut += '</span>';
+                    outPut += '<span class="main2-item-title">' + res.qnaBoardDTOList[i].boardTitle + '</span>';
+                    outPut += '<p class="main2-item-contents">' + res.qnaBoardDTOList[i].boardContents + '</p>';
+                    outPut += '</a>';
+                    outPut += '</div>';
+                    outPut += '<div class="main2-item-info">';
+                    outPut += '<span class="item-info-answer">답변 ' + res.qnaBoardDTOList[i].boardAnswer + '</span>';
+                    outPut += '<span class="item-info-type">없음</span>';
+                    outPut += '<span class="item-info-time">';
+                    let nowTime = new Date().getTime(); // 현재 시간을 밀리초로 가져옴
+                    let commentDate = new Date(res.qnaBoardDTOList[i].boardCreatedDate); // DTO의 boardCreatedDate를 JavaScript Date 객체로 변환
+                    let timeDifference = (nowTime - commentDate) / (1000 * 60); // 분 단위로 시간 차이 계산
+                    if (timeDifference <= 10){
+                        outPut +=  '방금 전';
                     }
-                    for (let i = res.qnaBoardPage.startPage; i <= res.qnaBoardPage.endPage; i++) {
-                        if (res.qnaBoardPage.page == i) {
-                            numPut += '<a class="QnA-paging-bnt-off">' + i + '</a>';
-                        } else {
-                            numPut += '<a class="QnA-paging-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + i + ',' + res.qnaBoardPage.q + ')">' + i + '</a>';
-                        }
-                    }
-                    if (res.qnaBoardPage.page <= 1) {
-                        backBtnResult.innerHTML = "";
+                    if (timeDifference > 10 && timeDifference <= 60){
+                        outPut += moment(timeDifference)+'분 전';
+                    } else if (timeDifference > 60 && timeDifference <= 60*24){
+                        timeDifference = (timeDifference / 60);
+                        outPut += moment(timeDifference)+'시간 전';
+                    } else if (timeDifference > 60*24 && timeDifference <= 60*24*30){
+                        timeDifference = (timeDifference / (60*24));
+                        outPut += moment(timeDifference)+'일 전';
                     } else {
-                        backBtnResult.innerHTML = downPut;
+                        outPut += moment(res.qnaBoardDTOList[i].boardCreatedDate).format("YYYY-MM-DD HH:mm");
                     }
-                    if (res.qnaBoardPage.page == res.qnaBoardPage.maxPage) {
-                        nextBtnResult.innerHTML = "";
-                    } else if (res.qnaBoardPage.page != res.qnaBoardPage.maxPage) {
-                        nextBtnResult.innerHTML = upPut;
-                    }
-                    numResult.innerHTML = numPut;
-                    ListResult.innerHTML = outPut;
-                },
-                error: function () {
-                    console.log("실패");
+                    outPut += '</span>';
+                    outPut += '</div>';
+                    outPut += '</div>';
+                    outPut += '</div>';
                 }
-            })
-        target.scrollIntoView({ behavior: 'auto' });
+                for (let i = res.qnaBoardPage.startPage; i <= res.qnaBoardPage.endPage; i++) {
+                    if (res.qnaBoardPage.page == i) {
+                        numPut += '<a class="QnA-paging-bnt-off">' + i + '</a>';
+                    } else {
+                        numPut += '<a class="QnA-paging-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + i + ',' + res.qnaBoardPage.q + ')">' + i + '</a>';
+                    }
+                }
+                if (res.qnaBoardPage.page <= 1) {
+                    backBtnResult.innerHTML = "";
+                } else {
+                    backBtnResult.innerHTML = downPut;
+                }
+                if (res.qnaBoardPage.page == res.qnaBoardPage.maxPage) {
+                    nextBtnResult.innerHTML = "";
+                } else if (res.qnaBoardPage.page != res.qnaBoardPage.maxPage) {
+                    nextBtnResult.innerHTML = upPut;
+                }
+                numResult.innerHTML = numPut;
+                ListResult.innerHTML = outPut;
+            },
+            error: function () {
+                console.log("실패");
+            }
+        })
+        target.scrollIntoView({behavior: 'auto'});
     }
 </script>
 </html>

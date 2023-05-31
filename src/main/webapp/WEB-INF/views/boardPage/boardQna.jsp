@@ -8,10 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date"/>
 <html>
 <head>
     <title>boardQna</title>
     <link rel="stylesheet" href="/resources/css/component.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 <%@include file="../component/header.jsp" %>
@@ -44,7 +46,7 @@
                                                     <span class="blind">QnA바로가기 링크 넣는곳</span>
                                                 </a>
                                             </h5>
-                                            <div class="main2-contents-search">
+                                            <div class="main2-contents-search" style="z-index: 1000">
                                                 <form action="/board/Qna" method="get" title="QnA검색을 위한 공간">
                                                     <span class="blind">QnA검색을 위한 공간</span>
                                                     <input type="text" class="main2-search-input" name="q">
@@ -52,80 +54,179 @@
                                                            name="main2Search" style="cursor: pointer;">
                                                 </form>
                                             </div>
-<%--                                            <div class="sort-list-box">--%>
-<%--                                                <div class="sort-list-box-left">--%>
-<%--                                                    <div class="views-type-area">--%>
-<%--                                                        <p class="blind">보기옵션 선택</p>--%>
-<%--                                                        <ul class="view_type_list">--%>
-<%--                                                            <li class="_preview">--%>
-<%--                                                                <a href="#" class="type_preview">미리보기형</a>--%>
-<%--                                                            </li>--%>
-<%--                                                            <li class="_onlyTitle">--%>
-<%--                                                                <a href="#" class="type_title">제목형</a>--%>
-<%--                                                            </li>--%>
-<%--                                                        </ul>--%>
-<%--                                                    </div>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-                                            <div class="main2-contents-block">
+                                            <div class="sort-list-box">
+                                                <div class="sort-list-box-left">
+                                                    <div class="views-type-area">
+                                                        <p class="blind">보기옵션 선택</p>
+                                                        <div class="menu-type-box">
+                                                            <ul class="view_type_list">
+                                                                <li class="_preview">
+                                                                    <a href="#" class="type_preview" id="type_preview"
+                                                                       onclick="previewTypeQna()">미리보기형</a>
+                                                                </li>
+                                                                <li class="_onlyTitle">
+                                                                    <a href="#" class="type_title" id="type_title"
+                                                                       onclick="titleTypeQna()">제목형</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="main2-contents-list-box">
-                                                <c:forEach items="${qnaBoardDTOList}" var="qnaBoardDTOList">
-                                                    <div class="main2-contents-list-inner">
-                                                        <div class="main2-contents-list-item">
-                                                            <a href="#" class="main2-contents-item">
+                                        </div>
+                                        <div class="main2-contents-list-box" id="previewTypeQna">
+                                            <c:forEach items="${qnaBoardDTOList}" var="qnaBoardDTOList">
+                                                <div class="main2-contents-list-inner">
+                                                    <div class="main2-contents-list-item">
+                                                        <a href="/board/detail?BoardId=${qnaBoardDTOList.id}"
+                                                           class="main2-contents-item">
                                                             <span class="power_grade" title="내공 전시장">
                                                                     500
                                                             </span>
-                                                                <span class="main2-item-title">
-                                                                        ${qnaBoardDTOList.boardTitle}
-                                                                </span>
-                                                                <p class="main2-item-contents">
-                                                                        ${qnaBoardDTOList.boardContents}
-                                                                </p>
-                                                            </a>
-                                                        </div>
-                                                        <div class="main2-item-info">
-                                                            <span class="item-info-answer">답변 ${qnaBoardDTOList.boardAnswer}</span>
-                                                            <span class="item-info-type">조회수 ${qnaBoardDTOList.boardHits}</span>
-                                                            <span class="item-info-time"><fmt:formatDate
-                                                                    value="${qnaBoardList.boardCreatedDate}"
-                                                                    pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></span>
-                                                        </div>
+                                                            <span class="main2-item-title">
+                                                                    ${qnaBoardDTOList.boardTitle}
+                                                            </span>
+                                                            <p class="main2-item-contents">
+                                                                    ${qnaBoardDTOList.boardContents}
+                                                            </p>
+                                                        </a>
                                                     </div>
-                                                </c:forEach>
-                                            </div>
-                                            <div class="main2-contents-paging-box">
+                                                    <div class="main2-item-info">
+                                                        <span class="item-info-answer">답변 ${qnaBoardDTOList.boardAnswer}</span>
+                                                        <span class="item-info-type">조회수 ${qnaBoardDTOList.boardHits}</span>
+                                                        <span class="item-info-time">
+                                                            <fmt:parseNumber value="${now.time / (1000*60)}" var="nowfmtTime"/><!-- .time 필수 -->
+                                                            <fmt:parseNumber value="${qnaBoardDTOList.boardCreatedDate.time / (1000*60)}" var="commentDatefmtTime"/><!-- .time 필수 -->
+                                                            <fmt:parseNumber value="${nowfmtTime - commentDatefmtTime}"
+                                                                             var="timeDefference"/>
+                                                            <c:choose>
+                                                                <c:when test="${timeDefference <= 10}"><!-- 10분 이하 -->
+                                                                    방금 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 10 && timeDefference <= 60}"><!-- 1시간 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }분 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60 && timeDefference <= 60*24}"><!-- 24시간 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference / 60}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }시간 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24 && timeDefference <= 60*24*30}"><!-- 30일 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference / (60*24)}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }일 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24*30 && timeDefference <= 60*24*365}"><!-- 1년 이하 -->
+                                                                    <fmt:parseNumber
+                                                                            value="${timeDefference / (60*24*30)}"
+                                                                            integerOnly="true" var="timeDefference"/>
+                                                                    ${timeDefference }월 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24*365}">
+                                                                    <fmt:parseNumber
+                                                                            value="${timeDefference / (60*24*365)}"
+                                                                            integerOnly="true" var="timeDefference"/>
+                                                                    ${timeDefference }년 전
+                                                                </c:when>
+                                                            </c:choose>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+
+                                        <div class="main2-contents-list-box" id="titleTypeQna"
+                                             style="position: relative;">
+                                            <c:forEach items="${qnaBoardDTOList}" var="qnaBoardDTOList">
+                                                <div class="answer_box"
+                                                     style="border-top: 1px solid #cacccc;position: relative;">
+                                                    <div class="tit_wrap">
+                                                        <a href="/board/detail?BoardId=${qnaBoardDTOList.id}"
+                                                           target="_blank" class="tit_wrap_link_a">
+                                                            <span class="tit_txt">${qnaBoardDTOList.boardTitle}</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="update_info">
+                                                        <span class="num_answer">답변 <em>${qnaBoardDTOList.boardAnswer}</em></span>
+                                                        <span class="info">
+                                                            <fmt:parseNumber value="${now.time / (1000*60)}" var="nowfmtTime"/><!-- .time 필수 -->
+                                                            <fmt:parseNumber value="${qnaBoardDTOList.boardCreatedDate.time / (1000*60)}" var="commentDatefmtTime"/><!-- .time 필수 -->
+                                                            <fmt:parseNumber value="${nowfmtTime - commentDatefmtTime}"
+                                                                             var="timeDefference"/>
+                                                            <c:choose>
+                                                                <c:when test="${timeDefference <= 10}"><!-- 10분 이하 -->
+                                                                    방금 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 10 && timeDefference <= 60}"><!-- 1시간 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }분 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60 && timeDefference <= 60*24}"><!-- 24시간 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference / 60}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }시간 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24 && timeDefference <= 60*24*30}"><!-- 30일 이하 -->
+                                                                    <fmt:parseNumber value="${timeDefference / (60*24)}"
+                                                                                     integerOnly="true"
+                                                                                     var="timeDefference"/>
+                                                                    ${timeDefference }일 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24*30 && timeDefference <= 60*24*365}"><!-- 1년 이하 -->
+                                                                    <fmt:parseNumber
+                                                                            value="${timeDefference / (60*24*30)}"
+                                                                            integerOnly="true" var="timeDefference"/>
+                                                                    ${timeDefference }월 전
+                                                                </c:when>
+                                                                <c:when test="${timeDefference > 60*24*365}">
+                                                                    <fmt:parseNumber
+                                                                            value="${timeDefference / (60*24*365)}"
+                                                                            integerOnly="true" var="timeDefference"/>
+                                                                    ${timeDefference }년 전
+                                                                </c:when>
+                                                            </c:choose>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+
+                                        <div class="main2-contents-paging-box">
                                                 <span id="backBtnResult">
                                                 <c:if test="${qnaPaging.page > 1}">
-                                                    <a class="QnA-back-bnt-on" style="cursor: pointer;"
-                                                       onclick="main2ListNBBtn(${qnaPaging.page-1},${qnaPaging.q})">이전</a>
-                                                    <%-- href="/?qnaPage=${qnaPaging.page-1}&q=${qnaPaging.q}" --%>
+                                                    <a href="/board/Qna?qnaPage=${qnaPaging.page-1}&q=${qnaPaging.q}"
+                                                       class="QnA-back-bnt-on" style="cursor: pointer;">이전</a>
                                                 </c:if>
                                                 </span>
-                                                <div style="display: inline-block;" id="numResult">
-                                                    <c:forEach begin="${qnaPaging.startPage}"
-                                                               end="${qnaPaging.endPage}" var="i" step="1">
-                                                        <c:choose>
-                                                            <c:when test="${i eq qnaPaging.page}">
-                                                                <a class="QnA-paging-bnt-off">${i}</a>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <a class="QnA-paging-bnt-on" style="cursor: pointer;"
-                                                                   onclick="main2ListNBBtn(${i},${qnaPaging.q})">${i}</a>
-                                                                <%--href="/?qnaPage=${i}&q=${qnaPaging.q}"--%>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:forEach>
-                                                </div>
-                                                <span id="nextBtnResult">
-                                                <c:if test="${qnaPaging.page != qnaPaging.maxPage}">
-                                                    <a class="QnA-next-bnt-on" style="cursor: pointer;"
-                                                       onclick="main2ListNBBtn(${qnaPaging.page+1},${qnaPaging.q})">다음</a>
-                                                    <%--href="/?qnaPage=${qnaPaging.page+1}&q=${qnaPaging.q}"--%>
-                                                </c:if>
-                                                </span>
+                                            <div style="display: inline-block;" id="numResult">
+                                                <c:forEach begin="${qnaPaging.startPage}"
+                                                           end="${qnaPaging.endPage}" var="i" step="1">
+                                                    <c:choose>
+                                                        <c:when test="${i eq qnaPaging.page}">
+                                                            <a class="QnA-paging-bnt-off">${i}</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a href="/board/Qna?qnaPage=${i}&q=${qnaPaging.q}"
+                                                               class="QnA-paging-bnt-on"
+                                                               style="cursor: pointer;">${i}</a>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
                                             </div>
+                                            <span id="nextBtnResult">
+                                                <c:if test="${qnaPaging.page != qnaPaging.maxPage}">
+                                                    <a href="/board/Qna?qnaPage=${qnaPaging.page+1}&q=${qnaPaging.q}"
+                                                       class="QnA-next-bnt-on" style="cursor: pointer;">다음</a>
+                                                </c:if>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -162,73 +263,26 @@
 </footer>
 </body>
 <script>
-    // const main2ListNBBtn = (main2PagingPage, main2Search) => {
-    //     const qnaPage = main2PagingPage;
-    //     const q = main2Search;
-    //     const ListResult = document.getElementById('ajax-main2-contents-list-box');
-    //     const numResult = document.getElementById('numResult');
-    //     const backBtnResult = document.getElementById('backBtnResult');
-    //     const nextBtnResult = document.getElementById('nextBtnResult');
-    //     const target = document.getElementById('section-inner-section');
-    //     $.ajax({
-    //         type: "post",
-    //         url: "/index/UDPage",
-    //         data: {
-    //             "qnaPage": qnaPage,
-    //             "q": q
-    //         },
-    //         success: function (res) {
-    //             let outPut = "";
-    //             let numPut = "";
-    //             let downPut = "";
-    //             downPut += '<a class="QnA-back-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + (res.qnaBoardPage.page - 1) + ',' + res.qnaBoardPage.q + ')">이전</a>';
-    //             let upPut = "";
-    //             upPut += '<a class="QnA-next-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + (res.qnaBoardPage.page + 1) + ',' + res.qnaBoardPage.q + ')">다음</a>';
-    //             for (let i in res.qnaBoardDTOList) {
-    //                 outPut += '<div class="main2-contents-list-box">';
-    //                 outPut += '<div class="main2-contents-list-inner">';
-    //                 outPut += '<div class="main2-contents-list-item">';
-    //                 outPut += '<a href="/board/detail?BoardId=' + res.qnaBoardDTOList[i].id + '" target="_blank" class="main2-contents-item">';
-    //                 outPut += '<span class="power_grade" title="내공 전시장">';
-    //                 outPut += '500';
-    //                 outPut += '</span>';
-    //                 outPut += '<span class="main2-item-title">' + res.qnaBoardDTOList[i].boardTitle + '</span>';
-    //                 outPut += '<p class="main2-item-contents">' + res.qnaBoardDTOList[i].boardContents + '</p>';
-    //                 outPut += '</a>';
-    //                 outPut += '</div>';
-    //                 outPut += '<div class="main2-item-info">';
-    //                 outPut += '<span class="item-info-answer">답변 ' + res.qnaBoardDTOList[i].boardAnswer + '</span>';
-    //                 outPut += '<span class="item-info-type">없음</span>';
-    //                 outPut += '<span class="item-info-time">' + moment(res.qnaBoardDTOList[i].boardCreatedDate).format("YYYY-MM-DD HH:mm:ss") + '</span>';
-    //                 outPut += '</div>';
-    //                 outPut += '</div>';
-    //                 outPut += '</div>';
-    //             }
-    //             for (let i = res.qnaBoardPage.startPage; i <= res.qnaBoardPage.endPage; i++) {
-    //                 if (res.qnaBoardPage.page == i) {
-    //                     numPut += '<a class="QnA-paging-bnt-off">' + i + '</a>';
-    //                 } else {
-    //                     numPut += '<a class="QnA-paging-bnt-on" style="cursor: pointer;" onclick="main2ListNBBtn(' + i + ',' + res.qnaBoardPage.q + ')">' + i + '</a>';
-    //                 }
-    //             }
-    //             if (res.qnaBoardPage.page <= 1) {
-    //                 backBtnResult.innerHTML = "";
-    //             } else {
-    //                 backBtnResult.innerHTML = downPut;
-    //             }
-    //             if (res.qnaBoardPage.page == res.qnaBoardPage.maxPage) {
-    //                 nextBtnResult.innerHTML = "";
-    //             } else if (res.qnaBoardPage.page != res.qnaBoardPage.maxPage) {
-    //                 nextBtnResult.innerHTML = upPut;
-    //             }
-    //             numResult.innerHTML = numPut;
-    //             ListResult.innerHTML = outPut;
-    //         },
-    //         error: function () {
-    //             console.log("실패");
-    //         }
-    //     })
-    //     target.scrollIntoView({ behavior: 'auto' });
-    // }
+    const previewTypeQna = () => {
+        const previewTypeQna = document.getElementById('previewTypeQna');
+        const titleTypeQna = document.getElementById('titleTypeQna');
+        $('#type_title').removeClass('type_title1');
+        $('#type_preview').removeClass('type_preview1');
+        $('#type_title').addClass('type_title');
+        $('#type_preview').addClass('type_preview');
+        previewTypeQna.style.display = "block";
+        titleTypeQna.style.display = "none";
+    }
+    const titleTypeQna = () => {
+        const titleTypeQna = document.getElementById('titleTypeQna');
+        const previewTypeQna = document.getElementById('previewTypeQna');
+        $('#type_title').removeClass('type_title');
+        $('#type_preview').removeClass('type_preview');
+        $('#type_title').addClass('type_title1');
+        $('#type_preview').addClass('type_preview1');
+        previewTypeQna.style.display = "none";
+        titleTypeQna.style.display = "block";
+
+    }
 </script>
 </html>

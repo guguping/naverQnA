@@ -107,11 +107,12 @@ public class BoardController {
     @GetMapping("/board/Qna")
     public String boardQna(@RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
                            @RequestParam(value = "q",required = false,defaultValue = "") String q,
-                           Model model){
+                           Model model,HttpSession session){
         PageDTO qnaPageDTO = new PageDTO();
         qnaPageDTO.setPage(qnaPage);
         model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
         model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));
+        model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "/boardPage/boardQna";
     }
 
