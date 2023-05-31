@@ -2126,3 +2126,328 @@ em {
 #ajax-numResult {
     display: none;
 }
+.ranking-container {
+    background-color: #e9ecef;
+    position: relative;
+    margin: 0 auto;
+}
+.ranking-container-sef {
+    font-size: 13px;
+}
+.ranking-container-sef-inner {
+    padding: 11px 0;
+    width: 980px;
+    margin: 0 auto;
+}
+.ranking-logo-container {
+    position: relative;
+    height: 180px;
+    margin-top: 12px;
+    box-sizing: border-box;
+}
+.ranking-container-logo-menu {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    z-index: 4;
+}
+.ranking-item {
+    position: relative;
+    width: 100%;
+    background: rgba(0,0,0,0.2);
+    z-index: 4;
+}
+.rankgin-link-title {
+    width: 20%;
+    text-align: center;
+    color: #00ff3c;
+    display: block;
+    padding: 15px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 auto;
+}
+.ranking-link-title-tag {
+    border-bottom: 3px solid #00ff4d;
+    display: inline-block;
+    padding-bottom: 12px;
+}
+.tit {
+    height: 29px;
+    line-height: 29px;
+    padding: 0 30px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.tit_adoption {
+    width: 81px;
+    height: 29px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/hall/sp_hall_tit_160608.png) no-repeat left top;
+    background-position: 0 0;
+    display: inline-block;
+    background-size: 219px auto;
+    vertical-align: top;
+    font-size: 0;
+    line-height: 0;
+}
+.ranking-info {
+    position: absolute;
+    left: 0;
+    top: 43px;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+}
+.desc-ellipsis {
+    padding-top: 6px;
+    margin: 0 30px;
+    font-size: 12px;
+    color: rgba(225,225,225,0.5);
+    font-weight: normal;
+    line-height: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.ranking-cover {
+    background-image: url(https://kin-phinf.pstatic.net/hall/2023_4/pc_cover_2023_4_1683855940196.jpg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 180px;
+    box-sizing: border-box;
+    background-color: #9d9d9d;
+    background-position: 0 50%;
+    background-size: cover;
+    z-index: 1;
+}
+.ranking-cover:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    border: 1px solid rgba(0,0,0,0.1);
+    content: '';
+}
+.bg_transparent {
+    background-color: #000;
+    opacity: .4;
+    z-index: 2;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.logo-menu-list {
+    position: relative;
+    display: table;
+    width: 100%;
+    background: rgba(0,0,0,0.2);
+    z-index: 4;
+}
+.article_list {
+    position: relative;
+    margin-top: 6px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #dde0e3;
+}
+.article-top-list {
+    overflow: hidden;
+    list-style: none;
+}
+.article-top-list-member {
+    width: 326px;
+    position: relative;
+    float: left;
+    padding: 30px 0;
+    list-style: none;
+}
+.article-top-list-member-item1 {
+    padding-left: 40px;
+    height: 233px;
+    padding: 0 30px;
+    border-right: 1px solid #ededed;
+    text-align: center;
+}
+.top-user-inner-info {
+    position: relative;
+    display: block;
+}
+.user-info-rank {
+    position: absolute;
+    left: 0;
+    top: -2px;
+    display: block;
+    width: 36px;
+    font-size: 18px;
+    line-height: 18px;
+    color: #00c73c;
+    text-align: center;
+}
+.thmb_profile {
+    overflow: hidden;
+}
+.thmb {
+    position: relative;
+    height: 101px;
+    margin-top: 15px;
+}
+.thmb-user-img {
+    width: 97px;
+    height: 97px;
+
+}
+.thmb-rank-mask1 {
+    height: 101px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/hall/bg_adoption_mask_gold_160603.png) no-repeat left top;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 115px;
+    margin-left: -57.5px;
+}
+.thmb-rank-mask2 {
+    height: 101px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/hall/bg_adoption_mask_silver_160603.png) no-repeat left top;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 115px;
+    margin-left: -57.5px;
+}
+.thmb-rank-mask3 {
+    height: 101px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/hall/bg_adoption_mask_bronze_160603.png) no-repeat left top;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 115px;
+    margin-left: -57.5px;
+}
+.ranking-user-list-body {
+    height: 114px;
+    padding: 0 17px;
+}
+.writer-sec {
+    display: block;
+    margin-top: 18px;
+    width: 100%;
+    padding: 2px 0;
+    text-align: center;
+}
+.writer-no-badge {
+    display: inline-block;
+    vertical-align: top;
+}
+.tag-ellipsis {
+    max-width: 220px;
+    display: block;
+    font-size: 16px;
+    color: #000;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+}
+.user-desc-ellipsis {
+    margin-top: 3px;
+    max-height: 16px;
+    font-size: 12px;
+    color: #7399d5;
+    line-height: 16px;
+    display: block;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.ranking-user-memorial {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 17px;
+}
+.ranking-user-memorial-item {
+    display: table;
+    margin: 5px auto 0;
+    font-size: 12px;
+    line-height: 17px;
+}
+.ranking-user-category_title {
+    display: table-cell;
+    color: #8c8c8c;
+    white-space: nowrap;
+    vertical-align: top;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+}
+.ranking-user-category-category_content {
+    display: table-cell;
+    padding-left: 5px;
+    text-align: left;
+    color: #000;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 17px;
+}
+.ranking-user-category-ellipsis {
+    text-align: left;
+    color: #000;
+    font-size: 12px;
+    line-height: 17px;
+}
+.lowListArea {
+    margin-bottom: -1px;
+    overflow: hidden;
+    list-style: none;
+}
+.thmb-Lowrank-mask {
+    width: 54px;
+    height: 54px;
+    margin-left: -27px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/hall/bg_adoption_mask_default_170116.png) no-repeat left top;
+    position: absolute;
+    left: 50%;
+    top: 0;
+}
+.thmb-Lowuser-img {
+    width: 54px;
+    height: 54px;
+}
+.article-low-list-member {
+    padding: 34px 0;
+    border-bottom: 1px solid #e5e5e5;
+    width: 326px;
+    position: relative;
+    float: left;
+}
+.low-thmb{
+    position: relative;
+    height: 55px;
+    margin-top: 15px;
+}
+.user-info-Lowrank {
+    color: #8c8c8c;
+    font-size: 18px;
+    line-height: 18px;
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    display: block;
+    width: 36px;
+    text-align: center;
+}

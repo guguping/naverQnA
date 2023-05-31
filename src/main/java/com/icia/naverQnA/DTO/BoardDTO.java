@@ -20,4 +20,5 @@ public class BoardDTO {
     int fileAttached = 0;
     List<MultipartFile> boardFile;
     Long memberId;
+    Long boardPoint;
 }

@@ -50,7 +50,8 @@ create table member_table
     memberName       varchar(10) not null,
     memberBirthday   varchar(15) not null,
     memberGender     varchar(1)  not null,
-    memberCreateDate datetime default now()
+    memberCreateDate datetime default now(),
+    memberPoint      bigint   default 0
 );
 ```
 
@@ -69,6 +70,7 @@ create table board_table
     boardCreatedDate datetime default now(),
     fileAttached     int      default 0,
     memberId         bigint,
+    boardPoint       bigint   default 0,
     constraint fk_member_board foreign key (memberId) references member_table (id) on delete cascade
 );
 ```

@@ -129,5 +129,9 @@ public class BoardController {
         boardQnaResponse.put("qnaBoardPage",boardService.qnaPagingParam(qnaPageDTO,q));
         return new ResponseEntity<>(boardQnaResponse,HttpStatus.OK);
     }
+    @GetMapping("/board/Rank")
+    public String boardRank() {
+        return "/boardPage/boardRank";
+    }
 
 }

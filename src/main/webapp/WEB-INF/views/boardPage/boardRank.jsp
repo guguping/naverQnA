@@ -1,92 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: 이호섭
+  Date: 2023-06-01
+  Time: 오전 3:10
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>test2</title>
-    <link rel="stylesheet" href="../css/component.css">
-    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    <title>boardRank</title>
+    <link rel="stylesheet" href="/resources/css/component.css">
 </head>
 <body>
-<header>
-    <div class="header-box">
-        <div style="width: 600px;;margin-left: 15px;">
-            <span><a href="/login/index" class="header-logo">NAVER</a></span>
-            <h2 style="display: inline"><a href="#" id="header-logo2">지식iN</a></h2>
-            <div id="header-search-div">
-                <form action="#" method="post">
-                    <input type="text" name="headerSearch" id="header-search">
-                    <span id="search-Query">
-                    <input type="submit" id="search-icon">
-                        </span>
-                </form>
-            </div>
-            <div style="position: relative;display: inline;" class="gnb_common_area">
-                <div id="header-myPage-box">
-                    <a href="#" style="position: relative;text-decoration: none;color: black;"
-                       id="layout-controller">
-                        <img id="header-myPage-img"
-                             src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
-                             alt="내 프로필 이미지" style="display: inline-block;">
-                        <span class="filter_mask" style="display: inline-block;"></span>
-                        <span id="header-myPage-name" style="display: inline-block;">${memberDTO.memberEmail}</span>
-                        <em class="blind">내정보 보기</em>
-                    </a>
-                </div>
-                <!-- 레이아웃 박스 -->
-                <div class="header-layout-box" id="layout-box">
-                    <span class="header-layout-pointer"></span>
-                    <div class="header-layout-content">
-                        <div class="layout-img-area">
-                            <span class="layout-img-mask"></span>
-                            <img src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
-                                 width="80" height="80" alt="프로필 이미지">
-                            <a href="#"
-                               class="layout-img-change">
-                                <span class="blind">프로필 사진 변경</span>
-                            </a>
-                        </div>
-                        <div class="layout-txt-area">
-                            <p class="layout-user-account">
-                            <span class="layout-user-name">
-                                <a class="layout-user-nick" href="#">${memberDTO.memberEmail}</a>님
-                            </span>
-                                <a class="layout-logout" href="/member/logout">
-                                    <span class="layout-logout-bg"></span>
-                                    <span class="layout-logout-bdr"></span>
-                                    <span class="layout-logout-txt">로그아웃</span>
-                                </a>
-                            </p>
-                            <a href="#" class="layout-user-domain">${memberDTO.memberDomain}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<nav>
-    <div id="nav-inner">
-        <h3 class="blind"></h3>
-        <ul id="nav-list" style="display: flex;justify-content: center;">
-            <li class="nav-menu"><a href="/login/index" class="nav-list-item"><em>홈</em></a></li>
-            <li class="nav-menu"><a href="#" class="nav-list-item"><em>Q&A</em></a></li>
-            <li class="nav-menu"><a href="#" class="nav-list-item"><em>답변하기</em></a></li>
-            <li class="nav-menu"><a href="#" class="nav-list-item"><em>명예의전당</em></a></li>
-            <li class="nav-menu"><span class="nav-list-bar">|</span><a href="#" class="nav-list-item"
-                                                                       style="width: auto;"><em>프로필</em></a></li>
-            <li class="nav-menu"><a href="#" class="nav-list-item"><em>룰렛</em></a></li>
-            <li class="nav-menu"><span class="nav-list-bar">|</span></li>
-
-            <li class="nav-menu" style="background-color: #00c73c;border: 1px solid #00bd39;margin-left: 15px;">
-                <a href="/board/save" class="nav-list-item-question">
-                    <span class="btn_inner">
-                        <i class="nav-list-item-question-icon"></i>질문하기
-                    </span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<%@include file="../component/header.jsp" %>
+<%@include file="../component/nav.jsp" %>
 <section>
     <div class="ranking-container">
         <div class="ranking-container-sef">
@@ -157,7 +85,7 @@
                             <li class="article-top-list-member">
                                 <div class="article-top-list-member-item1">
                                     <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-rank"><em>1</em></span>
+                                        <span class="user-info-rank"><em>2</em></span>
                                         <div class="thmb_profile">
                                             <div class="thmb">
                                                 <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
@@ -191,7 +119,7 @@
                             <li class="article-top-list-member">
                                 <div class="article-top-list-member-item1">
                                     <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-rank"><em>1</em></span>
+                                        <span class="user-info-rank"><em>3</em></span>
                                         <div class="thmb_profile">
                                             <div class="thmb">
                                                 <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
@@ -226,6 +154,7 @@
 
 
                     </div>
+
                     <div class="article_list">
                         <ul class="lowListArea">
                             <li class="article-low-list-member">
@@ -330,110 +259,11 @@
                                     </a>
                                 </div>
                             </li>
-                            <li class="article-low-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-Lowrank"><em>7</em></span>
-                                        <div class="thmb_profile" style="padding-top: 20px;">
-                                            <div class="low-thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-Lowuser-img" alt="프로필이미지">
-                                                <span class="thmb-Lowrank-mask"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">냠냠의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">농락</span>
-                                                    </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">90000</span>
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="article-low-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-Lowrank"><em>8</em></span>
-                                        <div class="thmb_profile" style="padding-top: 20px;">
-                                            <div class="low-thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-Lowuser-img" alt="프로필이미지">
-                                                <span class="thmb-Lowrank-mask"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">냠냠의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">농락</span>
-                                                    </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">90000</span>
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="article-low-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-Lowrank"><em>9</em></span>
-                                        <div class="thmb_profile" style="padding-top: 20px;">
-                                            <div class="low-thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-Lowuser-img" alt="프로필이미지">
-                                                <span class="thmb-Lowrank-mask"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">냠냠의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">농락</span>
-                                                    </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">90000</span>
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -462,18 +292,5 @@
         <span class="text" style="font-size: 12px;line-height: 16px;color: #888;">All Rights Reserved.</span>
     </div>
 </footer>
-<script>
-    window.onload = function () {
-        const layoutController = document.getElementById('layout-controller');
-        const layoutBox = document.getElementById('layout-box');
-        layoutController.addEventListener("click", function () {
-            if (layoutBox.style.display === "block") {
-                layoutBox.style.display = "none";
-            } else {
-                layoutBox.style.display = "block";
-            }
-        })
-    }
-</script>
 </body>
 </html>
