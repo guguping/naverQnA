@@ -784,9 +784,7 @@ footer div .footer_link li + li::before {
     margin: 0 auto;
 }
 .board-save-box-inner {
-    /*height: 630px;*/
     padding-bottom: 30px;
-    /*width: 980px;*/
 }
 .board-save-title-area {
     position: relative;
@@ -838,7 +836,7 @@ footer div .footer_link li + li::before {
     justify-content: center;
 }
 .board-save-btn-box {
-    margin-top: 30px;
+    margin-top: 7px;
     height: 30px;
     text-align: center;
     position: relative;
@@ -2450,4 +2448,58 @@ em {
     display: block;
     width: 36px;
     text-align: center;
+}
+.board-save-box-type3 {
+    display: block;
+    z-index: 1100;
+    position: relative;
+    width: 743px;
+    margin-top: 7px;
+}
+.board-saved-highlightBox {
+    position: static;
+    width: 743px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_qna_line.gif) repeat-y 0 0;
+    color: #606060;
+}
+.board-saved-inner {
+    position: relative;
+}
+.flist-type {
+    width: 741px;
+    padding-bottom: 0;
+    position: relative;
+    z-index: 1001;
+    margin: 0 2px;
+}
+.dt_type3 {
+    clear: both;
+    float: left;
+    width: 74px;
+    padding: 16px 0 13px 13px;
+    margin: 0;
+    color: #1e1e1e;
+    font-size: 13px;
+    font-weight: bold;
+
+}
+.dd_type7 {
+    position: relative;
+    float: left;
+    width: 651px;
+    min-height: 14px;
+    padding: 15px 0 15px 0;
+}
+.betPointInfo {
+    display: inline-block;
+    margin-left: 3px;
+    font-size: 12px;
+    color: #606060;
+    line-height: 18px;
+    letter-spacing: 0;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

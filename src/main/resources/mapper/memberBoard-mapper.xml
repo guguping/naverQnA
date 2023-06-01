@@ -5,8 +5,8 @@
 
 <mapper namespace="naverMember">
     <insert id="saveMember" parameterType="member">
-        insert into member_table(memberEmail,memberDomain,memberPassword,memberName,memberBirthday,memberGender)
-            value (#{memberEmail},#{memberDomain},#{memberPassword},#{memberName},#{memberBirthday},#{memberGender})
+        insert into member_table(memberEmail,memberDomain,memberPassword,memberName,memberBirthday,memberGender,memberPoint)
+            value (#{memberEmail},#{memberDomain},#{memberPassword},#{memberName},#{memberBirthday},#{memberGender},#{memberPoint})
     </insert>
     <select id="emailCheck" parameterType="String" resultType="String">
         select memberEmail from member_table where memberEmail = #{memberEmail}

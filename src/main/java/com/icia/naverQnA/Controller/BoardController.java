@@ -3,6 +3,7 @@ package com.icia.naverQnA.Controller;
 import com.icia.naverQnA.DTO.*;
 import com.icia.naverQnA.Service.BoardService;
 import com.icia.naverQnA.Service.CommentService;
+import com.icia.naverQnA.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,8 @@ public class BoardController {
     private BoardService boardService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private MemberService memberService;
 
     @GetMapping("/member/logout")
     public String memberLogout(HttpSession session) {
@@ -42,6 +45,10 @@ public class BoardController {
     @PostMapping("/board/save")
     public String saveBoard(@ModelAttribute BoardDTO boardDTO, HttpSession session, Model model) throws IOException {
         MemberDTO memberDTO = boardService.findById(session.getAttribute("memberId"));
+        if(boardDTO.getBoardPoint() != 0){
+            memberDTO.setMemberPoint(memberDTO.getMemberPoint()-boardDTO.getBoardPoint());
+            memberService.memberPointUpdate(memberDTO); // 여기부터
+        }
         boardDTO.setBoardWriter(memberDTO.getMemberEmail());
         boardDTO.setMemberId(memberDTO.getId());
         boardService.saveBoard(boardDTO);

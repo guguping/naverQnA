@@ -19,6 +19,6 @@ public class MemberDTO {
     String memberBirthday;
     String memberGender;
     Timestamp memberCreateDate;
-    Long memberPoint;
+    Long memberPoint = 10L;
 
 }

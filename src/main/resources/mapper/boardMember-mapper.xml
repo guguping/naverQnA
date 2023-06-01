@@ -8,8 +8,8 @@
         select * from member_table where id = #{memberId}
     </select>
     <insert id="saveBoard" parameterType="board" useGeneratedKeys="true" keyProperty="id">
-        insert into board_table(boardTitle,boardWriter,boardContents,fileAttached,memberId)
-            value (#{boardTitle},#{boardWriter},#{boardContents},#{fileAttached},#{memberId})
+        insert into board_table(boardTitle,boardWriter,boardContents,fileAttached,memberId,boardPoint)
+            value (#{boardTitle},#{boardWriter},#{boardContents},#{fileAttached},#{memberId},#{boardPoint})
     </insert>
     <select id="bestBoardList" parameterType="page" resultType="board">
         select * from board_table order by boardHits desc limit #{pageStart},#{pageLimit}

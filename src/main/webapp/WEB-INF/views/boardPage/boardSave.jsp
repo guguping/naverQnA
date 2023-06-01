@@ -62,6 +62,30 @@
                     <div style="display: none">
                         <input type="file" name="boardFile">
                     </div>
+
+
+                    <div class="board-save-box-type3">
+                        <fieldset style="border: 1px solid #d1d1d1;">
+                            <div class="blind">내공 냠냠</div>
+                            <div class="board-saved-highlightBox">
+                                <div class="board-saved-inner">
+                                    <dl class="flist-type">
+                                        <dt class="dt_type3">
+                                            <strong style="color: #1e1e1e;font-size: 13px;">추가내공</strong>
+                                        </dt>
+                                        <dd class="dd_type7">
+                                            <input type="number" name="boardPoint" id="boardPointPut" value="0" style="outline: 0;border: 1px solid #b8b0b0;">
+                                            <div class="betPointInfo" id="betPointInfo">
+                                                빠른 답변을 원하시면 내공을 걸어보세요!
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+
                     <div class="board-save-btn-box">
                         <div class="board-save-btn">
                             <button type="submit" class="save-btn">작성완료</button>
@@ -99,6 +123,11 @@
 </body>
 
 <script>
+    let boardPointPut = document.getElementById('boardPointPut');
+    console.log("boardPointPut ="+boardPointPut.value);
+    const memberPointPut = parseInt('${memberDTO.memberPoint}');
+    console.log("memberPointPut ="+memberPointPut);
+
     CKEDITOR.replace('editor1', {
         height: '350px',
         language: 'ko',
@@ -111,15 +140,6 @@
         });
     });
 
-    // CKEDITOR.editorConfig = function( config ) {
-    //     // Define changes to default configuration here. For example:
-    //     config.language = 'ko';
-    //     config.uiColor = '#DAEDF6';
-    //     CKEDITOR.dtd.$removeEmpty['i'] = false;
-    //     enterMode = CKEDITOR.ENTER_BR;
-    //     config.fillEmptyBlocks = false;
-    // };
-
     const back = () => {
         location.href = "/login/index";
     }
@@ -127,7 +147,7 @@
     const boardCheck = () => {
         const boardTitle = document.getElementById('boardTitle');
         const checkResult = CKEDITOR.instances.editor1.getData();
-        console.log(checkResult);
+        const betPointInfo = document.getElementById('betPointInfo');
         const questionContent = `
                             궁금한 내용을 질문해 주세요.
                             <br>
@@ -176,7 +196,13 @@
             alert("질문 내용을 상세하게 입력해주세요.");
             CKEDITOR.instances['editor1'].focus();
             return false;
-        } else {
+        } else if(boardPointPut.value > memberPointPut) {
+            console.log("boardPointPut,memberPointPut"+boardPointPut.value,memberPointPut);
+            alert("보유 내공을 확인해주세요.")
+            betPointInfo.innerHTML = "현재 보유 내공은 "+memberPointPut+"입니다.";
+            return false;
+        }
+        else {
             return true;
         }
     }
