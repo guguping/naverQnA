@@ -278,7 +278,7 @@
                                         <div class="ckEditor-body-inner">
                                             <div class="ckEditor-size">
                                                 <form action="/answer/save" method="post"
-                                                      enctype="multipart/form-data">
+                                                      enctype="multipart/form-data" onsubmit="return contentsCheck()">
                                                     <textarea id="editor2" name="answerContents"></textarea>
                                                     <input type="text" name="answerWriter"
                                                            value="${memberDTO.memberEmail}"
@@ -450,7 +450,7 @@
                                             <div class="answer-List-area-item">
                                                 <div class="adoptCheck1">
                                                     <div class="checkText">
-                                                        <span style="color: transparent;font-size: 12px;font-weight: bold;line-height: 1.2;">채택을 해주세영</span>
+                                                        <span style="color:transparent;font-size: 12px;font-weight: bold;line-height: 1.2;">채택을 해주세영</span>
                                                     </div>
                                                 </div>
                                                 <div class="profile-card">
@@ -622,6 +622,23 @@
                 layoutBox.style.display = "block";
             }
         })
+    }
+
+    const contentsCheck = () => {
+        const checkResult = CKEDITOR.instances.editor2.getData();
+        const cleanCheckResult = checkResult.replace(/<\/?[^>]+(>|$)/g, '').replace(/\s+/g, '');
+        const regex = /^\d+$/;
+        if (cleanCheckResult.length == 0) {
+            alert("내용입력해주세요");
+            CKEDITOR.instances['editor2'].focus();
+            return false;
+        } else if (cleanCheckResult.match(regex)) {
+            alert("질문 내용을 상세하게 입력해주세요.");
+            CKEDITOR.instances['editor2'].focus();
+            return false;
+        } else {
+            return true;
+        }
     }
 
     const goodAnswerUp = (mId, bId, aId) => {

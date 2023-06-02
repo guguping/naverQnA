@@ -477,3 +477,13 @@
 </script>
 </body>
 </html>
+const checkResult = CKEDITOR.instances.editor2.getData();
+if (cleanCheckResult.length == 0) {
+alert("내용입력해주세요");
+CKEDITOR.instances['editor1'].focus();
+return false;
+}else if (cleanCheckResult.match(regex)) {
+alert("질문 내용을 상세하게 입력해주세요.");
+CKEDITOR.instances['editor1'].focus();
+return false;
+}
