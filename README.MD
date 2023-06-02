@@ -43,16 +43,16 @@
 drop table if exists member_table;
 create table member_table
 (
-    id               bigint auto_increment primary key,
-    memberEmail      varchar(20) not null unique,
-    memberDomain     varchar(30) not null unique,
-    memberPassword   varchar(20) not null,
-    memberName       varchar(10) not null,
-    memberBirthday   varchar(15) not null,
-    memberGender     varchar(1)  not null,
-    memberCreateDate datetime default now(),
-    memberPoint      bigint   default 0,
-    memberGoodCount  bigint   default 0
+  id               bigint auto_increment primary key,
+  memberEmail      varchar(20) not null unique,
+  memberDomain     varchar(30) not null unique,
+  memberPassword   varchar(20) not null,
+  memberName       varchar(10) not null,
+  memberBirthday   varchar(15) not null,
+  memberGender     varchar(1)  not null,
+  memberCreateDate datetime default now(),
+  memberPoint      bigint   default 0,
+  memberGoodCount bigint default 0
 );
 ```
 
@@ -62,19 +62,19 @@ create table member_table
 drop table if exists board_table;
 create table board_table
 (
-    id               bigint auto_increment primary key,
-    boardTitle       varchar(80)  not null,
-    boardWriter      varchar(20)  not null,
-    boardContents    varchar(500) not null,
-    boardHits        int      default 0,
-    boardAnswer      int      default 0,
-    boardGoodAnswer  int      default 0,
-    boardCreatedDate datetime default now(),
-    fileAttached     int      default 0,
-    memberId         bigint,
-    boardPoint       bigint   default 0,
-    boardDPoint      bigint   default 10,
-    constraint fk_member_board foreign key (memberId) references member_table (id) on delete cascade
+  id               bigint auto_increment primary key,
+  boardTitle       varchar(80)  not null,
+  boardWriter      varchar(20)  not null,
+  boardContents    varchar(500) not null,
+  boardHits        int      default 0,
+  boardAnswer      int      default 0,
+  boardGoodAnswer int default 0,
+  boardCreatedDate datetime default now(),
+  fileAttached     int      default 0,
+  memberId         bigint,
+  boardPoint       bigint   default 0,
+  boardDPoint bigint default 10,
+  constraint fk_member_board foreign key (memberId) references member_table (id) on delete cascade
 );
 ```
 
@@ -84,14 +84,14 @@ create table board_table
 drop table if exists comment_table;
 create table comment_table
 (
-    id                 bigint auto_increment primary key,
-    boardId            bigint,
-    memberId           bigint,
-    commentWriter      varchar(20)  not null,
-    commentContents    varchar(500) not null,
-    commentCreatedDate datetime default now(),
-    constraint fk_member_comment foreign key (memberId) references member_table (id) on delete cascade,
-    constraint fk_board_comment foreign key (boardId) references board_table (id) on delete cascade
+  id                 bigint auto_increment primary key,
+  boardId            bigint,
+  memberId           bigint,
+  commentWriter      varchar(20)  not null,
+  commentContents    varchar(500) not null,
+  commentCreatedDate datetime default now(),
+  constraint fk_member_comment foreign key (memberId) references member_table (id) on delete cascade,
+  constraint fk_board_comment foreign key (boardId) references board_table (id) on delete cascade
 );
 ```
 
@@ -107,7 +107,7 @@ create table answer_table
     answerContents    varchar(500) not null,
     answerCreatedDate datetime default now(),
     fileAttached      int      default 0,
-    goodAnswer        int      default 0,
+    goodAnswer        bigint   default 0,
     constraint fk_member_answer foreign key (memberId) references member_table (id) on delete cascade,
     constraint fk_board_answer foreign key (boardId) references board_table (id) on delete cascade
 );
