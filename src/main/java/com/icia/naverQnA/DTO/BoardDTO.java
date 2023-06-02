@@ -16,9 +16,11 @@ public class BoardDTO {
     String boardContents;
     int boardHits;
     int boardAnswer = 0;
+    int boardGoodAnswer = 0;
     Timestamp boardCreatedDate;
     int fileAttached = 0;
     List<MultipartFile> boardFile;
     Long memberId;
-    Long boardPoint;
+    Long boardDPoint = 10L;
+    Long boardPoint = 0L;
 }

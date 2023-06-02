@@ -20,5 +20,5 @@ public class MemberDTO {
     String memberGender;
     Timestamp memberCreateDate;
     Long memberPoint = 10L;
-
+    Long memberGoodCount = 0L;
 }

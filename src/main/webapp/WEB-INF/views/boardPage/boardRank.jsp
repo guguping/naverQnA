@@ -15,7 +15,7 @@
 <body>
 <%@include file="../component/header.jsp" %>
 <%@include file="../component/nav.jsp" %>
-<section>
+<section style="min-height: 700px;">
     <div class="ranking-container">
         <div class="ranking-container-sef">
             <div class="ranking-container-sef-inner">
@@ -48,218 +48,167 @@
 
 
                         <ul class="article-top-list">
-                            <li class="article-top-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-rank"><em>1</em></span>
-                                        <div class="thmb_profile">
-                                            <div class="thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-user-img" alt="프로필이미지">
-                                                <span class="thmb-rank-mask1"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">날먹의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
+                            <c:forEach items="${memberDTOList}" var="memberDTO" end="0">
+                                <c:if test="${memberDTO.memberPoint > 10}">
+                                    <li class="article-top-list-member">
+                                        <div class="article-top-list-member-item1">
+                                            <a href="#" class="top-user-inner-info">
+                                                <span class="user-info-rank"><em>1</em></span>
+                                                <div class="thmb_profile">
+                                                    <div class="thmb">
+                                                        <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
+                                                             class="thmb-user-img" alt="프로필이미지">
+                                                        <span class="thmb-rank-mask1"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="ranking-user-list-body">
+                                                    <div class="writer-sec">
+                                                            <span class="writer-no-badge"><em
+                                                                    class="tag-ellipsis">${memberDTO.memberEmail}</em></span>
+                                                    </div>
+                                                    <p class="user-desc-ellipsis">날먹의 신</p>
+                                                    <div class="ranking-user-memorial">
+                                                        <p class="ranking-user-memorial-item">
+                                                            <strong class="ranking-user-category_title">분야</strong>
+                                                            <span class="ranking-user-category-category_content">
                                                         <span class="ranking-user-category-ellipsis">개꿀</span>
                                                     </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">100000</span>
+                                                        </p>
+                                                        <p class="ranking-user-memorial-item">
+                                                            <strong class="ranking-user-category_title">내공</strong>
+                                                            <span class="ranking-user-category-category_content">
+                                                        <span class="ranking-user-category-ellipsis">${memberDTO.memberPoint}</span>
                                                     </span>
-                                                </p>
-                                            </div>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="article-top-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-rank"><em>2</em></span>
-                                        <div class="thmb_profile">
-                                            <div class="thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-user-img" alt="프로필이미지">
-                                                <span class="thmb-rank-mask2"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">냠냠의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
+                                    </li>
+                                </c:if>
+                            </c:forEach>
+                            <c:forEach items="${memberDTOList}" var="memberDTO" begin="1" end="1">
+                                <c:if test="${memberDTO.memberPoint > 10}">
+                                    <li class="article-top-list-member">
+                                        <div class="article-top-list-member-item1">
+                                            <a href="#" class="top-user-inner-info">
+                                                <span class="user-info-rank"><em>2</em></span>
+                                                <div class="thmb_profile">
+                                                    <div class="thmb">
+                                                        <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
+                                                             class="thmb-user-img" alt="프로필이미지">
+                                                        <span class="thmb-rank-mask2"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="ranking-user-list-body">
+                                                    <div class="writer-sec">
+                                                            <span class="writer-no-badge"><em
+                                                                    class="tag-ellipsis">${memberDTO.memberEmail}</em></span>
+                                                    </div>
+                                                    <p class="user-desc-ellipsis">냠냠의 신</p>
+                                                    <div class="ranking-user-memorial">
+                                                        <p class="ranking-user-memorial-item">
+                                                            <strong class="ranking-user-category_title">분야</strong>
+                                                            <span class="ranking-user-category-category_content">
                                                         <span class="ranking-user-category-ellipsis">농락</span>
                                                     </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">90000</span>
+                                                        </p>
+                                                        <p class="ranking-user-memorial-item">
+                                                            <strong class="ranking-user-category_title">내공</strong>
+                                                            <span class="ranking-user-category-category_content">
+                                                        <span class="ranking-user-category-ellipsis">${memberDTO.memberPoint}</span>
                                                     </span>
-                                                </p>
-                                            </div>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="article-top-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-rank"><em>3</em></span>
-                                        <div class="thmb_profile">
-                                            <div class="thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-user-img" alt="프로필이미지">
-                                                <span class="thmb-rank-mask3"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">낚시의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
+                                    </li>
+                                </c:if>
+                            </c:forEach>
+                            <c:forEach items="${memberDTOList}" var="memberDTO" begin="2" end="2">
+                                <c:if test="${memberDTO.memberPoint > 10}">
+                                    <li class="article-top-list-member">
+                                        <div class="article-top-list-member-item1">
+                                            <a href="#" class="top-user-inner-info">
+                                                <span class="user-info-rank"><em>3</em></span>
+                                                <div class="thmb_profile">
+                                                    <div class="thmb">
+                                                        <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
+                                                             class="thmb-user-img" alt="프로필이미지">
+                                                        <span class="thmb-rank-mask3"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="ranking-user-list-body">
+                                                    <div class="writer-sec">
+                                                <span class="writer-no-badge"><em
+                                                        class="tag-ellipsis">${memberDTO.memberEmail}</em></span>
+                                                    </div>
+                                                    <p class="user-desc-ellipsis">낚시의 신</p>
+                                                    <div class="ranking-user-memorial">
+                                                        <p class="ranking-user-memorial-item">
+                                                            <strong class="ranking-user-category_title">분야</strong>
+                                                            <span class="ranking-user-category-category_content">
                                                         <span class="ranking-user-category-ellipsis">구라</span>
                                                     </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">80000</span>
+                                                        </p>
+                                                        <p class="ranking-user-memorial-item">
+                                                            <strong class="ranking-user-category_title">내공</strong>
+                                                            <span class="ranking-user-category-category_content">
+                                                        <span class="ranking-user-category-ellipsis">${memberDTO.memberPoint}</span>
                                                     </span>
-                                                </p>
-                                            </div>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                            </li>
+                                    </li>
+                                </c:if>
+                            </c:forEach>
                         </ul>
-
-
                     </div>
 
                     <div class="article_list">
                         <ul class="lowListArea">
-                            <li class="article-low-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-Lowrank"><em>4</em></span>
-                                        <div class="thmb_profile" style="padding-top: 20px;">
-                                            <div class="low-thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-Lowuser-img" alt="프로필이미지">
-                                                <span class="thmb-Lowrank-mask"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">냠냠의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">농락</span>
+                            <c:forEach items="${memberDTOList}" var="memberDTO" begin="3">
+                                <c:if test="${memberDTO.memberPoint > 10}">
+                                    <li class="article-low-list-member">
+                                        <div class="article-top-list-member-item1">
+                                            <a href="#" class="top-user-inner-info">
+                                                <span class="user-info-Lowrank"><em>4</em></span>
+                                                <div class="thmb_profile" style="padding-top: 20px;">
+                                                    <div class="low-thmb">
+                                                        <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
+                                                             class="thmb-Lowuser-img" alt="프로필이미지">
+                                                        <span class="thmb-Lowrank-mask"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="ranking-user-list-body">
+                                                    <div class="writer-sec">
+                                                <span class="writer-no-badge"><em
+                                                        class="tag-ellipsis">${memberDTO.memberEmail}</em></span>
+                                                    </div>
+                                                    <p class="user-desc-ellipsis">내공 냠냠</p>
+                                                    <div class="ranking-user-memorial">
+                                                        <p class="ranking-user-memorial-item">
+                                                            <strong class="ranking-user-category_title">분야</strong>
+                                                            <span class="ranking-user-category-category_content">
+                                                        <span class="ranking-user-category-ellipsis">낚시</span>
                                                     </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">90000</span>
+                                                        </p>
+                                                        <p class="ranking-user-memorial-item">
+                                                            <strong class="ranking-user-category_title">내공</strong>
+                                                            <span class="ranking-user-category-category_content">
+                                                        <span class="ranking-user-category-ellipsis">${memberDTO.memberPoint}</span>
                                                     </span>
-                                                </p>
-                                            </div>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="article-low-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-Lowrank"><em>5</em></span>
-                                        <div class="thmb_profile" style="padding-top: 20px;">
-                                            <div class="low-thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-Lowuser-img" alt="프로필이미지">
-                                                <span class="thmb-Lowrank-mask"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">냠냠의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">농락</span>
-                                                    </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">90000</span>
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="article-low-list-member">
-                                <div class="article-top-list-member-item1">
-                                    <a href="#" class="top-user-inner-info">
-                                        <span class="user-info-Lowrank"><em>6</em></span>
-                                        <div class="thmb_profile" style="padding-top: 20px;">
-                                            <div class="low-thmb">
-                                                <img src="https://kin-phinf.pstatic.net/20221003_85/16647839766431JNV4_PNG/%BD%BA%C5%A9%B8%B0%BC%A6_2022-10-03_%BF%C0%C8%C4_4.59.01.png?type=w200"
-                                                     class="thmb-Lowuser-img" alt="프로필이미지">
-                                                <span class="thmb-Lowrank-mask"></span>
-                                            </div>
-                                        </div>
-                                        <div class="ranking-user-list-body">
-                                            <div class="writer-sec">
-                                                <span class="writer-no-badge"><em class="tag-ellipsis">Mathmedics</em></span>
-                                            </div>
-                                            <p class="user-desc-ellipsis">냠냠의 신</p>
-                                            <div class="ranking-user-memorial">
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">분야</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">농락</span>
-                                                    </span>
-                                                </p>
-                                                <p class="ranking-user-memorial-item">
-                                                    <strong class="ranking-user-category_title">내공</strong>
-                                                    <span class="ranking-user-category-category_content">
-                                                        <span class="ranking-user-category-ellipsis">90000</span>
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-
+                                    </li>
+                                </c:if>
+                            </c:forEach>
                         </ul>
                     </div>
 
@@ -270,7 +219,7 @@
     </div>
 </section>
 <footer style="text-align: center;padding:15px 0 15px;">
-    <div style="margin-top: 9px;letter-spacing: -.5px;">
+    <div style="margin-top: 9px;letter-spacing: -.5px;padding-bottom: 20px;">
         <ul class="footer_link" id="footer_link" style="list-style: none;">
             <li><a target="_blank" class="footer_item" href="http://www.naver.com/rules/service.html"
                    id="fot.agreement"><span class="text">이용약관</span></a></li>

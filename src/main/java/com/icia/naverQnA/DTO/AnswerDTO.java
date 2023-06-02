@@ -18,5 +18,6 @@ public class AnswerDTO {
     Timestamp answerCreatedDate;
     int fileAttached = 0;
     List<MultipartFile> answerFile;
-    int goodAnswer = 0;
+    Long goodAnswer = 0L;
+    Long totalGoodAnswer = 0L; // 받기만해야함
 }

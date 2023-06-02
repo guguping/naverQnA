@@ -109,6 +109,10 @@ public class BoardController {
     }
     @PostMapping("/answer/save")
     public String answerSave(@ModelAttribute AnswerDTO answerDTO) throws IOException{
+        MemberDTO memberDTO = boardService.findById(answerDTO.getMemberId());
+        BoardDTO boardDTO = boardService.findByBoard(answerDTO.getBoardId());
+        memberDTO.setMemberPoint(memberDTO.getMemberPoint() + boardDTO.getBoardDPoint());
+        memberService.memberPointUpdate(memberDTO);
         boardService.boardAnswerUp(answerDTO.getBoardId());
         boardService.boardAnswerSave(answerDTO);
         return "redirect:/board/detail?BoardId="+answerDTO.getBoardId();
@@ -138,7 +142,26 @@ public class BoardController {
     }
     @GetMapping("/board/Rank")
     public String boardRank(Model model,HttpSession session) {
+        model.addAttribute("memberDTOList",memberService.findRank());
         model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
         return "/boardPage/boardRank";
+    }
+    @PostMapping("/board/bestAnswer")
+    public ResponseEntity bestAnswer(@RequestParam("memberId") Long memberId,
+                                     @RequestParam("boardId") Long boardId,
+                                     @RequestParam("answerId") Long answerId){
+        BoardDTO boardDTO = boardService.findByBoard(boardId);
+        MemberDTO memberDTO = boardService.findById(memberId);
+        boardDTO.setBoardGoodAnswer(1);
+        memberDTO.setMemberGoodCount(memberDTO.getMemberGoodCount()+1);
+        AnswerDTO answerDTO = boardService.findByAnswer(answerId);
+
+        answerDTO.setGoodAnswer(1L);
+        memberDTO.setMemberPoint(memberDTO.getMemberPoint()+boardDTO.getBoardPoint());
+        memberService.memberPointUpdate(memberDTO);
+        memberService.memberGoodCountUp(memberDTO);
+        boardService.boardGoodAnswerUp(boardDTO);
+        boardService.GoodAnswerUp(answerDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

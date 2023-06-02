@@ -14,4 +14,13 @@
     <select id="loginMember" parameterType="member" resultType="member">
         select * from member_table where (memberEmail = #{memberEmail} and memberPassword = #{memberPassword}) or (memberDomain = #{memberEmail} and memberPassword = #{memberPassword})
     </select>
+    <update id="memberPointUpdate" parameterType="member">
+        update member_table set memberPoint = #{memberPoint} where id = #{id}
+    </update>
+    <update id="memberGoodCountUp" parameterType="member">
+        update member_table set memberGoodCount = #{memberGoodCount} where id = #{id}
+    </update>
+    <select id="findRank" resultType="member">
+        select * from member_table order by memberPoint desc limit 9
+    </select>
 </mapper>

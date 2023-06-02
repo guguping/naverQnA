@@ -1244,6 +1244,19 @@ footer div .footer_link li + li::before {
     vertical-align: top;
     position: relative;
 }
+.bi-hand-thumbs-up {
+    font-size: 23px;
+    line-height: 23px;
+    vertical-align: top;
+    position: relative;
+}
+.bi-hand-thumbs-up-fill {
+    float: right;
+    font-size: 23px;
+    line-height: 23px;
+    vertical-align: top;
+    position: relative;
+}
 .rounded-icon-wrapper {
     display: inline-block;
     border-radius: 50%;
@@ -1788,6 +1801,15 @@ footer div .footer_link li + li::before {
     font-size: 12px;
     font-weight: bold;
 }
+.adoptCheck1{
+    border-color: #00d192;
+    color: #00d192;
+    position: relative;
+    margin-top: -15px;
+    padding: 9px 15px 14px;
+    font-size: 12px;
+    font-weight: bold;
+}
 
 .profile-card {
     padding: 0 15px;
@@ -1939,6 +1961,15 @@ footer div .footer_link li + li::before {
 }
 
 .answerBottom-left-comment {
+    display: inline-block;
+    line-height: 0;
+    vertical-align: top;
+    outline: 0;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
+answerBottom-Right-gootAnswer{
     display: inline-block;
     line-height: 0;
     vertical-align: top;

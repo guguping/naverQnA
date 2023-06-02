@@ -81,9 +81,11 @@
                                                     <div class="main2-contents-list-item">
                                                         <a href="/board/detail?BoardId=${qnaBoardDTOList.id}"
                                                            class="main2-contents-item">
+                                                            <c:if test="${qnaBoardDTOList.boardPoint != 0}">
                                                             <span class="power_grade" title="내공 전시장">
-                                                                    500
+                                                                    ${qnaBoardDTOList.boardPoint}
                                                             </span>
+                                                            </c:if>
                                                             <span class="main2-item-title">
                                                                     ${qnaBoardDTOList.boardTitle}
                                                             </span>
@@ -149,8 +151,10 @@
                                                     <div class="tit_wrap">
                                                         <a href="/board/detail?BoardId=${qnaBoardDTOList.id}"
                                                            target="_blank" class="tit_wrap_link_a">
+                                                            <c:if test="${qnaBoardDTOList.boardPoint != 0}">
                                                             <span class="power_grade" style="margin-right: 10px;"
-                                                                  title="내공 전시장">500</span>
+                                                                  title="내공 전시장">${qnaBoardDTOList.boardPoint}</span>
+                                                            </c:if>
                                                             <span class="tit_txt">${qnaBoardDTOList.boardTitle}</span>
                                                         </a>
                                                     </div>
@@ -277,7 +281,7 @@
     </div>
 </section>
 <footer style="text-align: center;padding:15px 0 15px;">
-    <div style="margin-top: 9px;letter-spacing: -.5px;">
+    <div style="margin-top: 9px;letter-spacing: -.5px;padding-bottom: 20px;">
         <ul class="footer_link" id="footer_link" style="list-style: none;">
             <li><a target="_blank" class="footer_item" href="http://www.naver.com/rules/service.html"
                    id="fot.agreement"><span class="text">이용약관</span></a></li>
@@ -355,7 +359,9 @@
                     outPut += '<div class="answer_box" style="border-top: 1px solid #cacccc;position: relative;">';
                     outPut += '<div class="tit_wrap">'
                     outPut += '<a href="/board/detail?BoardId=' + res.qnaBoardDTOList[i].id + '" target="_blank" class="tit_wrap_link_a">';
-                    outPut += '<span class="power_grade" style="margin-right: 10px;" title="내공 전시장">500</span>';
+                    if(res.qnaBoardDTOList[i].boardPoint != 0){
+                        outPut += '<span class="power_grade" style="margin-right: 10px;" title="내공 전시장">'+ res.qnaBoardDTOList[i].boardPoint +'</span>';
+                    }
                     outPut += '<span class=tit_txt">' + res.qnaBoardDTOList[i].boardTitle + '</span>';
                     outPut += '</a>';
                     outPut += '</div>';

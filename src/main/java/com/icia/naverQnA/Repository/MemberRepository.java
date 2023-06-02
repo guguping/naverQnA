@@ -5,6 +5,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class MemberRepository {
     @Autowired
@@ -19,5 +21,17 @@ public class MemberRepository {
 
     public MemberDTO loginMember(MemberDTO memberDTO) {
         return sql.selectOne("naverMember.loginMember",memberDTO);
+    }
+
+    public void memberPointUpdate(MemberDTO memberDTO) {
+        sql.update("naverMember.memberPointUpdate",memberDTO);
+    }
+
+    public void memberGoodCountUp(MemberDTO memberDTO) {
+        sql.update("naverMember.memberGoodCountUp",memberDTO);
+    }
+
+    public List<MemberDTO> findRank() {
+        return sql.selectList("naverMember.findRank");
     }
 }

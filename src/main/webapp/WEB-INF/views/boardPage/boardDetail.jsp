@@ -177,145 +177,191 @@
                 <h2 class="blind">여기서 부터 답글 시작합니다</h2>
 
                 <div id="answerArea" class="answer-content">
-                    <div id="answerAreaZero" class="answer-content-inner">
-                        <c:if test="${sessionScope.memberId == null}">
-                            <div class="answer-content-Login-box" id="answer-content-Login-box">
-                                <div id="answerAreaNoLogin" class="answer-content-noLogin-inner">
-                                    <div class="answer-content-noLogin-inner-txt-box">
-                                        <div class="answer-content-noLogin-inner-txt-item1">
-                                            <div class="c-userinfo">
-                                                <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
+                    <c:if test="${BoardDTO.memberId != sessionScope.memberId}">
+                        <div id="answerAreaZero" class="answer-content-inner">
+                            <c:if test="${sessionScope.memberId == null}">
+                                <div class="answer-content-Login-box" id="answer-content-Login-box">
+                                    <div id="answerAreaNoLogin" class="answer-content-noLogin-inner">
+                                        <div class="answer-content-noLogin-inner-txt-box">
+                                            <div class="answer-content-noLogin-inner-txt-item1">
+                                                <c:choose>
+                                                    <c:when test="${BoardDTO.boardPoint != 0}">
+                                                        <div class="c-userinfo">
+                                                            <span class="c-userinfo__item">답변하시면 내공 ${BoardDTO.boardDPoint}점을 답변이 채택되면 내공 ${BoardDTO.boardPoint}점을 드립니다.</span>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="c-userinfo">
+                                                            <span class="c-userinfo__item">답변하시면 내공 ${BoardDTO.boardDPoint}점을 드립니다.</span>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </div>
-                                        </div>
-                                        <div class="answer-content-noLogin-inner-txt-item2">
-                                            <a href="/member/login" class="c-userinfo__item2"><span
-                                                    class="c-button-default__title">답변하기</span></a>
+                                            <div class="answer-content-noLogin-inner-txt-item2">
+                                                <a href="/member/login" class="c-userinfo__item2"><span
+                                                        class="c-button-default__title">답변하기</span></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:if>
-                        <c:if test="${sessionScope.memberId != null && BoardDTO.boardAnswer != 0}">
-                            <div class="answer-content-Login-box" id="answer-content-Login-box">
-                                <div id="answerAreaNoLogin1" class="answer-content-noLogin-inner">
-                                    <div class="answer-content-noLogin-inner-txt-box">
-                                        <div class="answer-content-noLogin-inner-txt-item1">
-                                            <div class="c-userinfo">
-                                                <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
+                            </c:if>
+                            <c:if test="${sessionScope.memberId != null && BoardDTO.boardAnswer != 0}">
+                                <div class="answer-content-Login-box" id="answer-content-Login-box">
+                                    <div id="answerAreaNoLogin1" class="answer-content-noLogin-inner">
+                                        <div class="answer-content-noLogin-inner-txt-box">
+                                            <div class="answer-content-noLogin-inner-txt-item1">
+                                                <c:choose>
+                                                    <c:when test="${BoardDTO.boardPoint != 0}">
+                                                        <div class="c-userinfo">
+                                                            <span class="c-userinfo__item">답변하시면 내공 ${BoardDTO.boardDPoint}점을 답변이 채택되면 내공 ${BoardDTO.boardPoint}점을 드립니다.</span>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="c-userinfo">
+                                                            <span class="c-userinfo__item">답변하시면 내공 ${BoardDTO.boardDPoint}점을 드립니다.</span>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </div>
-                                        </div>
-                                        <div class="answer-content-noLogin-inner-txt-item2">
-                                            <a class="c-userinfo__item2" style="cursor: pointer"><span
-                                                    class="c-button-default__title"
-                                                    onclick="goAnswer()">답변하기</span></a>
+                                            <div class="answer-content-noLogin-inner-txt-item2">
+                                                <a class="c-userinfo__item2" style="cursor: pointer"><span
+                                                        class="c-button-default__title"
+                                                        onclick="goAnswer()">답변하기</span></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <h3 class="blind">로그인 답변 시작입니다</h3>
-                            <div class="qna_answer_editor" id="editor-On-Off" style="display: none;">
-                                <div class="ckEditorHeaderArea">
-                                    <div class="c-heading-answer--editor-inner">
-                                        <div class="c-heading-answer__profile">
-                                            <div class="profile-default">
-                                                <a href="#" class="profile-default--inner">
+                                <h3 class="blind">로그인 답변 시작입니다</h3>
+                                <div class="qna_answer_editor" id="editor-On-Off" style="display: none;">
+                                    <div class="ckEditorHeaderArea">
+                                        <div class="c-heading-answer--editor-inner">
+                                            <div class="c-heading-answer__profile">
+                                                <div class="profile-default">
+                                                    <a href="#" class="profile-default--inner">
                                                 <span class="profile-default__thumbnail">
                                                     <span class="blind">내 프로필 이미지</span>
                                                 </span>
-                                                </a>
-                                            </div>
-                                            <div class="c-heading-answer__body">
-                                                <div class="c-heading-answer__title">
-                                                    <p class="user-info-title">${memberDTO.memberEmail}님, 답변해주세요!</p>
-                                                    <div class="c-userinfo">
-                                                        <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                                <div class="answerButtonArea">
-                                                    <div class="button-answer__subdivide">
-                                                        <label for="answerBtn1">
-                                                            <a class="answerRegisterButton" style="cursor: pointer">
-                                                                <span class="c-button-default__title">답변등록</span>
-                                                            </a>
-                                                        </label>
+                                                <div class="c-heading-answer__body">
+                                                    <div class="c-heading-answer__title">
+                                                        <p class="user-info-title">${memberDTO.memberEmail}님,
+                                                            답변해주세요!</p>
+                                                        <c:choose>
+                                                            <c:when test="${BoardDTO.boardPoint != 0}">
+                                                                <div class="c-userinfo">
+                                                                    <span class="c-userinfo__item">답변하시면 내공 ${BoardDTO.boardDPoint}점을 답변이 채택되면 내공 ${BoardDTO.boardPoint}점을 드립니다.</span>
+                                                                </div>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="c-userinfo">
+                                                                    <span class="c-userinfo__item">답변하시면 내공 ${BoardDTO.boardDPoint}점을 드립니다.</span>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
+                                                    <div class="answerButtonArea">
+                                                        <div class="button-answer__subdivide">
+                                                            <label for="answerBtn1">
+                                                                <a class="answerRegisterButton"
+                                                                   style="cursor: pointer">
+                                                                    <span class="c-button-default__title">답변등록</span>
+                                                                </a>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="ckEditor-body">
-                                    <div class="ckEditor-body-inner">
-                                        <div class="ckEditor-size">
-                                            <form action="/answer/save" method="post" enctype="multipart/form-data">
-                                                <textarea id="editor2" name="answerContents"></textarea>
-                                                <input type="text" name="answerWriter" value="${memberDTO.memberEmail}"
-                                                       style="display: none;">
-                                                <input type="text" name="boardId" value="${BoardDTO.id}"
-                                                       style="display: none;">
-                                                <input type="text" name="memberId" value="${memberDTO.id}"
-                                                       style="display: none">
-                                                <input type="file" name="answerFile" style="display:none;">
-                                                <input type="submit" id="answerBtn1" style="display: none;">
-                                            </form>
+                                    <div class="ckEditor-body">
+                                        <div class="ckEditor-body-inner">
+                                            <div class="ckEditor-size">
+                                                <form action="/answer/save" method="post"
+                                                      enctype="multipart/form-data">
+                                                    <textarea id="editor2" name="answerContents"></textarea>
+                                                    <input type="text" name="answerWriter"
+                                                           value="${memberDTO.memberEmail}"
+                                                           style="display: none;">
+                                                    <input type="text" name="boardId" value="${BoardDTO.id}"
+                                                           style="display: none;">
+                                                    <input type="text" name="memberId" value="${memberDTO.id}"
+                                                           style="display: none">
+                                                    <input type="file" name="answerFile" style="display:none;">
+                                                    <input type="submit" id="answerBtn1" style="display: none;">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:if>
-                        <c:if test="${sessionScope.memberId != null && BoardDTO.boardAnswer == 0}">
-                            <h3 class="blind">로그인 답변 시작입니다</h3>
-                            <div class="qna_answer_editor">
-                                <div class="ckEditorHeaderArea">
-                                    <div class="c-heading-answer--editor-inner">
-                                        <div class="c-heading-answer__profile">
-                                            <div class="profile-default">
-                                                <a href="#" class="profile-default--inner">
+                            </c:if>
+                            <c:if test="${sessionScope.memberId != null && BoardDTO.boardAnswer == 0}">
+                                <h3 class="blind">로그인 답변 시작입니다</h3>
+                                <div class="qna_answer_editor">
+                                    <div class="ckEditorHeaderArea">
+                                        <div class="c-heading-answer--editor-inner">
+                                            <div class="c-heading-answer__profile">
+                                                <div class="profile-default">
+                                                    <a href="#" class="profile-default--inner">
                                                 <span class="profile-default__thumbnail">
                                                     <span class="blind">내 프로필 이미지</span>
                                                 </span>
-                                                </a>
-                                            </div>
-                                            <div class="c-heading-answer__body">
-                                                <div class="c-heading-answer__title">
-                                                    <p class="user-info-title">${memberDTO.memberEmail}님, 답변해주세요!</p>
-                                                    <div class="c-userinfo">
-                                                        <span class="c-userinfo__item">답변하시면 내공 10점을 답변이 채택되면 내공 25점을 드립니다.</span>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                                <div class="answerButtonArea">
-                                                    <div class="button-answer__subdivide">
-                                                        <label for="answerBtn">
-                                                            <a class="answerRegisterButton" style="cursor: pointer">
-                                                                <span class="c-button-default__title">답변등록</span>
-                                                            </a>
-                                                        </label>
+                                                <div class="c-heading-answer__body">
+                                                    <div class="c-heading-answer__title">
+                                                        <p class="user-info-title">${memberDTO.memberEmail}님,
+                                                            답변해주세요!</p>
+                                                        <c:choose>
+                                                            <c:when test="${BoardDTO.boardPoint != 0}">
+                                                                <div class="c-userinfo">
+                                                                    <span class="c-userinfo__item">답변하시면 내공 ${BoardDTO.boardDPoint}점을 답변이 채택되면 내공 ${BoardDTO.boardPoint}점을 드립니다.</span>
+                                                                </div>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="c-userinfo">
+                                                                    <span class="c-userinfo__item">답변하시면 내공 ${BoardDTO.boardDPoint}점을 드립니다.</span>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
+                                                    <div class="answerButtonArea">
+                                                        <div class="button-answer__subdivide">
+                                                            <label for="answerBtn">
+                                                                <a class="answerRegisterButton"
+                                                                   style="cursor: pointer">
+                                                                    <span class="c-button-default__title">답변등록</span>
+                                                                </a>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="ckEditor-body">
-                                    <div class="ckEditor-body-inner">
-                                        <div class="ckEditor-size">
-                                            <form action="/answer/save" method="post" enctype="multipart/form-data">
-                                                <textarea id="editor1" name="answerContents"></textarea>
-                                                <input type="text" name="answerWriter" value="${memberDTO.memberEmail}"
-                                                       style="display: none;">
-                                                <input type="text" name="boardId" value="${BoardDTO.id}"
-                                                       style="display: none;">
-                                                <input type="text" name="memberId" value="${memberDTO.id}"
-                                                       style="display: none">
-                                                <input type="file" name="answerFile" style="display:none;">
-                                                <input type="submit" id="answerBtn" style="display: none">
-                                            </form>
+                                    <div class="ckEditor-body">
+                                        <div class="ckEditor-body-inner">
+                                            <div class="ckEditor-size">
+                                                <form action="/answer/save" method="post"
+                                                      enctype="multipart/form-data">
+                                                    <textarea id="editor1" name="answerContents"></textarea>
+                                                    <input type="text" name="answerWriter"
+                                                           value="${memberDTO.memberEmail}"
+                                                           style="display: none;">
+                                                    <input type="text" name="boardId" value="${BoardDTO.id}"
+                                                           style="display: none;">
+                                                    <input type="text" name="memberId" value="${memberDTO.id}"
+                                                           style="display: none">
+                                                    <input type="file" name="answerFile" style="display:none;">
+                                                    <input type="submit" id="answerBtn" style="display: none">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:if>
-                    </div>
+                            </c:if>
+                        </div>
+                    </c:if>
                     <h3 class="blind">여긴 답글 입니다</h3>
                     <div class="answer-content-inner">
                         <c:if test="${BoardDTO.boardAnswer != 0}">
@@ -329,63 +375,144 @@
                                 </div>
                             </div>
                             <c:forEach items="${answerDTOList}" var="answerDTOList">
-                                <div class="answer-List-area">
-                                    <div class="answer-List-area-box">
-                                        <div class="answer-List-area-item">
-                                            <div class="adoptCheck">
-                                                <div class="checkText">
-                                                    <span style="color: #fd5f56;font-size: 12px;font-weight: bold;line-height: 1.2;">지식인 채택</span>
-                                                </div>
-                                            </div>
-                                            <div class="profile-card">
-                                                <div class="card-inner">
-                                                    <div class="card-info">
-                                                        <div class="profile-info">
-                                                            <strong class="profile-card-name">${answerDTOList.answerWriter}</strong>
-                                                            <div class="profile-item-area">
-                                                                <div class="profile-item-answer">
-                                                                    <span class="profile-card-answer-count">채택답변수 57</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <a href="#" class="thumbnail-area">
-                                                            <div class="thumbnail">
-                                                                <img src="https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m/6_3d.png"
-                                                                     alt="프로필 사진">
-                                                            </div>
-                                                        </a>
+                                <c:if test="${answerDTOList.goodAnswer == 1}">
+                                    <div class="answer-List-area">
+                                        <div class="answer-List-area-box">
+                                            <div class="answer-List-area-item">
+                                                <div class="adoptCheck">
+                                                    <div class="checkText">
+                                                        <span style="color: #fd5f56;font-size: 12px;font-weight: bold;line-height: 1.2;">지식인 채택</span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="endContents">
-                                                <div class="endContents-txt">
-                                                        ${answerDTOList.answerContents}
+                                                <div class="profile-card">
+                                                    <div class="card-inner">
+                                                        <div class="card-info">
+                                                            <div class="profile-info">
+                                                                <strong class="profile-card-name">${answerDTOList.answerWriter}</strong>
+                                                                <div class="profile-item-area">
+                                                                    <div class="profile-item-answer">
+                                                                        <span class="profile-card-answer-count">채택답변수 ${answerDTOList.totalGoodAnswer}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#" class="thumbnail-area">
+                                                                <div class="thumbnail">
+                                                                    <img src="https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m/6_3d.png"
+                                                                         alt="프로필 사진">
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="c-guideline-default">
-                                                    <strong class="c-guideline-title"><i
-                                                            class="icon_notice"></i>알아두세요</strong>
-                                                    <p class="c-guideline__desc">본 답변은 참고 용도로만 활용 가능하며 정확한 정보는 관련기관에서
-                                                        확인해보시기
-                                                        바랍니다.</p>
-                                                    <p class="c-guideline__desc">위 답변은 답변작성자가 경험과 지식을 바탕으로 작성한 내용입니다.
-                                                        포인트로
-                                                        감사할 때 참고해주세요.</p>
+                                                <div class="endContents">
+                                                    <div class="endContents-txt">
+                                                            ${answerDTOList.answerContents}
+                                                    </div>
+                                                    <div class="c-guideline-default">
+                                                        <strong class="c-guideline-title"><i
+                                                                class="icon_notice"></i>알아두세요</strong>
+                                                        <p class="c-guideline__desc">본 답변은 참고 용도로만 활용 가능하며 정확한 정보는
+                                                            관련기관에서
+                                                            확인해보시기
+                                                            바랍니다.</p>
+                                                        <p class="c-guideline__desc">위 답변은 답변작성자가 경험과 지식을 바탕으로 작성한
+                                                            내용입니다.
+                                                            포인트로
+                                                            감사할 때 참고해주세요.</p>
+                                                    </div>
+                                                    <p class="endContent-date-time"><fmt:formatDate
+                                                            value="${answerDTOList.answerCreatedDate}"
+                                                            pattern="yyyy-MM-dd"></fmt:formatDate></p>
                                                 </div>
-                                                <p class="endContent-date-time"><fmt:formatDate
-                                                        value="${answerDTOList.answerCreatedDate}"
-                                                        pattern="yyyy-MM-dd"></fmt:formatDate></p>
-                                            </div>
-                                            <div class="answerBottom">
-                                                <div class="answerBottom-left">
-                                                    <button type="button" class="answerBottom-left-comment">
-                                                        <i class="bi bi-chat-square-dots"></i>
-                                                    </button>
+                                                <div class="answerBottom">
+                                                    <div class="answerBottom-left">
+                                                        <button type="button" class="answerBottom-left-comment">
+                                                            <i class="bi bi-chat-square-dots"></i>
+                                                        </button>
+                                                        <c:if test="${sessionScope.memberId != null && sessionScope.memberId == BoardDTO.memberId && BoardDTO.boardGoodAnswer == 0}">
+                                                            <button type="button" id="goodAnswerBtn"
+                                                                    class="answerBottom-left-comment"
+                                                                    style="float: right;"
+                                                                    onclick="goodAnswerUp(${answerDTOList.memberId},${BoardDTO.id},${answerDTOList.id})">
+                                                                <i class="bi bi-hand-thumbs-up"></i>
+                                                            </button>
+                                                        </c:if>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="aiai"></div>
+                                    <div class="aiai"></div>
+                                </c:if>
+                                <c:if test="${answerDTOList.goodAnswer == 0}">
+                                    <div class="answer-List-area">
+                                        <div class="answer-List-area-box">
+                                            <div class="answer-List-area-item">
+                                                <div class="adoptCheck1">
+                                                    <div class="checkText">
+                                                        <span style="color: transparent;font-size: 12px;font-weight: bold;line-height: 1.2;">채택을 해주세영</span>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-card">
+                                                    <div class="card-inner">
+                                                        <div class="card-info">
+                                                            <div class="profile-info">
+                                                                <strong class="profile-card-name">${answerDTOList.answerWriter}</strong>
+                                                                <div class="profile-item-area">
+                                                                    <div class="profile-item-answer">
+                                                                        <span class="profile-card-answer-count">채택답변수 ${answerDTOList.totalGoodAnswer}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#" class="thumbnail-area">
+                                                                <div class="thumbnail">
+                                                                    <img src="https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m/6_3d.png"
+                                                                         alt="프로필 사진">
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="endContents">
+                                                    <div class="endContents-txt">
+                                                            ${answerDTOList.answerContents}
+                                                    </div>
+                                                    <div class="c-guideline-default">
+                                                        <strong class="c-guideline-title"><i
+                                                                class="icon_notice"></i>알아두세요</strong>
+                                                        <p class="c-guideline__desc">본 답변은 참고 용도로만 활용 가능하며 정확한 정보는
+                                                            관련기관에서
+                                                            확인해보시기
+                                                            바랍니다.</p>
+                                                        <p class="c-guideline__desc">위 답변은 답변작성자가 경험과 지식을 바탕으로 작성한
+                                                            내용입니다.
+                                                            포인트로
+                                                            감사할 때 참고해주세요.</p>
+                                                    </div>
+                                                    <p class="endContent-date-time"><fmt:formatDate
+                                                            value="${answerDTOList.answerCreatedDate}"
+                                                            pattern="yyyy-MM-dd"></fmt:formatDate></p>
+                                                </div>
+                                                <div class="answerBottom">
+                                                    <div class="answerBottom-left">
+                                                        <button type="button" class="answerBottom-left-comment">
+                                                            <i class="bi bi-chat-square-dots"></i>
+                                                        </button>
+                                                        <c:if test="${sessionScope.memberId != null && sessionScope.memberId == BoardDTO.memberId && BoardDTO.boardGoodAnswer == 0}">
+                                                            <button type="button" id="goodAnswerBtn"
+                                                                    class="answerBottom-left-comment"
+                                                                    style="float: right;"
+                                                                    onclick="goodAnswerUp(${answerDTOList.memberId},${BoardDTO.id},${answerDTOList.id})">
+                                                                <i class="bi bi-hand-thumbs-up"></i>
+                                                            </button>
+                                                        </c:if>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="aiai"></div>
+                                </c:if>
                             </c:forEach>
                         </c:if>
                     </div>
@@ -497,6 +624,29 @@
         })
     }
 
+    const goodAnswerUp = (mId, bId, aId) => {
+        const memberId = mId;
+        const boardId = bId;
+        const answerId = aId;
+        const goodAnswerBtn = document.getElementById('goodAnswerBtn');
+        $.ajax({
+            type: "post",
+            url: "/board/bestAnswer",
+            data: {
+                memberId: memberId,
+                boardId: boardId,
+                answerId: answerId
+            },
+            success: function (res) {
+                alert("답글이 채택되었습니다.");
+                goodAnswerBtn.style.display = "none";
+            },
+            error: function () {
+                alert("삭제되었거나 없는 답글입니다.");
+            }
+        })
+    };
+
     const commentSave = (boardid, boardMemberid) => {
         const commentWriter = '${memberDTO.memberEmail}';
         const commentContents = document.getElementById('detail-contents-comment-textarea').value;
@@ -570,7 +720,7 @@
                 console.log("실패");
             }
         })
-    }
+    };
     const plzLogin = () => {
         if (confirm("로그인 후 이용하실 수 있습니다.")) {
             location.href = "/member/login";
@@ -643,14 +793,14 @@
                 }
             }
         )
-    }
+    };
     const goAnswer = () => {
         const answer = document.getElementById('answer-content-Login-box');
         const editorOnOff = document.getElementById('editor-On-Off');
         answer.style.display = "none";
         editorOnOff.style.display = "block";
 
-    }
+    };
 
 
 </script>

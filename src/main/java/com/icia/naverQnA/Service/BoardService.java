@@ -95,4 +95,18 @@ public class BoardService {
     public Object findByFirst() {
         return boardRepository.findByFirst();
     }
+
+    public void boardGoodAnswerUp(BoardDTO boardDTO) {
+        boardRepository.boardGoodAnswerUp(boardDTO);
+    }
+
+    public AnswerDTO findByAnswer(Long answerId) {
+        return boardRepository.findByAnswer(answerId);
+    }
+
+
+    public void GoodAnswerUp(AnswerDTO answerDTO) {
+        boardRepository.GoodAnswerUp(answerDTO);
+    }
+
 }

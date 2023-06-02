@@ -210,9 +210,11 @@
                                                             <div class="main2-contents-list-item">
                                                                 <a href="/board/detail?BoardId=${qnaBoardList.id}"
                                                                    target="_blank" class="main2-contents-item">
+                                                                    <c:if test="${qnaBoardList.boardPoint != 0}">
                                                                 <span class="power_grade" title="내공 전시장">
-                                                                    500
+                                                                        ${qnaBoardList.boardPoint}
                                                                 </span>
+                                                                    </c:if>
                                                                     <span class="main2-item-title">${qnaBoardList.boardTitle}</span>
                                                                     <p class="main2-item-contents">${qnaBoardList.boardContents}</p>
                                                                 </a>
@@ -338,30 +340,32 @@
                     outPut += '<div class="main2-contents-list-inner">';
                     outPut += '<div class="main2-contents-list-item">';
                     outPut += '<a href="/board/detail?BoardId=' + res.qnaBoardDTOList[i].id + '" target="_blank" class="main2-contents-item">';
-                    outPut += '<span class="power_grade" title="내공 전시장">';
-                    outPut += '500';
-                    outPut += '</span>';
+                    if (res.qnaBoardDTOList[i].boardPoint != 0) {
+                        outPut += '<span class="power_grade" title="내공 전시장">';
+                        outPut += res.qnaBoardDTOList[i].boardPoint;
+                        outPut += '</span>';
+                    }
                     outPut += '<span class="main2-item-title">' + res.qnaBoardDTOList[i].boardTitle + '</span>';
                     outPut += '<p class="main2-item-contents">' + res.qnaBoardDTOList[i].boardContents + '</p>';
                     outPut += '</a>';
                     outPut += '</div>';
                     outPut += '<div class="main2-item-info">';
                     outPut += '<span class="item-info-answer">답변 ' + res.qnaBoardDTOList[i].boardAnswer + '</span>';
-                    outPut += '<span class="item-info-type">조회수 '+ res.qnaBoardDTOList[i].boardHits +'</span>';
+                    outPut += '<span class="item-info-type">조회수 ' + res.qnaBoardDTOList[i].boardHits + '</span>';
                     outPut += '<span class="item-info-time">';
                     let nowTime = new Date().getTime(); // 현재 시간을 밀리초로 가져옴
                     let commentDate = new Date(res.qnaBoardDTOList[i].boardCreatedDate); // DTO의 boardCreatedDate를 JavaScript Date 객체로 변환
                     let timeDifference = (nowTime - commentDate) / (1000 * 60); // 분 단위로 시간 차이 계산
-                    if (timeDifference <= 10){
-                        outPut +=  '방금 전';
-                    } else if (timeDifference > 10 && timeDifference <= 60){
-                        outPut += moment(timeDifference)+'분 전';
-                    } else if (timeDifference > 60 && timeDifference <= 60*24){
+                    if (timeDifference <= 10) {
+                        outPut += '방금 전';
+                    } else if (timeDifference > 10 && timeDifference <= 60) {
+                        outPut += moment(timeDifference) + '분 전';
+                    } else if (timeDifference > 60 && timeDifference <= 60 * 24) {
                         timeDifference = (timeDifference / 60);
-                        outPut += moment(timeDifference)+'시간 전';
-                    } else if (timeDifference > 60*24 && timeDifference <= 60*24*30){
-                        timeDifference = (timeDifference / (60*24));
-                        outPut += moment(timeDifference)+'일 전';
+                        outPut += moment(timeDifference) + '시간 전';
+                    } else if (timeDifference > 60 * 24 && timeDifference <= 60 * 24 * 30) {
+                        timeDifference = (timeDifference / (60 * 24));
+                        outPut += moment(timeDifference) + '일 전';
                     } else {
                         outPut += moment(res.qnaBoardDTOList[i].boardCreatedDate).format("YYYY-MM-DD HH:mm");
                     }

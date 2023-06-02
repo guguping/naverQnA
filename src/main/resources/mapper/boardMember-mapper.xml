@@ -42,13 +42,26 @@
         update board_table set boardAnswer = boardAnswer+1 where id = #{boardId}
     </update>
     <insert id="boardAnswerSave" parameterType="answer">
-        insert into answer_table(boardId, memberId, answerWriter, answerContents, fileAttached)
-            value (#{boardId},#{memberId},#{answerWriter},#{answerContents},#{fileAttached})
+        insert into answer_table(boardId, memberId, answerWriter, answerContents,goodAnswer, fileAttached)
+            value (#{boardId},#{memberId},#{answerWriter},#{answerContents},#{goodAnswer},#{fileAttached})
     </insert>
     <select id="findByAnswerList" parameterType="answer" resultType="answer">
-        select * from answer_table where boardId = #{boardId}
+        SELECT a.*, SUM(b.goodAnswer) AS totalGoodAnswer
+        FROM answer_table a
+                 INNER JOIN answer_table b ON a.memberId = b.memberId
+        WHERE a.boardId = #{boardId}
+        GROUP BY a.memberId, a.id order by goodAnswer desc
     </select>
     <select id="findByFirst" resultType="board">
         select * from board_table where boardCreatedDate >= DATE (now()) order by boardCreatedDate asc limit 1
     </select>
+    <update id="boardGoodAnswerUp" parameterType="board">
+        update board_table set boardGoodAnswer = #{boardGoodAnswer} where id = #{id}
+    </update>
+    <select id="findByAnswer" parameterType="Long" resultType="answer">
+        select * from answer_table where id = #{id}
+    </select>
+    <update id="GoodAnswerUp" parameterType="answer">
+        update answer_table set goodAnswer = #{goodAnswer} where id = #{id}
+    </update>
 </mapper>
