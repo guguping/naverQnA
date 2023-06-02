@@ -53,7 +53,7 @@ public class BoardController {
         boardDTO.setMemberId(memberDTO.getId());
         boardService.saveBoard(boardDTO);
         model.addAttribute("memberDTO", memberDTO);
-        return "redirect:/login/index";
+        return "redirect:/";
     }
 
     @GetMapping("/board/detail")

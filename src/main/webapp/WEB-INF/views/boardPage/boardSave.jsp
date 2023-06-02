@@ -141,7 +141,7 @@
     });
 
     const back = () => {
-        location.href = "/login/index";
+        location.href = "/";
     }
 
     const boardCheck = () => {

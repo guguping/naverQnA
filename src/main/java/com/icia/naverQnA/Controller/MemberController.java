@@ -37,7 +37,7 @@ public class MemberController {
         if(memberDB != null) {
             session.setAttribute("memberId",memberDB.getId());
             model.addAttribute("memberDTO",memberDB);
-            return "redirect:/login/index";
+            return "redirect:/";
         } else {
             model.addAttribute("loginFalse",loginFalse);
             return "/memberPage/memberLogin";

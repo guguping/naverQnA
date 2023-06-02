@@ -62,36 +62,35 @@ public class HomeController {
         model.addAttribute("memberDTO",memberDTO);
         return "index";
     }
-
-    @GetMapping("/login/index")
-    public String loginIndex(@RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
-                             @RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
-                             @RequestParam(value = "q",required = false,defaultValue = "") String q,
-                             HttpSession session, Model model) {
-        PageDTO bestPageDTO = new PageDTO();
-        bestPageDTO.setPage(bestPage);
-
-        // qna게시물 페이징
-        PageDTO qnaPageDTO = new PageDTO();
-        qnaPageDTO.setPage(qnaPage);
-
-        Date Time = new Date();
-        int hours = Time.getHours();
-        String formattedHours = (hours < 10) ? "0" + hours : String.valueOf(hours);
-        String bestBoardTime = Time.getDate() + "일 " + formattedHours+"시 기준";
-        model.addAttribute("bestBoardTime",bestBoardTime);
-
-        String bestBoardCount = "6";
-        model.addAttribute("firstBoard",boardService.findByFirst());
-        model.addAttribute("holyLand",boardService.findByBoard(commentService.findByHoly()));
-        model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
-        model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO,q));
-        model.addAttribute("bestBoardCount",bestBoardCount);
-        model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
-        model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));
-        model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
-        return "index";
-    }
+//    @GetMapping("/login/index")
+//    public String loginIndex(@RequestParam(value = "bestPage", required = false, defaultValue = "1") int bestPage,
+//                             @RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
+//                             @RequestParam(value = "q",required = false,defaultValue = "") String q,
+//                             HttpSession session, Model model) {
+//        PageDTO bestPageDTO = new PageDTO();
+//        bestPageDTO.setPage(bestPage);
+//
+//        // qna게시물 페이징
+//        PageDTO qnaPageDTO = new PageDTO();
+//        qnaPageDTO.setPage(qnaPage);
+//
+//        Date Time = new Date();
+//        int hours = Time.getHours();
+//        String formattedHours = (hours < 10) ? "0" + hours : String.valueOf(hours);
+//        String bestBoardTime = Time.getDate() + "일 " + formattedHours+"시 기준";
+//        model.addAttribute("bestBoardTime",bestBoardTime);
+//
+//        String bestBoardCount = "6";
+//        model.addAttribute("firstBoard",boardService.findByFirst());
+//        model.addAttribute("holyLand",boardService.findByBoard(commentService.findByHoly()));
+//        model.addAttribute("bestBoardDTOList",boardService.bestBoardList(bestPageDTO));
+//        model.addAttribute("bestPaging",boardService.bestPagingParam(bestPageDTO,q));
+//        model.addAttribute("bestBoardCount",bestBoardCount);
+//        model.addAttribute("qnaBoardDTOList",boardService.qnaBoardList(qnaPageDTO,q));
+//        model.addAttribute("qnaPaging",boardService.qnaPagingParam(qnaPageDTO,q));
+//        model.addAttribute("memberDTO", boardService.findById(session.getAttribute("memberId")));
+//        return "index";
+//    }
     @PostMapping("/index/UDPage")
     public ResponseEntity main2ListBox(@RequestParam(value = "qnaPage", required = false,defaultValue = "1")int qnaPage,
                                        @RequestParam(value = "q",required = false,defaultValue = "") String q){

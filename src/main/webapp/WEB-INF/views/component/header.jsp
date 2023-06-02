@@ -3,14 +3,7 @@
 <header>
     <div class="header-box">
         <div style="width: 600px;;margin-left: 15px;">
-            <c:choose>
-                <c:when test="${sessionScope.memberId != null}">
-                    <span><a href="/login/index" class="header-logo">NAVER</a></span>
-                </c:when>
-                <c:otherwise>
-                <span><a href="/" class="header-logo">NAVER</a></span>
-                </c:otherwise>
-            </c:choose>
+            <span><a href="/" class="header-logo">NAVER</a></span>
             <h2 style="display: inline"><a href="#" id="header-logo2">지식iN</a></h2>
             <div id="header-search-div">
                 <form action="#" method="post">
@@ -30,7 +23,8 @@
                                      src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
                                      alt="내 프로필 이미지" style="display: inline-block;">
                                 <span class="filter_mask" style="display: inline-block;"></span>
-                                <span id="header-myPage-name" style="display: inline-block;">${memberDTO.memberEmail}</span>
+                                <span id="header-myPage-name"
+                                      style="display: inline-block;">${memberDTO.memberEmail}</span>
                                 <em class="blind">내정보 보기</em>
                             </a>
                         </div>
